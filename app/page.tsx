@@ -172,7 +172,7 @@ export default function Home() {
             {/* Projects Section */}
             <section className="mb-16 article">
               <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline">
-                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit">PROJECTS</span>
+                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit">LAST PROJECTS</span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 {projects.map((project, index) => (
@@ -270,11 +270,11 @@ export default function Home() {
         
         {/* Footer */}
         <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
-          <div className="mb-2">Samy Mebarki • {format(new Date(), 'EEEE, MMMM d, yyyy')}</div>
+          <div className="mb-2">Samy Mebarki </div>
           <div className="flex justify-center space-x-4">
             <a href="#" className="hover:underline">Contact</a>
           </div>
-          <div className="mt-2"> 2025 The Daily Portfolio</div>
+          <div className="mt-2"> {format(new Date(), 'EEEE, MMMM d, yyyy')}</div>
         </footer>
       </div>
     </div>

@@ -79,6 +79,13 @@ export default function Home() {
     "24 years of awesome, says totally unbiased portfolio ticker.",
     "Samy trained an AI model to fetch coffee. It brings art instead.",
     "Portfolio so smooth, even your scroll wheel's impressed.",
+    "Samy once refactored spaghetti code. It came out as lasagna.",
+    "Samy doesn’t debug. The code apologizes and fixes itself.",
+    "Fun fact: Samy’s CSS never breaks. It just takes strategic naps.",
+    "Samy doesn’t write documentation. His code explains itself in prose.",
+    "Samy whispered to an API once. It gave 200 OK forever after.",
+    "His components are so reusable, IKEA took notes."
+
   ]
 
   // Intersection Observer for scroll animations
@@ -227,7 +234,11 @@ export default function Home() {
               </div>
             </section>
           </div>
-          <div className="col-span-4 pl-4">
+          <div className="col-span-4 pl-4 relative">
+            {/* Signature */}
+            <div className="absolute bottom-4 right-4 text-3xl text-[#503822] opacity-90" style={{ fontFamily: 'var(--font-allura)' }}>
+              Samy Mebarki
+            </div>
             <div className="border-2 border-black p-4 mb-4">
               <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">ABOUT THE DEVELOPER</h3>
               <div className="aspect-square w-full bg-gray-200 mb-3 overflow-hidden">
@@ -255,9 +266,9 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="border-2 border-[#503822] p-4 bg-[#503822] text-[#f8e1c2]">
+            <div className="border-2 border-[#503822] p-4 bg-[#503822] text-[#f8e1c2] mb-4">
               <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">LATEST UPDATES</h3>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3 text-sm mb-6">
                 {newsItems.map((item, index) => (
                   <li key={index} className="border-b border-[#f8e1c2]/20 pb-2">
                     {item}
@@ -265,9 +276,48 @@ export default function Home() {
                 ))}
               </ul>
             </div>
+            <div className="border-2 border-black p-4 mb-4">
+              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">CONTACT ME</h3>
+                <form className="space-y-4">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-sm mb-1 text-[#503822]">Name</label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block text-sm mb-1 text-[#503822]">Email</label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-message" className="block text-sm mb-1 text-[#503822]">Message</label>
+                    <textarea
+                      id="contact-message"
+                      rows={3}
+                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
+                      placeholder="Your message..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-2 bg-[#f8e1c2] text-[#503822] font-medium hover:bg-white transition-colors duration-200"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
           </div>
         </div>
-        
         {/* Footer */}
         <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
           <div className="mb-2">Samy Mebarki </div>

@@ -28,7 +28,7 @@ const AboutSection = forwardRef<HTMLDivElement>((props, ref) => {
 
             <div className="border-t border-b border-black/10 py-4 mb-4">
               <h3 className="newspaper-subheading text-xl mb-2">Contact Information</h3>
-              <p className="mb-2">hello@samymebarki.com</p>
+              <p className="mb-2">samymebrki8@gmail.com</p>
               <p className="mb-4">Constantine, Algeria</p>
 
               <div className="flex gap-4">
@@ -53,7 +53,7 @@ const AboutSection = forwardRef<HTMLDivElement>((props, ref) => {
                   <span className="sr-only">LinkedIn</span>
                 </a>
                 <a
-                  href="mailto:hello@samymebarki.com"
+                  href="samymebarki8@gmail.com"
                   className="p-2 border border-black/20 hover:bg-black hover:text-white transition-colors"
                   data-cursor="pointer"
                 >

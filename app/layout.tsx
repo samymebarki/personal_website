@@ -19,7 +19,6 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Samy Mebarki | Digital Journal",
   description: "Software Engineer & Graphic Designer",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({

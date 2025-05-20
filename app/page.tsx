@@ -1,202 +1,282 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
-import { cn } from "@/lib/utils"
+import { format } from 'date-fns'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import { Clock, Newspaper, PenTool, User } from 'lucide-react'
+import Image from "next/image"
 import PaperTexture from "@/components/paper-texture"
-import RoughPaperOverlay from "@/components/rough-paper-overlay"
-import AboutSection from "@/components/about-section"
-import NewspaperHeader from "@/components/newspaper-header"
-import NewspaperNavigation from "@/components/newspaper-navigation"
-import ProjectsSection from "@/components/projects-section"
-import SkillsSection from "@/components/skills-section"
-import NewspaperFooter from "@/components/newspaper-footer"
 import NewsTicker from "@/components/news-ticker"
-import CoffeeStain from "@/components/coffee-stain"
-import PaginationControls from "@/components/pagination-controls"
-import NewspaperPrintingAnimation from "@/components/newspaper-printing-animation"
+import RoughPaperOverlay from "@/components/rough-paper-overlay"
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isAnimationComplete, setIsAnimationComplete] = useState(false)
-  const loadingRef = useRef<HTMLDivElement>(null)
-
-  // Initialize animations after component mounts
+  const [date, setDate] = useState('')
+  const [isVisible, setIsVisible] = useState(false)
+  
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 500)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
-
-  const handleAnimationComplete = () => {
-    setIsAnimationComplete(true)
-  }
-
+    // Set current date in newspaper format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
+    setDate(new Date().toLocaleDateString('en-US', options));
+    
+    // Trigger fade-in animation
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
   const projects = [
     {
       id: 1,
       title: "AVRO/KO",
-      description:
-        "AVRO/KO is an award-winning global design firm, established itself as a global leader in interior architecture for hospitality, restaurant and bars. The project involved creating a digital presence that reflected the firm's sophisticated aesthetic while showcasing their portfolio in an immersive way.",
-      image: "/placeholder.svg?height=400&width=600",
-      isNew: true,
+      description: "Award-winning design firm's digital presence showcasing interior architecture projects.",
       year: "2023",
       category: "Branding",
+      image: "/images/avro-ko.jpg"
     },
     {
       id: 2,
       title: "THE ROGER HUB",
-      description:
-        "The Roger Hub is an immersive web experience showcasing the tennis-inspired 'On' sneakers, a collaboration born out of a partnership with the legendary Roger Federer. This project required a delicate balance between performance storytelling and product showcase.",
-      image: "/placeholder.svg?height=400&width=600",
-      isNew: true,
+      description: "Immersive web experience for tennis-inspired sneakers in collaboration with Roger Federer.",
       year: "2023",
       category: "Web Design",
+      image: "/images/roger-hub.jpg"
     },
     {
       id: 3,
       title: "LUMINA",
-      description:
-        "Lumina is a digital platform that reimagines how we interact with light in architectural spaces, creating dynamic environments that respond to human presence. The project explores the intersection of IoT technology and spatial design.",
-      image: "/placeholder.svg?height=400&width=600",
-      isNew: false,
+      description: "Digital platform reimagining light interaction in architectural spaces with IoT technology.",
       year: "2022",
-      category: "Digital Experience",
+      category: "Digital Exp",
+      image: "/images/lumina.jpg"
     },
     {
       id: 4,
       title: "TERRA FORMA",
-      description:
-        "Terra Forma explores the intersection of digital art and environmental awareness, creating immersive landscapes that evolve based on real-world climate data. This project uses generative AI to create unique visualizations.",
-      image: "/placeholder.svg?height=400&width=600",
-      isNew: true,
+      description: "Generative AI art project visualizing environmental data through immersive landscapes.",
       year: "2023",
-      category: "Interactive Design",
+      category: "AI Art",
+      image: "/images/terra-forma.jpg"
     },
+    {
+      id: 5,
+      title: "NEURO HARMONY",
+      description: "Brain-computer interface for music creation using neural signals.",
+      year: "2023",
+      category: "AI/ML",
+      image: "/images/neuro-harmony.jpg"
+    },
+    {
+      id: 6,
+      title: "CHRONO VORTEX",
+      description: "Interactive timeline visualization tool for exploring historical events.",
+      year: "2022",
+      category: "Web App",
+      image: "/images/chrono-vortex.jpg"
+    }
   ]
 
-  // News ticker items
   const newsItems = [
     "JavaScript tried to outsmart Samy. JavaScript lost.",
     "Scientists stunned: Samy codes and designs? At the same time?!",
-    "“24 years of awesome,” says totally unbiased portfolio ticker.",
+    "24 years of awesome, says totally unbiased portfolio ticker.",
     "Samy trained an AI model to fetch coffee. It brings art instead.",
-    "Portfolio so smooth, even your scroll wheel’s impressed.",
+    "Portfolio so smooth, even your scroll wheel's impressed.",
   ]
 
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.article, .headline, .byline, .newspaper-column p').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <>
-      <PaperTexture />
-      <RoughPaperOverlay />
-
-      {/* Loading Animation */}
-      <div
-        ref={loadingRef}
-        className={cn(
-          "fixed inset-0 bg-sepia-100 z-50 flex items-center justify-center transition-opacity duration-1000",
-          isAnimationComplete ? "opacity-0 pointer-events-none" : "opacity-100",
-        )}
-      >
-        <div className="w-full max-w-4xl mx-auto px-4">
-          <NewspaperPrintingAnimation
-            name="Samy Mebarki"
-            subtitle="Software Engineer & Graphic Designer"
-            delay={800}
-            onComplete={handleAnimationComplete}
-          />
-        </div>
+    <div className="min-h-screen bg-[#f8e1c2] relative font-serif text-[#503822] overflow-x-hidden">
+      {/* News Ticker - At the very top */}
+      <div className="relative z-30 w-full bg-[#503822] text-[#f8e1c2] py-1 overflow-hidden">
+        <NewsTicker items={newsItems} speed={70} />
       </div>
-
-      <div className="min-h-screen bg-paper relative">
-        {/* Coffee stains */}
-        <CoffeeStain position="top-right" size="medium" rotation={15} />
-        <CoffeeStain position="bottom-left" size="large" opacity={0.1} rotation={-10} />
-
-        <NewspaperNavigation />
-
-        {/* News ticker */}
-        <NewsTicker items={newsItems} speed={25} />
-
-        <NewspaperHeader />
-
-        <main>
-          {/* Hero Section */}
-          <section id="hero" className="py-12 md:py-16 border-b border-sepia-300">
-            <div className="container mx-auto px-4">
-              <div className="newspaper-grid">
-                <div className="newspaper-grid-span-8">
-                  <h2 className="newspaper-heading text-5xl md:text-7xl mb-6">
-                    Crafting Digital Experiences at the Intersection of Code and Design
-                  </h2>
-                  <div className="newspaper-column">
-                    <p className="newspaper-dropcap mb-4">
-                      In the rapidly evolving landscape of digital creation, the boundaries between disciplines continue
-                      to blur. As a software engineer with expertise in artificial intelligence and a passion for
-                      graphic design, I navigate this intersection to create experiences that are both technically
-                      robust and aesthetically compelling.
-                    </p>
-                    <p>
-                      This digital journal serves as a chronicle of my work and thoughts on technology, design, and the
-                      creative process. Through case studies, technical insights, and reflections on the industry, I
-                      hope to contribute to the ongoing conversation about how we can harness technology to create more
-                      meaningful and human-centered digital experiences.
-                    </p>
-                  </div>
-                </div>
-                <div className="newspaper-grid-span-4">
-                  <div className="border border-sepia-300 p-6 bg-sepia-50">
-                    <h3 className="newspaper-subheading text-xl mb-4">Latest Updates</h3>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="newspaper-date mb-1">MAY 15, 2023</div>
-                        <p className="font-medium">Launched new portfolio website with newspaper-inspired design</p>
-                      </div>
-                      <div>
-                        <div className="newspaper-date mb-1">APRIL 28, 2023</div>
-                        <p className="font-medium">Completed AI-powered image generation project for client</p>
-                      </div>
-                      <div>
-                        <div className="newspaper-date mb-1">MARCH 12, 2023</div>
-                        <p className="font-medium">Published research paper on neural network optimization</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      
+      {/* Paper Texture Overlay */}
+      <div className="fixed inset-0 bg-[#f8e1c2] pointer-events-none">
+        <PaperTexture />
+      </div>
+      
+      <div className={`relative z-10 w-[95%]  mx-auto px-4 py-8 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <RoughPaperOverlay />
+        
+        {/* Newspaper Header */}
+        <header className="text-center border-b-2 border-[#503822] mb-8 pb-4 newspaper-fold">
+          {/*<div className="text-xs uppercase tracking-widest mb-1 text-[#1a1a1a] font-bold ">The Daily Portfolio</div>*/}
+          <h1 className="text-9xl md:text-9xl lg:text-9xl leading-none my-6 font-['Chomsky'] text-[#503822] hover:scale-105 transition-transform duration-500">
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">S</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">a</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">m</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">y</span>
+            <span className="mx-4"></span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">M</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">e</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">b</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">a</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">r</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">k</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">i</span>
+          </h1>
+          <div className="flex justify-between items-center text-xs border-t border-b border-[#503822] py-2 text-[#503822] ">
+            <span className="flex items-center"><Newspaper className="w-3 h-3 mr-1" /> {date}</span>
+            <span className="hidden md:inline-block">VOL. 1, NO. 1 •</span>
+            <span className="flex items-center"><PenTool className="w-3 h-3 mr-1" /> DESIGN • CODE • ART</span>
+          </div>
+        </header>
+        
+        {/* Main Headline Section */}
+        <div className="grid grid-cols-12 gap-4 mb-6 w-full">
+          <div className="col-span-8 border-r-2 border-black pr-4">
+            <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822]">CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO</h2>
+            <div className="flex items-center text-sm text-[#503822] mb-4">
+              <User className="h-4 w-4 mr-1" />
+              <span className="mr-4">By Samy Mebarki</span>
+              <Clock className="h-4 w-4 ml-4 mr-1" />
+              <span>5 min read</span>
+            </div>
+            <div className="grid grid-cols-2 gap-8 text-justify text-[#1a1a1a] leading-relaxed mb-8">
+              <div className="space-y-4">
+                <p className="relative">
+                  <span className="float-left text-7xl font-bold leading-[0.8] mr-2 text-[#503822] -ml-3 relative top-1 h-[1.5em] overflow-hidden">I</span>
+                  n an era where digital presence defines professional identity, one developer's portfolio stands out from the crowd. Samy Mebarki, a creative technologist with a passion for design and code, has launched a portfolio that blurs the line between digital art and professional showcase. The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution.
+                </p>
+                <p>
+                  The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution. From responsive web applications to immersive digital experiences, the portfolio demonstrates a keen eye for detail and a commitment to excellence.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <p>
+                  The design language speaks of both innovation and tradition, creating a unique space where technology meets aesthetics in perfect harmony. Visitors to the portfolio are greeted with an interface that feels both familiar and groundbreaking.
+                </p>
+                <p>
+                  The navigation is intuitive yet sophisticated, allowing for a seamless journey through Mebarki's professional evolution and creative process. Each section reveals new layers of technical expertise and creative vision, inviting deeper exploration.
+                </p>
               </div>
             </div>
-          </section>
-
-          <div id="about">
-            <AboutSection />
+            
+            {/* Projects Section */}
+            <section className="mb-16 article">
+              <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline">
+                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit">PROJECTS</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {projects.map((project, index) => (
+                  <article 
+                    key={project.id} 
+                    className={`relative  p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 article ink-drop`}
+                    style={{
+                      '--animation-delay': `${index * 100}ms`,
+                      opacity: 0,
+                      animation: 'fadeIn 0.8s ease-out forwards',
+                      animationDelay: `${index * 100}ms`
+                    } as React.CSSProperties}
+                  >
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#503822] to-[#503822]"></div>
+                    <div className="relative h-64 mb-6 overflow-hidden group">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500"></div>
+                    </div>
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-2xl font-bold font-['OldNewspaper'] text-[#1a1a1a] hover:text-[#503822] transition-colors">
+                        {project.title}
+                      </h3>
+                      <span className="bg-[#f0e6d2] text-[#503822] text-xs px-2 py-1 font-mono">
+                        {project.year}
+                      </span>
+                    </div>
+                    <p className="text-[#333] mb-4 leading-relaxed">{project.description}</p>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="inline-block bg-[#f0e6d2] text-[#503822] px-3 py-1 rounded-full font-medium">
+                        {project.category}
+                      </span>
+                      <button 
+                        className="flex items-center text-[#503822] hover:text-[#1a1a1a] transition-colors"
+                        aria-label={`View ${project.title} project`}
+                      >
+                        <span className="mr-1">Read more</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="absolute bottom-2 right-2 text-[#8b0000] text-6xl font-['OldNewspaper'] opacity-5 pointer-events-none">
+                      {String(project.id).padStart(2, '0')}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
           </div>
-
-          <div id="projects">
-            <ProjectsSection projects={projects} />
-          </div>
-
-          <div id="skills">
-            <SkillsSection />
-          </div>
-
-          {/* Quote Section */}
-          <section className="py-16 md:py-24 border-t border-b border-sepia-300">
-            <div className="container mx-auto px-4 text-center">
-              <blockquote className="text-3xl md:text-4xl lg:text-5xl max-w-4xl mx-auto newspaper-heading">
-                "The best design is invisible. The best code is simple. The best experience is seamless."
-              </blockquote>
-              <div className="mt-6 text-lg">— Samy Mebarki</div>
+          <div className="col-span-4 pl-4">
+            <div className="border-2 border-black p-4 mb-4">
+              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">ABOUT THE DEVELOPER</h3>
+              <div className="aspect-square w-full bg-gray-200 mb-3 overflow-hidden">
+                <img 
+                  src="/images/personal.jpg"
+                  alt="Samy Mebarki"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-sm mb-3 text-[#503822]">With a background in both design and development, Samy brings a unique perspective to every project. His approach combines technical expertise with creative problem-solving.</p>
+              
+              <h4 className="font-bold text-sm mb-2 text-[#503822]">TECHNICAL SKILLS</h4>
+              <ul className="text-xs space-y-1 mb-4 text-[#503822]">
+                <li>• React & Next.js Development</li>
+                <li>• TypeScript & JavaScript</li>
+                <li>• UI/UX Design</li>
+                <li>• Responsive Web Development</li>
+              </ul>
+              
+              <div className="border-t border-[#503822] pt-3">
+                <h4 className="font-bold text-sm mb-2 text-[#503822]">CONTACT</h4>
+                <p className="text-xs text-[#503822]">Email: samymebarki8@gmail.com</p>
+                <p className="text-xs text-[#503822]">Web: samymebarki.dev</p>
+                <p className="text-xs text-[#503822]">Constantine, Algeria</p>
+              </div>
             </div>
-          </section>
-
-          {/* Pagination controls */}
-          <PaginationControls />
-        </main>
-
-        <NewspaperFooter />
+            
+            <div className="border-2 border-[#503822] p-4 bg-[#503822] text-[#f8e1c2]">
+              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">LATEST UPDATES</h3>
+              <ul className="space-y-3 text-sm">
+                {newsItems.map((item, index) => (
+                  <li key={index} className="border-b border-[#f8e1c2]/20 pb-2">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        {/* Footer */}
+        <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
+          <div className="mb-2">Samy Mebarki • {format(new Date(), 'EEEE, MMMM d, yyyy')}</div>
+          <div className="flex justify-center space-x-4">
+            <a href="#" className="hover:underline">Contact</a>
+          </div>
+          <div className="mt-2"> 2025 The Daily Portfolio</div>
+        </footer>
       </div>
-    </>
-  )
+    </div>
+  );
 }

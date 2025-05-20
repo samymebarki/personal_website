@@ -1,55 +1,67 @@
+@import url('https://fonts.cdnfonts.com/css/chomsky');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 40 30% 94%;
-    --foreground: 25 25% 12%;
-
-    --card: 40 30% 94%;
-    --card-foreground: 25 25% 12%;
-
-    --popover: 40 30% 94%;
-    --popover-foreground: 25 25% 12%;
-
-    --primary: 25 25% 12%;
-    --primary-foreground: 40 30% 94%;
-
-    --secondary: 20 60% 45%;
-    --secondary-foreground: 40 30% 94%;
-
-    --muted: 40 20% 88%;
-    --muted-foreground: 25 10% 30%;
-
-    --accent: 40 20% 88%;
-    --accent-foreground: 25 25% 12%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 40 30% 94%;
-
-    --border: 25 25% 12%;
-    --input: 25 25% 12%;
-    --ring: 25 25% 12%;
-
-    --radius: 0.5rem;
-
-    /* Sepia color palette - warmer tones */
-    --sepia-50: 45 38% 98%;
-    --sepia-100: 43 36% 94%;
-    --sepia-200: 40 34% 88%;
-    --sepia-300: 38 32% 80%;
-    --sepia-400: 35 30% 70%;
-    --sepia-500: 32 28% 60%;
-    --sepia-600: 28 30% 45%;
-    --sepia-700: 25 32% 35%;
-    --sepia-800: 22 35% 25%;
-    --sepia-900: 20 40% 15%;
-
-    /* Custom colors */
-    --custom-header: 60 3% 10%; /* #1b1b19 */
-    --custom-background: 33 10% 73%; /* #c4bdb3 */
+  html {
+    font-family: 'Crimson Text', serif;
   }
+}
+
+:root {
+  --foreground-rgb: 80, 56, 34;
+  --background-start-rgb: 248, 225, 194;
+  --background-end-rgb: 255, 255, 255;
+  --ink-color: #1a1a1a;
+  --paper-color: #f8e1c2;
+  --accent-color: #8b0000;
+
+  --background: 40 30% 94%;
+  --foreground: 25 25% 12%;
+
+  --card: 40 30% 94%;
+  --card-foreground: 25 25% 12%;
+
+  --popover: 40 30% 94%;
+  --popover-foreground: 25 25% 12%;
+
+  --primary: 25 25% 12%;
+  --primary-foreground: 40 30% 94%;
+  --secondary-foreground: 40 30% 94%;
+
+  --muted: 40 20% 88%;
+  --muted-foreground: 25 10% 30%;
+
+  --accent: 40 20% 88%;
+  --accent-foreground: 25 25% 12%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 40 30% 94%;
+
+  --border: 25 25% 12%;
+  --input: 25 25% 12%;
+  --ring: 25 25% 12%;
+
+  --radius: 0.5rem;
+
+  /* Sepia color palette - warmer tones */
+  --sepia-50: 45 38% 98%;
+  --sepia-100: 43 36% 94%;
+  --sepia-200: 40 34% 88%;
+  --sepia-300: 38 32% 80%;
+  --sepia-400: 35 30% 70%;
+  --sepia-500: 32 28% 60%;
+  --sepia-600: 28 30% 45%;
+  --sepia-700: 25 32% 35%;
+  --sepia-800: 22 35% 25%;
+  --sepia-900: 20 40% 15%;
+
+  /* Custom colors */
+  --custom-header: 60 3% 10%; /* #1b1b19 */
+  --custom-background: 33 10% 73%; /* #c4bdb3 */
 }
 
 @layer base {

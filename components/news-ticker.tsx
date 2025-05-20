@@ -35,10 +35,10 @@ export default function NewsTicker({ items, speed = 30 }: NewsTickerProps) {
   }, [speed, items])
 
   return (
-    <div className="w-full overflow-hidden bg-[#1b1b19] text-white py-2 border-y border-white/20">
+    <div className="w-full overflow-hidden bg-[#503822] text-white py-2  ">
       <div className="relative">
-        <div className="absolute left-0 top-0 bg-gradient-to-r from-[#1b1b19] to-transparent w-16 h-full z-10"></div>
-        <div className="absolute right-0 top-0 bg-gradient-to-l from-[#1b1b19] to-transparent w-16 h-full z-10"></div>
+        <div className="absolute left-0 top-0 bg-gradient-to-r from-[#503822] to-transparent w-16 h-full z-10"></div>
+        <div className="absolute right-0 top-0 bg-gradient-to-l from-[#503822] to-transparent w-16 h-full z-10"></div>
         <div className="flex whitespace-nowrap font-medium" ref={tickerRef}>
           {items.map((item, index) => (
             <div key={index} className="mx-8 text-sm uppercase tracking-wider">

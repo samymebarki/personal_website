@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { format } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { Clock, Newspaper, PenTool, User } from 'lucide-react'
@@ -150,18 +150,8 @@ export default function Home() {
         
         {/* Main Headline Section */}
         <div className="grid grid-cols-12 gap-4 mb-6 w-full">
-          <div className="col-span-8 border-r-2 border-[#503822] pr-4" style={{
-            transform: 'translateY(0)',
-            transition: 'transform 0.3s ease-out',
-            willChange: 'transform'
-          }}>
-            <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822]" style={{
-              transform: 'translateY(0)',
-              transition: 'transform 0.3s ease-out',
-              willChange: 'transform'
-            }}>
-              CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO
-            </h2>
+          <div className="col-span-8 border-r border-[#503822] pr-4">
+            <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822]">CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO</h2>
             <div className="flex items-center text-sm text-[#503822] mb-4">
               <User className="h-4 w-4 mr-1" />
               <span className="mr-4">By Samy Mebarki</span>
@@ -190,18 +180,10 @@ export default function Home() {
             
             {/* Projects Section */}
             <section className="mb-16 article">
-              <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline" style={{
-                transform: 'translateY(0)',
-                transition: 'transform 0.3s ease-out',
-                willChange: 'transform'
-              }}>
+              <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline">
                 <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit">LAST PROJECTS</span>
               </h2>
-              <div className="border border-[#503822] p-4 mb-4" style={{
-                transform: 'translateY(0)',
-                transition: 'transform 0.3s ease-out',
-                willChange: 'transform'
-              }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 {projects.map((project, index) => (
                   <article 
                     key={project.id} 
@@ -219,7 +201,7 @@ export default function Home() {
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105 w-full h-full"
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500"></div>
                     </div>
@@ -271,11 +253,7 @@ export default function Home() {
               <p className="text-sm mb-3 text-[#503822]">With a background in both design and development, Samy brings a unique perspective to every project. His approach combines technical expertise with creative problem-solving.</p>
               
               <h4 className="font-bold text-sm mb-3 text-[#503822]">TECHNICAL SKILLS</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8" style={{
-                transform: 'translateY(0)',
-                transition: 'transform 0.3s ease-out',
-                willChange: 'transform'
-              }}>
+              <div className="grid grid-cols-2 gap-4 mb-4">
                 <ul className="text-xs space-y-1 text-[#503822]">
                   <li>• React & Next.js / Vue.js</li>
                   <li>• TypeScript & JavaScript</li>

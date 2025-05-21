@@ -35,7 +35,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (audioRef.current) {
       // Start with lower volume for keyboard sounds
-      audioRef.current.volume = 0.4;
+      audioRef.current.volume = 0.3;
       setVolume(0.2);
       // Most browsers require user interaction before playing audio
       // We'll start with audio paused and let the user start it

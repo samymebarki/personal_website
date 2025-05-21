@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  mask-image: url('/mask.svg');
+  mask-repeat: no-repeat;
+  background-color: #503822;
+}
+
+.content {
+  position: relative;
+  z-index: 0;
+}

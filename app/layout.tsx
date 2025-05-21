@@ -3,8 +3,10 @@ import type React from "react"
 import type { Metadata } from "next"
 import { EB_Garamond, Playfair_Display, Allura } from "next/font/google"
 import "./globals.css"
-import CustomCursor from "@/components/custom-cursor"
+import CustomCursor from "@/components/AnimatedCursor"
 import MusicPlayer from "@/components/MusicPlayerWrapper"
+import HamburgerMenu from "@/components/HamburgerMenu"
+import { MenuProvider } from '@/context/MenuContext'
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -45,9 +47,12 @@ export default function RootLayout({
       <body
         className={`${ebGaramond.className} ${playfair.variable} ${ebGaramond.variable} ${allura.variable} bg-custom-background paper-fold paper-fold-left`}
       >
-        <CustomCursor />
-        {children}
-        <MusicPlayer />
+        <MenuProvider>
+          <CustomCursor />
+          <HamburgerMenu />
+          {children}
+          <MusicPlayer />
+        </MenuProvider>
       </body>
     </html>
   )

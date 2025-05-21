@@ -1,10 +1,10 @@
-
 import type React from "react"
 import type { Metadata } from "next"
 import { EB_Garamond, Playfair_Display, Allura } from "next/font/google"
 import "./globals.css"
 import CustomCursor from "@/components/custom-cursor"
 import MusicPlayer from "@/components/MusicPlayerWrapper"
+import BurgerMenu from "@/components/burger-menu"
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -38,7 +38,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Include the GSAP scripts with async attribute */}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" async></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" async></script>
       </head>
@@ -46,6 +45,7 @@ export default function RootLayout({
         className={`${ebGaramond.className} ${playfair.variable} ${ebGaramond.variable} ${allura.variable} bg-custom-background paper-fold paper-fold-left`}
       >
         <CustomCursor />
+        <BurgerMenu />
         {children}
         <MusicPlayer />
       </body>

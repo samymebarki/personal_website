@@ -1,0 +1,370 @@
+"use client"
+
+import { format } from 'date-fns'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import { Clock, Newspaper, PenTool, User } from 'lucide-react'
+import { FadeIn, TextReveal, Parallax, AnimatedButton } from '@/components/AnimationUtils';
+import Image from "next/image"
+import PaperTexture from "@/components/paper-texture"
+import NewsTicker from "@/components/news-ticker"
+import RoughPaperOverlay from "@/components/rough-paper-overlay"
+import AnimatedCursor from "@/components/AnimatedCursor"
+
+export default function Home() {
+  const [date, setDate] = useState('')
+  const [isVisible, setIsVisible] = useState(false)
+  
+  useEffect(() => {
+    // Set current date in newspaper format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' } as const;
+    setDate(new Date().toLocaleDateString('en-US', options));
+    
+    // Trigger fade-in animation
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+  const projects = [
+    {
+      id: 1,
+      title: "AVRO/KO",
+      description: "Award-winning design firm's digital presence showcasing interior architecture projects.",
+      year: "2023",
+      category: "Branding",
+      image: "/images/avro-ko.jpg"
+    },
+    {
+      id: 2,
+      title: "THE ROGER HUB",
+      description: "Immersive web experience for tennis-inspired sneakers in collaboration with Roger Federer.",
+      year: "2023",
+      category: "Web Design",
+      image: "/images/roger-hub.jpg"
+    },
+    {
+      id: 3,
+      title: "LUMINA",
+      description: "Digital platform reimagining light interaction in architectural spaces with IoT technology.",
+      year: "2022",
+      category: "Digital Exp",
+      image: "/images/lumina.jpg"
+    },
+    {
+      id: 4,
+      title: "TERRA FORMA",
+      description: "Generative AI art project visualizing environmental data through immersive landscapes.",
+      year: "2023",
+      category: "AI Art",
+      image: "/images/terra-forma.jpg"
+    },
+    {
+      id: 5,
+      title: "NEURO HARMONY",
+      description: "Brain-computer interface for music creation using neural signals.",
+      year: "2023",
+      category: "AI/ML",
+      image: "/images/neuro-harmony.jpg"
+    },
+    {
+      id: 6,
+      title: "CHRONO VORTEX",
+      description: "Interactive timeline visualization tool for exploring historical events.",
+      year: "2022",
+      category: "Web App",
+      image: "/images/chrono-vortex.jpg"
+    }
+  ]
+
+  const newsItems = [
+    "JavaScript tried to outsmart Samy. JavaScript lost.",
+    "Scientists stunned: Samy codes and designs? At the same time?!",
+    "24 years of awesome, says totally unbiased portfolio ticker.",
+    "Samy trained an AI model to fetch coffee. It brings art instead.",
+    "Portfolio so smooth, even your scroll wheel's impressed.",
+    "Samy once refactored spaghetti code. It came out as lasagna.",
+    "Samy doesn’t debug. The code apologizes and fixes itself.",
+    "Fun fact: Samy’s CSS never breaks. It just takes strategic naps.",
+    "Samy doesn’t write documentation. His code explains itself in prose.",
+    "Samy whispered to an API once. It gave 200 OK forever after.",
+    "His components are so reusable, IKEA took notes."
+
+  ]
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.article, .headline, .byline, .newspaper-column p').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#f8e1c2] relative font-serif text-[#503822] overflow-x-hidden cursor-none">
+      <AnimatedCursor />
+      {/* News Ticker - At the very top */}
+      <div className="relative z-30 w-full bg-[#503822] text-[#f8e1c2] py-1 overflow-hidden">
+        <NewsTicker items={newsItems} speed={70} />
+      </div>
+      
+      {/* Paper Texture Overlay */}
+      <div className="fixed inset-0 bg-[#f8e1c2] pointer-events-none">
+        <PaperTexture />
+      </div>
+      
+      <div className={`relative z-10 w-[95%]  mx-auto px-4 py-8 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <RoughPaperOverlay />
+        
+        {/* Newspaper Header */}
+        <header className="text-center border-b-2 border-[#503822] mb-8 pb-4 newspaper-fold">
+          {/*<div className="text-xs uppercase tracking-widest mb-1 text-[#1a1a1a] font-bold ">The Daily Portfolio</div>*/}
+          <h1 className="text-9xl md:text-9xl lg:text-9xl leading-none my-6 font-['Chomsky'] text-[#503822] hover:scale-105 transition-transform duration-500">
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">S</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">a</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">m</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">y</span>
+            <span className="mx-4"></span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">M</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">e</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">b</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">a</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">r</span>
+            <span className="inline-block transform hover:rotate-2 transition-transform duration-300">k</span>
+            <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">i</span>
+          </h1>
+          <div className="flex justify-between items-center text-xs border-t border-b border-[#503822] py-2 text-[#503822] ">
+            <span className="flex items-center"> May 20, 2025</span>
+            <span className="hidden md:inline-block">VOL. 1, NO. 1 •</span>
+            <span className="flex items-center"><PenTool className="w-3 h-3 mr-1" /> DESIGN • CODE • ART</span>
+          </div>
+        </header>
+        
+        {/* Main Headline Section */}
+        <div className="grid grid-cols-12 gap-4 mb-6 w-full">
+          <div className="col-span-8 border-r border-[#503822] pr-4">
+            <FadeIn direction="down" duration={1.2}>
+              <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822]">CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO</h2>
+            </FadeIn>
+            <FadeIn delay={0.3} duration={0.6}>
+              <div className="flex items-center text-sm text-[#503822] mb-4">
+                <User className="h-4 w-4 mr-1" />
+                <span className="mr-4">By Samy Mebarki</span>
+                <Clock className="h-4 w-4 ml-4 mr-1" />
+                <span>5 min read</span>
+              </div>
+            </FadeIn>
+            <div className="grid grid-cols-2 gap-8 text-justify text-[#503822] leading-relaxed mb-8">
+              <div className="space-y-4">
+                <FadeIn delay={0.5} direction="right" duration={0.8}>
+                  <p className="relative">
+                    <span className="float-left text-6xl font-bold leading-[0.8] mr-2 text-[#503822] -ml-3 relative top-1 h-[1.5em] overflow-hidden">I</span>
+                    n an era where digital presence defines professional identity, one developer's portfolio stands out from the crowd. Samy Mebarki, a creative technologist with a passion for design and code, has launched a portfolio that blurs the line between digital art and professional showcase. The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution.
+                  </p>
+                </FadeIn>
+                <FadeIn delay={0.7} direction="right" duration={0.8}>
+                  <p>
+                    The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution. From responsive web applications to immersive digital experiences, the portfolio demonstrates a keen eye for detail and a commitment to excellence.
+                  </p>
+                </FadeIn>
+              </div>
+              <div className="space-y-4">
+                <FadeIn delay={0.9} direction="left" duration={0.8}>
+                  <p>
+                    The design language speaks of both innovation and tradition, creating a unique space where technology meets aesthetics in perfect harmony. Visitors to the portfolio are greeted with an interface that feels both familiar and groundbreaking.
+                  </p>
+                </FadeIn>
+                <FadeIn delay={1.1} direction="left" duration={0.8}>
+                  <p>
+                    The navigation is intuitive yet sophisticated, allowing for a seamless journey through Mebarki's professional evolution and creative process. Each section reveals new layers of technical expertise and creative vision, inviting deeper exploration.
+                  </p>
+                </FadeIn>
+              </div>
+            </div>
+            
+            {/* Projects Section */}
+            <section className="mb-16 article">
+              <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline">
+                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit">LAST PROJECTS</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {projects.map((project, index) => (
+                  <article 
+                    key={project.id} 
+                    className={`relative  p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 article ink-drop`}
+                    style={{
+                      '--animation-delay': `${index * 100}ms`,
+                      opacity: 0,
+                      animation: 'fadeIn 0.8s ease-out forwards',
+                      animationDelay: `${index * 100}ms`
+                    } as React.CSSProperties}
+                  >
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#503822] to-[#503822]"></div>
+                    <div className="relative h-64 mb-6 overflow-hidden group">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105 w-full h-full"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500"></div>
+                    </div>
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-2xl font-bold font-['OldNewspaper'] text-[#1a1a1a] hover:text-[#503822] transition-colors">
+                        {project.title}
+                      </h3>
+                      <span className="bg-[#f0e6d2] text-[#503822] text-xs px-2 py-1 font-mono">
+                        {project.year}
+                      </span>
+                    </div>
+                    <p className="text-[#333] mb-4 leading-relaxed">{project.description}</p>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="inline-block bg-[#f0e6d2] text-[#503822] px-3 py-1 rounded-full font-medium">
+                        {project.category}
+                      </span>
+                      <button 
+                        className="flex items-center text-[#503822] hover:text-[#1a1a1a] transition-colors"
+                        aria-label={`View ${project.title} project`}
+                      >
+                        <span className="mr-1">Read more</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="absolute bottom-2 right-2 text-[#8b0000] text-6xl font-['OldNewspaper'] opacity-5 pointer-events-none">
+                      {String(project.id).padStart(2, '0')}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </div>
+          <div className="col-span-4 pl-4">
+            <FadeIn delay={0.3} direction="down" duration={0.8}>
+              <div className="border border-[#503822] p-4 mb-6 hover:shadow-md transition-shadow duration-300">
+                <h3 className="text-xl font-bold mb-2 text-[#503822]">WEEKLY HIGHLIGHTS</h3>
+                <ul className="list-disc list-inside space-y-2 text-[#503822]">
+                  <li className="transform hover:translate-x-1 transition-transform duration-200">Interactive portfolio launch</li>
+                  <li className="transform hover:translate-x-1 transition-transform duration-200">New React component library</li>
+                  <li className="transform hover:translate-x-1 transition-transform duration-200">Advanced animation techniques</li>
+                  <li className="transform hover:translate-x-1 transition-transform duration-200">Server-side rendering optimization</li>
+                </ul>
+              </div>
+            </FadeIn>
+            {/* Signature */}
+            <div className="absolute bottom-4 right-4 text-3xl text-[#503822] opacity-90" style={{ fontFamily: 'var(--font-allura)' }}>
+              Samy Mebarki
+            </div>
+            <div className="border border-[#503822] p-4 mb-4">
+              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">ABOUT THE DEVELOPER</h3>
+              <div className="aspect-square w-full mb-3 overflow-hidden">
+                <img 
+                  src="/images/me.png"
+                  alt="Samy Mebarki"
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2">•</span>
+                <span>IBM Applied Data Science Specialization</span>
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2">•</span>
+                <span>365 Data Sience - Data Analyst</span>
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2">•</span>
+                <span>IBM Data Science</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {projects.map((project, index) => (
+                <article 
+                  key={project.id} 
+                  className={`relative  p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 article ink-drop`}
+                  style={{
+                    '--animation-delay': `${index * 100}ms`,
+                    opacity: 0,
+                    animation: 'fadeIn 0.8s ease-out forwards',
+                    animationDelay: `${index * 100}ms`
+                  } as React.CSSProperties}
+                >
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#503822] to-[#503822]"></div>
+                  <div className="relative h-64 mb-6 overflow-hidden group">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105 w-full h-full"
+                <div className="flex items-center">
+                  <span className="mr-2">•</span>
+                  <span>IBM Applied Data Science Specialization</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="mr-2">•</span>
+                  <span>365 Data Sience - Data Analyst</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="mr-2">•</span>
+                  <span>IBM Data Science</span>
+                </div>
+              </div>
+            </div>
+            <div className="border border-[#503822] p-4 mb-4">
+              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">CONTACT ME</h3>
+                <form className="space-y-4">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-sm mb-1 text-[#503822]">Name</label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block text-sm mb-1 text-[#503822]">Email</label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-message" className="block text-sm mb-1 text-[#503822]">Message</label>
+                    <textarea
+                      id="contact-message"
+                      rows={3}
+                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
+                      placeholder="Your message..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-2 border border-[#503822] bg-[#503822] text-[#f8e1c2] font-medium hover:bg-transparent hover:text-[#503822] hover:border-[#503822] transition-colors duration-200"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+          </div>
+        </div>
+        {/* Footer */}
+        <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
+          <div className="mb-2">Samy Mebarki </div>
+          <div className="mt-2"> May 20, 2025</div>
+        </footer>
+      </div>
+    </div>
+  );
+}

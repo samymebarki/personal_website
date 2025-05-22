@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { format } from 'date-fns'
 import dynamic from 'next/dynamic'
@@ -9,6 +9,8 @@ import PaperTexture from "@/components/paper-texture"
 import NewsTicker from "@/components/news-ticker"
 import RoughPaperOverlay from "@/components/rough-paper-overlay"
 import AnimatedCursor from "@/components/AnimatedCursor"
+import CoffeeStain from "@/components/coffee-stain";
+import PullQuote from "@/components/PullQuote";
 
 export default function Home() {
   const [date, setDate] = useState('')
@@ -81,9 +83,9 @@ export default function Home() {
     "Samy trained an AI model to fetch coffee. It brings art instead.",
     "Portfolio so smooth, even your scroll wheel's impressed.",
     "Samy once refactored spaghetti code. It came out as lasagna.",
-    "Samy doesn’t debug. The code apologizes and fixes itself.",
-    "Fun fact: Samy’s CSS never breaks. It just takes strategic naps.",
-    "Samy doesn’t write documentation. His code explains itself in prose.",
+    "Samy doesn't debug. The code apologizes and fixes itself.",
+    "Fun fact: Samy's CSS never breaks. It just takes strategic naps.",
+    "Samy doesn't write documentation. His code explains itself in prose.",
     "Samy whispered to an API once. It gave 200 OK forever after.",
     "His components are so reusable, IKEA took notes."
 
@@ -108,6 +110,18 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  const [showHeaderElements, setShowHeaderElements] = useState(true);
+  
+  // Handle scroll behavior for header elements
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowHeaderElements(window.scrollY < 100);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   return (
     <div className="min-h-screen bg-[#f8e1c2] relative font-serif text-[#503822] overflow-x-hidden cursor-none">
       <AnimatedCursor />
@@ -126,7 +140,7 @@ export default function Home() {
         
         {/* Newspaper Header */}
         <header className="text-center border-b-2 border-[#503822] mb-8 pb-4 newspaper-fold">
-          {/*<div className="text-xs uppercase tracking-widest mb-1 text-[#1a1a1a] font-bold ">The Daily Portfolio</div>*/}
+          
           <h1 className="text-9xl md:text-9xl lg:text-9xl leading-none my-6 font-['Chomsky'] text-[#503822] hover:scale-105 transition-transform duration-500">
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">S</span>
             <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">a</span>
@@ -151,27 +165,81 @@ export default function Home() {
         {/* Main Headline Section */}
         <div className="grid grid-cols-12 gap-4 mb-6 w-full">
           <div className="col-span-8 border-r border-[#503822] pr-4">
-            <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822]">CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO</h2>
+            <div className="relative group headline-container">
+              <style jsx>{`
+                .circling-path {
+                  opacity: 0;
+                  stroke-dasharray: 1500;
+                  stroke-dashoffset: 1500;
+                  transition: opacity 0.3s ease;
+                }
+                
+                .headline-container:hover .circling-path {
+                  opacity: 1;
+                  animation: drawCircle 1.5s ease-in-out forwards;
+                }
+                
+                .second-circle {
+                  animation-delay: 0.3s;
+                }
+              `}</style>
+              <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822] relative z-10">CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO</h2>
+              <div className="absolute -inset-8 pointer-events-none z-0">
+                <svg className="w-full h-full" viewBox="0 0 800 150" preserveAspectRatio="none">
+                  <path 
+                    className="circling-path" 
+                    d="M10,75 C10,20 790,20 790,75 C790,130 10,130 10,75 Z" 
+                    fill="none" 
+                    stroke="#503822" 
+                    strokeWidth="1.5" 
+                    strokeOpacity="0.7"
+                    strokeLinecap="round"
+                  />
+                  <path 
+                    className="circling-path second-circle" 
+                    d="M5,85 C5,15 795,15 795,85 C795,145 5,145 5,85 Z" 
+                    fill="none" 
+                    stroke="#503822" 
+                    strokeWidth="1" 
+                    strokeOpacity="0.5"
+                    strokeDasharray="6,6" 
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
             <div className="flex items-center text-sm text-[#503822] mb-4">
               <User className="h-4 w-4 mr-1" />
               <span className="mr-4">By Samy Mebarki</span>
               <Clock className="h-4 w-4 ml-4 mr-1" />
               <span>5 min read</span>
             </div>
-            <div className="grid grid-cols-2 gap-8 text-justify text-[#503822] leading-relaxed mb-8">
-              <div className="space-y-4">
-                <p className="relative">
+            <div className="text-justify text-[#503822] leading-relaxed mb-8">
+              <div className="mb-6">
+                <p className="relative drop-cap">
                   <span className="float-left text-6xl font-bold leading-[0.8] mr-2 text-[#503822] -ml-3 relative top-1 h-[1.5em] overflow-hidden">I</span>
                   n an era where digital presence defines professional identity, one developer's portfolio stands out from the crowd. Samy Mebarki, a creative technologist with a passion for design and code, has launched a portfolio that blurs the line between digital art and professional showcase. The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution.
                 </p>
-                <p>
-                  The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution. From responsive web applications to immersive digital experiences, the portfolio demonstrates a keen eye for detail and a commitment to excellence.
-                </p>
-              </div>
-              <div className="space-y-4">
+                
+
+                
                 <p>
                   The design language speaks of both innovation and tradition, creating a unique space where technology meets aesthetics in perfect harmony. Visitors to the portfolio are greeted with an interface that feels both familiar and groundbreaking.
                 </p>
+              </div>
+              
+              <PullQuote 
+                quote="Design is not just what it looks like and feels like. Design is how it works."
+                author="Steve Jobs"
+              />
+              
+              <div className="mt-6">
+                <p>
+                  The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution. From responsive web applications to immersive digital experiences, the portfolio demonstrates a keen eye for detail and a commitment to excellence.
+                </p>
+                
+                <CoffeeStain position="bottom-right" size="small" opacity={0.15} />
+                
                 <p>
                   The navigation is intuitive yet sophisticated, allowing for a seamless journey through Mebarki's professional evolution and creative process. Each section reveals new layers of technical expertise and creative vision, inviting deeper exploration.
                 </p>
@@ -179,15 +247,15 @@ export default function Home() {
             </div>
             
             {/* Projects Section */}
-            <section className="mb-16 article">
+            <section className="mb-16 article animate-slideInUp">
               <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline">
-                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit">LAST PROJECTS</span>
+                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit animate-fadeIn">LAST PROJECTS</span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 {projects.map((project, index) => (
                   <article 
                     key={project.id} 
-                    className={`relative  p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 article ink-drop`}
+                    className={`relative p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 article ink-drop`}
                     style={{
                       '--animation-delay': `${index * 100}ms`,
                       opacity: 0,
@@ -243,48 +311,48 @@ export default function Home() {
             </div>
             <div className="border border-[#503822] p-4 mb-4">
               <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">ABOUT THE DEVELOPER</h3>
-              <div className="aspect-square w-full mb-3 overflow-hidden">
+              <div className="aspect-square w-full mb-3 overflow-hidden group">
                 <img 
                   src="/images/me.png"
                   alt="Samy Mebarki"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:brightness-110 group-hover:shadow-glow animate-fadeIn"
                 />
               </div>
-              <p className="text-sm mb-3 text-[#503822]">With a background in both design and development, Samy brings a unique perspective to every project. His approach combines technical expertise with creative problem-solving.</p>
+              <p className="text-sm mb-3 text-[#503822] animate-slideInUp">With a background in both design and development, Samy brings a unique perspective to every project. His approach combines technical expertise with creative problem-solving.</p>
               
-              <h4 className="font-bold text-sm mb-3 text-[#503822]">TECHNICAL SKILLS</h4>
+              <h4 className="font-bold text-sm mb-3 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '100ms' }}>TECHNICAL SKILLS</h4>
               <div className="grid grid-cols-2 gap-4 mb-4">
-                <ul className="text-xs space-y-1 text-[#503822]">
-                  <li>• React & Next.js / Vue.js</li>
-                  <li>• TypeScript & JavaScript</li>
-                  <li>• UI/UX Design</li>
-                  <li>• Responsive Web Development</li>
+                <ul className="text-xs space-y-1 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '200ms' }}>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• React & Next.js / Vue.js</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• TypeScript & JavaScript</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• UI/UX Design</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Responsive Web Development</li>
                 </ul>
-                <ul className="text-xs space-y-1 text-[#503822]">
-                  <li>• Django / NodeJS Backend</li>
-                  <li>• Python / SQL</li>
-                  <li>• MySQL / PostgreSQL</li>
-                  <li>• Supabase / Convex / Clerk</li>
+                <ul className="text-xs space-y-1 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '300ms' }}>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Django / NodeJS Backend</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Python / SQL</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• MySQL / PostgreSQL</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Supabase / Convex / Clerk</li>
                 </ul>
-                <ul className="text-xs space-y-1 text-[#503822]">
-                  <li>• AI Development</li>
-                  <li>• ML / Deep Learning</li>
-                  <li>• Data Science / Analysis</li>
-                  <li>• Pandas / Numpy / Matplotlib</li>
+                <ul className="text-xs space-y-1 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '400ms' }}>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• AI Development</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• ML / Deep Learning</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Data Science / Analysis</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Pandas / Numpy / Matplotlib</li>
                 </ul>
-                <ul className="text-xs space-y-1 text-[#503822]">
-                  <li>• Adobe Illustrator</li>
-                  <li>• Photoshop / Figma</li>
-                  <li>• Graphic Design</li>
-                  <li>• Branding Materials</li>
+                <ul className="text-xs space-y-1 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '500ms' }}>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Adobe Illustrator</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Photoshop / Figma</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Graphic Design</li>
+                  <li className="transition-transform hover:translate-x-1 duration-300">• Branding Materials</li>
                 </ul>
               </div>
               
               <div className="border-t border-[#503822] pt-3">
-                <h4 className="font-bold text-sm mb-2 text-[#503822]">CONTACT</h4>
-                <p className="text-xs text-[#503822] mb-2">Location : Constantine, Algeria</p>
-                <p className="text-xs text-[#503822] mb-2">Website : samymebarki.dev</p>
-                <div className="flex space-x-4 mt-3">
+                <h4 className="font-bold text-sm mb-2 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '600ms' }}>CONTACT</h4>
+                <p className="text-xs text-[#503822] mb-2" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '700ms' }}>Location : Constantine, Algeria</p>
+                <p className="text-xs text-[#503822] mb-2" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '800ms' }}>Website : samymebarki.dev</p>
+                <div className="flex space-x-4 mt-3" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '900ms' }}>
                   <a href="https://github.com/samymebarki" target="_blank" rel="noopener noreferrer" className="text-[#503822] hover:opacity-75 transition-opacity">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.699 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -304,7 +372,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="border border-[#503822] p-4 bg-[#503822] text-[#f8e1c2] mb-4">
+            <div className="border border-[#503822] p-4 bg-[#503822] text-[#f8e1c2] mb-4" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
               <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">HOBBIES & INTERESTS</h3>
               <div className="grid grid-cols-2 gap-2 text-sm mb-2">
                 <div className="flex items-center">
@@ -363,7 +431,6 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
-                  
                   <span>EF SET English Certificate - 77/100 Score (C2 - Proficient)</span>
                 </div>
                 <div className="flex items-center">
@@ -421,13 +488,16 @@ export default function Home() {
                 </form>
               </div>
           </div>
+          
         </div>
         {/* Footer */}
         <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
-          <div className="mb-2">Samy Mebarki </div>
-          <div className="mt-2"> May 20, 2025</div>
+          <div className="mb-2">© {new Date().getFullYear()} Samy Mebarki</div>
         </footer>
       </div>
     </div>
   );
 }
+
+
+

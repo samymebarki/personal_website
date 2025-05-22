@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { X, Menu, Home, User, Code, Mail, ChevronRight } from 'lucide-react';
 import { useMenu } from '../context/MenuContext';
+import Image from 'next/image';
 
 const menuItems = [
   { name: 'Home', href: '#home', icon: <Home className="w-5 h-5 md:w-6 md:h-6" /> },
@@ -16,6 +17,7 @@ export default function HamburgerMenu() {
   const { isOpen, toggleMenu } = useMenu();
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
   const textureRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
@@ -23,6 +25,21 @@ export default function HamburgerMenu() {
     if (textureRef.current) {
       setIsLoaded(true);
     }
+
+    // Handle scroll to show/hide header elements
+    const handleScroll = () => {
+      // Only show when scrollY is less than 100px (essentially at the top)
+      setShowHeader(window.scrollY < 100);
+    };
+
+    // Set initial state
+    handleScroll();
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Clean up
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleItemClick = () => {
@@ -73,10 +90,25 @@ export default function HamburgerMenu() {
 
   return (
     <div className="relative z-50" ref={textureRef}>
+      {/* Logo in the top left - only visible at top of page */}
+      <div 
+        className={`fixed top-14 left-6 z-50 transition-opacity duration-300 ${showHeader ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      >
+        <Image 
+          src="/images/logo.png" 
+          alt="Samy Mebarki Logo" 
+          width={40} 
+          height={40}
+          className="object-contain"
+        />
+      </div>
+
+      {/* Menu button in the top right - only visible at top of page */}
       <button 
         onClick={toggleMenu}
-        className="fixed top-14 right-6 z-50 p-2 rounded-full  text-[#503822] hover:bg-[#f8e1c2] transition-colors"
+        className={`fixed top-14 right-6 z-50 p-2 rounded-full text-[#503822] hover:bg-[#f8e1c2] transition-all duration-300 ${showHeader ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        disabled={!showHeader}
       >
         {isOpen ? (
           <X className="w-6 h-6 rounded-full text-[#f8e1c2] hover:bg-[#3a2a19] transition-colors" />

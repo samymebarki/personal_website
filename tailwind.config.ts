@@ -19,6 +19,13 @@ const config = {
       },
     },
     extend: {
+      animation: {
+        "blink": "blink 1s infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
+        "fold-corner": "fold-corner 1.5s ease-out forwards",
+        "fold-corner-reverse": "fold-corner-reverse 1.5s ease-out forwards",
+        "pulse-subtle": "pulse-subtle 3s ease-in-out infinite",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

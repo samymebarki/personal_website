@@ -208,12 +208,18 @@ export default function Home() {
                 </svg>
               </div>
             </div>
+            
             <div className="flex items-center text-sm text-[#503822] mb-4">
+            
               <User className="h-4 w-4 mr-1" />
               <span className="mr-4">By Samy Mebarki</span>
               <Clock className="h-4 w-4 ml-4 mr-1" />
               <span>5 min read</span>
             </div>
+            <PullQuote 
+                quote="Design is not just what it looks like and feels like. Design is how it works."
+                author="Steve Jobs"
+              />
             <div className="text-justify text-[#503822] leading-relaxed mb-8">
               <div className="mb-6">
                 <p className="relative drop-cap">
@@ -228,23 +234,18 @@ export default function Home() {
                 </p>
               </div>
               
-              <PullQuote 
-                quote="Design is not just what it looks like and feels like. Design is how it works."
-                author="Steve Jobs"
-              />
+              
               
               <div className="mt-6">
                 <p>
                   The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution. From responsive web applications to immersive digital experiences, the portfolio demonstrates a keen eye for detail and a commitment to excellence.
                 </p>
-                
-                <CoffeeStain position="bottom-right" size="small" opacity={0.15} />
-                
                 <p>
                   The navigation is intuitive yet sophisticated, allowing for a seamless journey through Mebarki's professional evolution and creative process. Each section reveals new layers of technical expertise and creative vision, inviting deeper exploration.
                 </p>
               </div>
             </div>
+            
             
             {/* Projects Section */}
             <section className="mb-16 article animate-slideInUp">
@@ -303,6 +304,7 @@ export default function Home() {
                 ))}
               </div>
             </section>
+            
           </div>
           <div className="col-span-4 pl-4 relative">
             {/* Signature */}

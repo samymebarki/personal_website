@@ -2,9 +2,10 @@
 
 import { format } from 'date-fns'
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
-import { Clock, Newspaper, PenTool, User } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react';
+import { Clock, Newspaper, PenTool, User, Award, Book, Heart, Calendar, Users, Layout, Briefcase, GraduationCap, MessageCircle } from 'lucide-react'
 import Image from "next/image"
+import { motion } from 'framer-motion';
 import PaperTexture from "@/components/paper-texture"
 import NewsTicker from "@/components/news-ticker"
 import RoughPaperOverlay from "@/components/rough-paper-overlay"
@@ -12,9 +13,36 @@ import AnimatedCursor from "@/components/AnimatedCursor"
 import CoffeeStain from "@/components/coffee-stain";
 import PullQuote from "@/components/PullQuote";
 
+// Custom hook for typewriter effect
+function useTypewriter(text: string, speed: number = 50) {
+  const [displayText, setDisplayText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  
+  useEffect(() => {
+    if (!isTyping) return;
+    
+    if (displayText.length < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(text.substring(0, displayText.length + 1));
+      }, speed);
+      
+      return () => clearTimeout(timeout);
+    } else {
+      setIsTyping(false);
+    }
+  }, [displayText, text, speed, isTyping]);
+  
+  return { displayText, isTyping };
+}
+
 export default function Home() {
   const [date, setDate] = useState('')
   const [isVisible, setIsVisible] = useState(false)
+  const [activeTab, setActiveTab] = useState('experience')
+  const [hasScrolled, setHasScrolled] = useState(false)
+  
+  // Typewriter effects for headings
+  const mainHeading = useTypewriter("DEVELOPER ARRESTED FOR MASTERING MULTIPLE SKILLS", 70)
   
   useEffect(() => {
     // Set current date in newspaper format
@@ -182,8 +210,27 @@ export default function Home() {
                 .second-circle {
                   animation-delay: 0.3s;
                 }
+                
+                .typewriter-cursor {
+                  display: inline-block;
+                  width: 2px;
+                  height: 1em;
+                  background-color: #503822;
+                  margin-left: 2px;
+                  animation: blink 1s step-end infinite;
+                }
+                
+                @keyframes blink {
+                  from, to { opacity: 1; }
+                  50% { opacity: 0; }
+                }
               `}</style>
-              <h2 className="text-6xl font-bold leading-tight mb-3 text-[#503822] relative z-10">CREATIVE DEVELOPER UNVEILS STUNNING PORTFOLIO</h2>
+              <h2 
+                className="text-6xl font-bold leading-tight mb-3 text-[#503822] relative z-10"
+              >
+                {mainHeading.displayText}
+                {mainHeading.isTyping && <span className="typewriter-cursor"></span>}
+              </h2>
               <div className="absolute -inset-8 pointer-events-none z-0">
                 <svg className="w-full h-full" viewBox="0 0 800 150" preserveAspectRatio="none">
                   <path 
@@ -209,8 +256,9 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="flex items-center text-sm text-[#503822] mb-4">
             
+            
+            <div className="flex items-center text-sm text-[#503822] mb-4" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '800ms' }}>
               <User className="h-4 w-4 mr-1" />
               <span className="mr-4">By Samy Mebarki</span>
               <Clock className="h-4 w-4 ml-4 mr-1" />
@@ -223,34 +271,181 @@ export default function Home() {
             <div className="text-justify text-[#503822] leading-relaxed mb-8">
               <div className="mb-6">
                 <p className="relative drop-cap">
-                  <span className="float-left text-6xl font-bold leading-[0.8] mr-2 text-[#503822] -ml-3 relative top-1 h-[1.5em] overflow-hidden">I</span>
-                  n an era where digital presence defines professional identity, one developer's portfolio stands out from the crowd. Samy Mebarki, a creative technologist with a passion for design and code, has launched a portfolio that blurs the line between digital art and professional showcase. The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution.
+                  <span className="float-left text-6xl font-bold leading-[0.8] mr-2 text-[#503822] -ml-3 relative top-1 h-[1.5em] overflow-hidden">S</span>
+                  hocking arrest made yesterday as authorities apprehended Samy Mebarki on multiple counts of possessing exceptional talent across design and development disciplines. Mebarki, operating for over 8 years, has been charged with excessive creativity, unlawful problem-solving abilities, and conspiracy to blend artistry with technical execution. "He's been creating outstanding digital experiences without regard for conventional limitations," stated one investigator. Evidence includes dozens of web applications that show clear signs of both aesthetic mastery and technical proficiency—a dangerous combination that has left clients extremely satisfied.
                 </p>
+                {/* Statistics Section */}
+            <div className="grid grid-cols-3 gap-4 mb-6 mt-8">
+              <div className="border border-[#503822] p-4 text-center">
+                <div className="text-4xl font-bold text-[#503822] mb-2">8+</div>
+                <div className="text-sm text-[#503822] flex items-center justify-center">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  <span>Years Experience</span>
+                </div>
+              </div>
+              <div className="border border-[#503822] p-4 text-center">
+                <div className="text-4xl font-bold text-[#503822] mb-2">75+</div>
+                <div className="text-sm text-[#503822] flex items-center justify-center">
+                  <Layout className="w-4 h-4 mr-1" />
+                  <span>Projects Completed</span>
+                </div>
+              </div>
+              <div className="border border-[#503822] p-4 text-center">
+                <div className="text-4xl font-bold text-[#503822] mb-2">24+</div>
+                <div className="text-sm text-[#503822] flex items-center justify-center">
+                  <Users className="w-4 h-4 mr-1" />
+                  <span>Happy Clients</span>
+                </div>
+              </div>
+            </div>
                 
-
-                
-                <p>
-                  The design language speaks of both innovation and tradition, creating a unique space where technology meets aesthetics in perfect harmony. Visitors to the portfolio are greeted with an interface that feels both familiar and groundbreaking.
+                <p className="mt-4">
+                  Mebarki's approach combines technical expertise with creative problem-solving, allowing him to bridge the gap between design and development. His philosophy is that great design goes beyond aesthetics—it's about creating intuitive, engaging experiences that solve real problems. Whether developing a complex web application or designing a brand identity, his focus is always on balancing form and function to deliver solutions that exceed expectations.
                 </p>
               </div>
               
-              
-              
-              <div className="mt-6">
-                <p>
-                  The interactive experience guides visitors through a carefully curated selection of projects, each telling its own story of technical challenge and creative solution. From responsive web applications to immersive digital experiences, the portfolio demonstrates a keen eye for detail and a commitment to excellence.
-                </p>
-                <p>
-                  The navigation is intuitive yet sophisticated, allowing for a seamless journey through Mebarki's professional evolution and creative process. Each section reveals new layers of technical expertise and creative vision, inviting deeper exploration.
-                </p>
+              {/* Professional Journey Tabs */}
+              <div className="mt-8 mb-8">
+                <h3 className="text-xl font-bold mb-4 text-[#503822] border-b border-[#503822] pb-2">CRIMINAL RECORD & HISTORY</h3>
+                
+                {/* Tab Navigation */}
+                <div className="flex border-b border-[#503822] mb-4">
+                  <button 
+                    className={`py-2 px-4 font-medium text-sm ${activeTab === 'experience' ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
+                    onClick={() => setActiveTab('experience')}
+                  >
+                    <Briefcase className="w-4 h-4 inline mr-2" />
+                    Offenses
+                  </button>
+                  <button 
+                    className={`py-2 px-4 font-medium text-sm ${activeTab === 'education' ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
+                    onClick={() => setActiveTab('education')}
+                  >
+                    <GraduationCap className="w-4 h-4 inline mr-2" />
+                    Training Grounds
+                  </button>
+                  <button 
+                    className={`py-2 px-4 font-medium text-sm ${activeTab === 'philosophy' ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
+                    onClick={() => setActiveTab('philosophy')}
+                  >
+                    <Heart className="w-4 h-4 inline mr-2" />
+                    Manifesto
+                  </button>
+                </div>
+                
+                {/* Tab Content */}
+                <div className="tab-content">
+                  {/* Experience Tab */}
+                  {activeTab === 'experience' && (
+                    <div>
+                      <div className="mb-4 border-l-2 border-[#503822] pl-4">
+                        <h4 className="font-bold">First-Degree Interface Manipulation</h4>
+                        <p className="text-sm text-[#503822]/80">TechVision Solutions • 2020 - Present</p>
+                        <ul className="text-sm mt-2 space-y-1">
+                          <li>• Conspirator in multiple responsive web applications using React and Next.js</li>
+                          <li>• Serial TypeScript implementation resulting in 40% fewer bugs (evidence of premeditation)</li>
+                          <li>• Accomplice to design teams in creating dangerously cohesive user experiences</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="mb-4 border-l-2 border-[#503822] pl-4">
+                        <h4 className="font-bold">Aggravated UI/UX Seduction</h4>
+                        <p className="text-sm text-[#503822]/80">Digital Crafters • 2018 - 2020</p>
+                        <ul className="text-sm mt-2 space-y-1">
+                          <li>• Serial designer of irresistibly intuitive interfaces for web and mobile</li>
+                          <li>• Masterminded design systems that illegally improved efficiency by 30%</li>
+                          <li>• Conducted covert user testing operations with unauthorized feedback implementation</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="mb-4 border-l-2 border-[#503822] pl-4">
+                        <h4 className="font-bold">Misdemeanor Code Manipulation</h4>
+                        <p className="text-sm text-[#503822]/80">Innovative Media • 2016 - 2018</p>
+                        <ul className="text-sm mt-2 space-y-1">
+                          <li>• Suspected of developing unauthorized WordPress themes and plugins</li>
+                          <li>• First offense: implementing responsive designs without regard for device limitations</li>
+                          <li>• Charged with illegal SEO optimization resulting in unfair search ranking advantages</li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Education Tab */}
+                  {activeTab === 'education' && (
+                    <div>
+                      <div className="mb-4 border-l-2 border-[#503822] pl-4">
+                        <h4 className="font-bold">Advanced Training in Digital Manipulation</h4>
+                        <p className="text-sm text-[#503822]/80">University of Technology • 2014 - 2016</p>
+                        <p className="text-sm mt-2">Covert operations in Human-Computer Interaction and Advanced Web Technologies. Identified as high-risk graduate with honors (enhanced threat level).</p>
+                      </div>
+                      
+                      <div className="mb-4 border-l-2 border-[#503822] pl-4">
+                        <h4 className="font-bold">Initial Indoctrination in Code</h4>
+                        <p className="text-sm text-[#503822]/80">State University • 2010 - 2014</p>
+                        <p className="text-sm mt-2">Early warning signs included obsessive focus on Software Engineering and Design Principles. Placed on Dean's watchlist for all semesters due to suspicious perfectionism.</p>
+                      </div>
+                      
+                      <div className="mb-4 border-l-2 border-[#503822] pl-4">
+                        <h4 className="font-bold">Known Accomplices & Specialized Training</h4>
+                        <ul className="text-sm mt-2 space-y-1">
+                          <li>• International Communications Conspiracy - 77/100 Infiltration Level (C2 - Highly Dangerous)</li>
+                          <li>• IBM Data Science Underground Network - Advanced Member</li>
+                          <li>• 365 Data Analysis Syndicate - Serial Pattern Recognition</li>
+                          <li>• Cross-border Data Science Operations</li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Philosophy Tab */}
+                  {activeTab === 'philosophy' && (
+                    <div>
+                      <p className="mb-4">The accused's manifesto reveals a dangerous ideology built on these radical principles:</p>
+                       
+                      <div className="mb-4">
+                        <h4 className="font-bold flex items-center">
+                          <span className="inline-block w-6 h-6 rounded-full bg-[#503822] text-[#f8e1c2] text-center mr-2">1</span>
+                          User Manipulation Tactics
+                        </h4>
+                        <p className="text-sm mt-1 ml-8">Subject admits to "starting with the user and working backward" - a clear psychological manipulation strategy. Every design decision is calculated to influence the end-user, creating interfaces so intuitive and accessible that users become dependent on the experience.</p>
+                      </div>
+                      
+                      <div className="mb-4">
+                        <h4 className="font-bold flex items-center">
+                          <span className="inline-block w-6 h-6 rounded-full bg-[#503822] text-[#f8e1c2] text-center mr-2">2</span>
+                          Aesthetic Deception Techniques
+                        </h4>
+                        <p className="text-sm mt-1 ml-8">Subject employs a dangerous combination of beauty and functionality to lure unsuspecting users. Creates interfaces that are deliberately aesthetically pleasing to distract from their efficiency at capturing user attention and engagement.</p>
+                      </div>
+                      
+                      <div className="mb-4">
+                        <h4 className="font-bold flex items-center">
+                          <span className="inline-block w-6 h-6 rounded-full bg-[#503822] text-[#f8e1c2] text-center mr-2">3</span>
+                          Escalating Capabilities
+                        </h4>
+                        <p className="text-sm mt-1 ml-8">Suspect shows no signs of ceasing operations, admitting to "continuous learning and improvement." Authorities are concerned about his ever-evolving tactics and refusal to limit his technological capabilities, posing an increasing threat to conventional development limitations.</p>
+                      </div>
+                      
+                      <div className="mb-4">
+                        <h4 className="font-bold flex items-center">
+                          <span className="inline-block w-6 h-6 rounded-full bg-[#503822] text-[#f8e1c2] text-center mr-2">4</span>
+                          Obsessive Perfectionism
+                        </h4>
+                        <p className="text-sm mt-1 ml-8">Evidence shows a disturbing fixation on details. Subject has been observed creating pixel-perfect designs and meticulously organized code in what psychiatrists describe as "pathological perfectionism." This level of attention to detail suggests premeditated intent to craft flawless user experiences.</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             
+
             
             {/* Projects Section */}
             <section className="mb-16 article animate-slideInUp">
-              <h2 className="text-9xl font-bold mb-1 border-b-2 border-[#503822] pb-2 w-full headline">
-                <span className="bg-[#503822] text-[#efe0b4] px-4 py-1 block w-fit animate-fadeIn">LAST PROJECTS</span>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-[#503822] font-serif tracking-tight leading-none">
+                NOTORIOUS CASES
+                <div className="border-b-2 border-[#503822] w-full mt-2"></div>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 {projects.map((project, index) => (
@@ -305,14 +500,16 @@ export default function Home() {
               </div>
             </section>
             
+
+            
           </div>
           <div className="col-span-4 pl-4 relative">
             {/* Signature */}
             <div className="absolute bottom-4 right-4 text-3xl text-[#503822] opacity-90" style={{ fontFamily: 'var(--font-allura)' }}>
               Samy Mebarki
             </div>
-            <div className="border border-[#503822] p-4 mb-4">
-              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">ABOUT THE DEVELOPER</h3>
+            <div className="border border-[#503822] p-4 mb-4" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
+              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1200ms' }}>ABOUT THE DEVELOPER</h3>
               <div className="aspect-square w-full mb-3 overflow-hidden group">
                 <img 
                   src="/images/me.png"
@@ -402,7 +599,7 @@ export default function Home() {
                   <span>Puzzles</span>
                 </div>
               </div>
-              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">FUTURE SKILLS TO LEARN/MASTER</h3>
+              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">LEARNING GOALS</h3>
               <div className="grid grid-cols-2 gap-2 text-sm mb-3">
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
@@ -410,7 +607,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
-                  <span>Game Developement</span>
+                  <span>Game Development</span>
                 </div>
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
@@ -418,7 +615,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
-                  <span>Website No Code Builders</span>
+                  <span>No-Code Platforms</span>
                 </div>
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
@@ -426,31 +623,31 @@ export default function Home() {
                 </div>
                 <div className="flex items-center">
                   <span className="mr-2">•</span>
-                  <span>More Chess</span>
+                  <span>Advanced Chess</span>
                 </div>
               </div>
-              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3 ">PROFESSIONAL CERTIFICATES</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>EF SET English Certificate - 77/100 Score (C2 - Proficient)</span>
+              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3 ">ACHIEVEMENTS</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-start">
+                  <span className="mr-2 mt-1">•</span>
+                  <span>EF SET English Certificate - C2 Proficient (77/100)</span>
                 </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
+                <div className="flex items-start">
+                  <span className="mr-2 mt-1">•</span>
                   <span>IBM Applied Data Science Specialization</span>
                 </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>365 Data Sience - Data Analyst</span>
+                <div className="flex items-start">
+                  <span className="mr-2 mt-1">•</span>
+                  <span>365 Data Science - Data Analyst</span>
                 </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>IBM Data Science</span>
+                <div className="flex items-start">
+                  <span className="mr-2 mt-1">•</span>
+                  <span>IBM Data Science Professional</span>
                 </div>
               </div>
             </div>
             <div className="border border-[#503822] p-4 mb-4">
-              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">CONTACT ME</h3>
+              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">GET IN TOUCH</h3>
                 <form className="space-y-4">
                   <div>
                     <label htmlFor="contact-name" className="block text-sm mb-1 text-[#503822]">Name</label>
@@ -492,9 +689,149 @@ export default function Home() {
           </div>
           
         </div>
+        
+        {/* Testimonials Section - Classifieds Style */}
+        <section className="mt-12 mb-12 border-t border-[#503822] pt-8">
+          <div className="max-w-6xl mx-auto">
+            <motion.div 
+              className="flex justify-center mb-6"
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+            >
+              <h2 className="text-xl font-bold font-serif text-[#503822] border-b-2 border-[#503822] pb-1 px-4 inline-block">TESTIMONIALS</h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-r border-[#503822]">
+              {/* Testimonial 1 */}
+              <motion.div 
+                className="p-3 border-r border-b border-[#503822] relative bg-[#efe0b4] bg-opacity-30"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="mb-1">
+                  <div className="text-xs font-serif italic">
+                    "Working with Samy was a pleasure. His technical skills are matched by his creativity and problem-solving abilities."
+                  </div>
+                </div>
+                <div className="text-right text-[11px]">
+                  <span className="font-bold">— David Chen,</span> CTO at InnovateTech
+                </div>
+              </motion.div>
+              
+              {/* Testimonial 2 */}
+              <motion.div 
+                className="p-3 border-r border-b border-[#503822] relative bg-[#efe0b4] bg-opacity-30"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              >
+                <div className="mb-1">
+                  <div className="text-xs font-serif italic">
+                    "Samy's attention to detail transformed our website. Our vague ideas became a beautiful, functional site."
+                  </div>
+                </div>
+                <div className="text-right text-[11px]">
+                  <span className="font-bold">— Sarah Johnson,</span> Marketing Director
+                </div>
+              </motion.div>
+              
+              {/* Testimonial 3 */}
+              <motion.div 
+                className="p-3 border-r border-b border-[#503822] relative bg-[#efe0b4] bg-opacity-30"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              >
+                <div className="mb-1">
+                  <div className="text-xs font-serif italic">
+                    "As a startup, we needed someone who could understand our vision. Samy delivered exceptional results."
+                  </div>
+                </div>
+                <div className="text-right text-[11px]">
+                  <span className="font-bold">— Emma Rodriguez,</span> Product Manager
+                </div>
+              </motion.div>
+              
+              {/* Testimonial 4 */}
+              <motion.div 
+                className="p-3 border-b border-[#503822] relative bg-[#efe0b4] bg-opacity-30"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              >
+                <div className="mb-1">
+                  <div className="text-xs font-serif italic">
+                    "The redesign of our platform exceeded expectations. Users have commented on the improved interface."
+                  </div>
+                </div>
+                <div className="text-right text-[11px]">
+                  <span className="font-bold">— Michael Torres,</span> CEO at DataViz
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+        
         {/* Footer */}
         <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
-          <div className="mb-2">© {new Date().getFullYear()} Samy Mebarki</div>
+          <div className="flex justify-center space-x-6 mb-4">
+            <motion.a 
+              href="#" 
+              className="hover:underline relative group"
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => e.preventDefault()}
+            >
+              Projects
+              <motion.span 
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
+                layoutId="underline"
+              />
+            </motion.a>
+            <motion.a 
+              href="#" 
+              className="hover:underline relative group"
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => e.preventDefault()}
+            >
+              Blog
+              <motion.span 
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
+                layoutId="underline"
+              />
+            </motion.a>
+            <motion.a 
+              href="#" 
+              className="hover:underline relative group"
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => e.preventDefault()}
+            >
+              Resume
+              <motion.span 
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
+                layoutId="underline"
+              />
+            </motion.a>
+            <motion.a 
+              href="#" 
+              className="hover:underline relative group"
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => e.preventDefault()}
+            >
+              Contact
+              <motion.span 
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
+                layoutId="underline"
+              />
+            </motion.a>
+          </div>
+          <div className="mb-2">© {new Date().getFullYear()} Samy Mebarki • Creative Developer & Designer</div>
         </footer>
       </div>
     </div>

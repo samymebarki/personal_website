@@ -10,6 +10,7 @@ import HamburgerMenu from "@/components/HamburgerMenu"
 import { MenuProvider } from '@/context/MenuContext'
 import AnimationManagerWrapper from '@/components/AnimationManagerWrapper'
 import LoadingAnimationWrapper from '@/components/LoadingAnimationWrapper'
+import CustomScrollbar from '@/components/CustomScrollbar'
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
         <MenuProvider>
           <LoadingAnimationWrapper />
           <CustomCursor />
+          <CustomScrollbar />
           <HamburgerMenu />
           {children}
           <MusicPlayer />

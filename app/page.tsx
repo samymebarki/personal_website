@@ -1053,27 +1053,27 @@ export default function Home() {
                   transition={{ duration: 0.4 }}
                 >
                   {/* Custom torn paper effect at the top */}
-                  <div className="absolute -top-1 left-0 right-0 h-3 overflow-hidden z-20">
+                  {/* <div className="absolute -top-1 left-0 right-0 h-3 overflow-hidden z-20">
                     <div className="w-full h-12 bg-[#efe0b4] relative">
                       <svg viewBox="0 0 100 10" preserveAspectRatio="none" className="absolute bottom-0 w-full h-10">
                         <path d="M0,10 L5,8 L10,9 L15,7 L20,10 L25,6 L30,10 L35,7 L40,9 L45,5 L50,10 L55,8 L60,10 L65,7 L70,9 L75,6 L80,10 L85,5 L90,8 L95,7 L100,10 L100,0 L0,0 Z" fill="#efe0b4"></path>
                       </svg>
                     </div>
-                  </div>
+                  </div> */}
                   
                   {/* Shadows and glow effects */}
-                  <div className="absolute -inset-1 bg-[#503822] rounded-sm opacity-25 group-hover:opacity-50 transition duration-300 ease-in-out blur-sm group-hover:blur-md"></div>
+                  <div className="absolute -inset-1 bg-[#503822] rounded-sm opacity-0 group-hover:opacity-10 transition duration-300 ease-in-out blur-sm group-hover:blur-md"></div>
                   <div className="absolute inset-0 bg-[#503822] opacity-0 group-hover:opacity-5 transition duration-300"></div>
                   
                   {/* Card body with aged paper texture */}
-                  <div className="relative border-2 border-[#503822] bg-[#efe0b4] bg-opacity-90 p-5 h-full flex flex-col overflow-hidden shadow-lg"
+                  <div className="relative border-2 border-[#503822] bg-[#efe0b4] bg-opacity-0 p-5 h-full flex flex-col overflow-hidden shadow-lg"
                        style={{ 
                          backgroundImage: "url('/images/paper-texture-light.png')",
                          boxShadow: "0 10px 15px -3px rgba(80, 56, 34, 0.2), 0 4px 6px -4px rgba(80, 56, 34, 0.2)"
                        }}
                   >
                     {/* Crime identification stamp */}
-                    <div className="absolute top-2 right-2 z-30">
+                    <div className="absolute top-2 left-2 z-30">
                       <div className="relative w-14 h-14 rotate-12 transition-transform group-hover:rotate-6 duration-300">
                         <div className="absolute inset-0 rounded-full border-2 border-[#503822] flex items-center justify-center bg-[#efe0b4] bg-opacity-90 transform rotate-12 overflow-hidden shadow-sm">
                           <div className="text-center text-[#503822]">
@@ -1088,7 +1088,7 @@ export default function Home() {
                     {/* Project image with enhanced newspaper photo styling */}
                     <div className="relative w-full h-56 mb-5 overflow-hidden transform group-hover:scale-[1.01] transition-all duration-500 border border-[#503822]">
                       {/* Vintage noise overlay */}
-                      <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] opacity-10 z-10 mix-blend-multiply"></div>
+                      <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] opacity-0 z-10 mix-blend-multiply"></div>
                       
                       {/* Image */}
                       <div className="absolute inset-0 bg-[#503822] bg-opacity-10 z-5 group-hover:bg-opacity-0 transition-all duration-300"></div>
@@ -1106,7 +1106,7 @@ export default function Home() {
                       </div>
                       
                       {/* Enhanced photo corner decorations */}
-                      <div className="absolute top-0 left-0 w-8 h-8 z-20 overflow-hidden">
+                      {/* <div className="absolute top-0 left-0 w-8 h-8 z-20 overflow-hidden">
                         <div className="absolute top-0 left-0 w-16 h-16 bg-[#503822] rotate-45 transform -translate-x-8 -translate-y-8"></div>
                       </div>
                       <div className="absolute top-0 right-0 w-8 h-8 z-20 overflow-hidden">
@@ -1117,7 +1117,7 @@ export default function Home() {
                       </div>
                       <div className="absolute bottom-0 right-0 w-8 h-8 z-20 overflow-hidden">
                         <div className="absolute bottom-0 right-0 w-16 h-16 bg-[#503822] rotate-45 transform translate-x-8 translate-y-8"></div>
-                      </div>
+                      </div> */}
                       
                       {/* Type badge with improved design */}
                       <div className="absolute top-3 right-3 bg-[#f8e1c2] text-[#503822] py-1 px-2 text-xs font-bold z-20 rotate-3 border border-[#503822] shadow-md transform group-hover:rotate-0 transition-all duration-300">
@@ -1257,9 +1257,9 @@ export default function Home() {
           
           {/* Project Details Modal */}
           {showProjectModal && selectedProject && (
-            <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black bg-opacity-0 flex items-center justify-center z-50 p-4">
               <motion.div 
-                className="relative bg-[#f8e1c2] border-2 border-[#503822] max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                className="relative bg-[#f8e1c2]  border-2 border-[#503822] max-w-4xl w-full max-h-[90vh] overflow-y-auto"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}

@@ -39,6 +39,7 @@ export default function Home() {
   const [date, setDate] = useState('')
   const [isVisible, setIsVisible] = useState(false)
   const [activeTab, setActiveTab] = useState('experience')
+  const [activeMainTab, setActiveMainTab] = useState(0) // Track the active main tab
   const [hasScrolled, setHasScrolled] = useState(false)
   
   // Typewriter effects for headings
@@ -174,8 +175,47 @@ export default function Home() {
           </div>
         </header>
         
-        {/* Main Headline Section */}
-        <div className="grid grid-cols-12 gap-4 mb-6 w-full">
+        {/* Tab Navigation - similar to CRIMINAL RECORD section */}
+        <div className="border-b border-[#503822] mb-8">
+          <div className="flex justify-center ">
+            <div className="flex w-full max-w-lg">
+              {[
+                { name: 'HOME', icon: <Newspaper className="w-4 h-4 inline mr-2" /> },
+                { name: 'PROJECTS', icon: <Briefcase className="w-4 h-4 inline mr-2" /> },
+                { name: 'CONTACT', icon: <MessageCircle className="w-4 h-4 inline mr-2" /> }
+              ].map((tab, index) => (
+                <button 
+                  key={tab.name}
+                  onClick={() => {
+                    // Update active tab state
+                    setActiveMainTab(index);
+                    
+                    // Show content for active tab
+                    const allContents = document.querySelectorAll('.tab-content');
+                    allContents.forEach((content, i) => {
+                      if (i === index) {
+                        content.classList.remove('hidden');
+                      } else {
+                        content.classList.add('hidden');
+                      }
+                    });
+                  }}
+                  className={`main-tab py-2 px-6 font-medium text-sm ${activeMainTab === index ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
+                >
+                  {tab.icon}
+                  {tab.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Tab content containers */}
+        <div className={`tab-content ${activeMainTab === 0 ? '' : 'hidden'}`}>
+          {/* Home tab content - this is the current page content */}
+          
+          {/* Main Headline Section */}
+          <div className="grid grid-cols-12 gap-4 mb-6 w-full">
           <div className="col-span-8 border-r border-[#503822] pr-4">
             <div className="relative group headline-container">
               <style jsx>{`
@@ -709,19 +749,25 @@ export default function Home() {
               </div>
               <div className="text-xs mb-3 italic">Have information about this suspect? Submit your anonymous tip below. Substantial leads may result in rewards.</div>
                 <form className="space-y-4">
+                  <style jsx>{`
+                    ::placeholder {
+                      color: #503822;
+                      opacity: 0.6;
+                    }
+                  `}</style>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-xs font-medium mb-1">Informant Name (optional)</label>
-                      <input type="text" id="name" className="w-full p-2 border border-[#503822] bg-transparent text-sm" placeholder="Anonymous" />
+                      <input type="text" id="name" className="w-full p-2 border border-[#503822] text-[#503822] bg-transparent text-sm" placeholder="Anonymous" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-xs font-medium mb-1">Secure Contact Method</label>
-                      <input type="email" id="email" className="w-full p-2 border border-[#503822] bg-transparent text-sm" placeholder="Email or phone number" />
+                      <input type="email" id="email" className="w-full p-2 border border-[#503822] text-[#503822] bg-transparent text-sm" placeholder="Email or phone number" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-xs font-medium mb-1">Intelligence Report</label>
-                    <textarea id="message" rows={4} className="w-full p-2 border border-[#503822] bg-transparent text-sm" placeholder="Provide detailed information about suspect activities..."></textarea>
+                    <textarea id="message" rows={4} className="w-full p-2 border border-[#503822] text-[#503822] bg-transparent text-sm" placeholder="Provide detailed information about suspect activities..."></textarea>
                   </div>
                   <div className="flex justify-between items-center">
                     <button type="submit" className="bg-[#503822] border border-[#503822] text-[#f8e1c2] px-4 py-2 hover:bg-transparent hover:text-[#503822] transition-colors text-sm">
@@ -827,6 +873,40 @@ export default function Home() {
             </div>
           </div>
         </section>
+        
+        </div>
+        
+        {/* Projects Tab Content */}
+        <div className={`tab-content ${activeMainTab === 1 ? '' : 'hidden'}`}>
+          <div className="text-center py-12 border border-[#503822] border-dashed bg-[#efe0b4] bg-opacity-20 mb-8">
+            <div className="mb-4 font-['Chomsky'] text-4xl text-[#503822]">CASE FILES</div>
+            <div className="text-sm text-[#503822] mb-6">COMING SOON - UNDER INVESTIGATION</div>
+            <div className="mx-auto w-24 h-24 border-4 border-[#503822] rounded-full flex items-center justify-center opacity-50">
+              <div className="text-3xl font-serif text-[#503822]">!</div>
+            </div>
+          </div>
+          
+          <div className="flex justify-between items-center text-xs text-[#503822] border-t border-[#503822] py-2 mt-8">
+            <div>Special Investigation Unit</div>
+            <div>Case files currently sealed</div>
+          </div>
+        </div>
+        
+        {/* Contact Tab Content */}
+        <div className={`tab-content ${activeMainTab === 2 ? '' : 'hidden'}`}>
+          <div className="text-center py-12 border border-[#503822] border-dashed bg-[#efe0b4] bg-opacity-20 mb-8">
+            <div className="mb-4 font-['Chomsky'] text-4xl text-[#503822]">ANONYMOUS TIP LINE</div>
+            <div className="text-sm text-[#503822] mb-6">DIRECT COMMUNICATION CHANNEL OPENING SOON</div>
+            <div className="mx-auto w-24 h-24 border-4 border-[#503822] rounded-full flex items-center justify-center opacity-50">
+              <div className="text-3xl font-serif text-[#503822]">?</div>
+            </div>
+          </div>
+          
+          <div className="flex justify-between items-center text-xs text-[#503822] border-t border-[#503822] py-2 mt-8">
+            <div>Communications Department</div>
+            <div>All informants protected</div>
+          </div>
+        </div>
         
         {/* Footer */}
         <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">

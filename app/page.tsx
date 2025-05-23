@@ -571,79 +571,93 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="border border-[#503822] p-4 bg-[#503822] text-[#f8e1c2] mb-4" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
-              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">HOBBIES & INTERESTS</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm mb-2">
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Photography</span>
+            <div className="border border-[#503822] p-6 mb-6 bg-[#efe0b4] bg-opacity-30" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
+              <div className="border-b-2 border-[#503822] mb-4 pb-1">
+                <h3 className="font-bold text-lg text-[#503822] inline-block">SUSPICIOUS ACTIVITIES & KNOWN HABITS</h3>
+                <div className="text-xs italic text-[#503822] mt-1">Subject observed engaging in the following:</div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="border border-[#503822] border-dashed p-3">
+                  <h4 className="text-sm font-bold border-b border-[#503822] mb-2 pb-1">DOCUMENTED BEHAVIORS</h4>
+                  <div className="grid grid-cols-2 gap-1 text-xs">
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Illicit Photography</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Construction Activities</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Information Gathering</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Border Crossing</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Strategic Games</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Pattern Analysis</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Coffee Consumption</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Late-Night Coding</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Building Things</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Reading</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Traveling</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Chess</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Puzzles</span>
+                
+                <div className="border border-[#503822] border-dashed p-3">
+                  <h4 className="text-sm font-bold border-b border-[#503822] mb-2 pb-1">FUTURE THREATS & PLANS</h4>
+                  <div className="grid grid-cols-2 gap-1 text-xs">
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>3D Modeling Schemes</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Game Manipulation</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>C++ Infiltration</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>No-Code Exploitation</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Security Breaching</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Chess Grandmastery</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>AI Integration</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#503822] mr-2"></span>
+                      <span>Creative Subversion</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3">LEARNING GOALS</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>3D Modeling</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Game Development</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>C++</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>No-Code Platforms</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Web Security</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">•</span>
-                  <span>Advanced Chess</span>
-                </div>
-              </div>
-              <h3 className="font-bold text-lg border-b border-[#f8e1c2] pb-1 mb-3 ">ACHIEVEMENTS</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-start">
-                  <span className="mr-2 mt-1">•</span>
-                  <span>EF SET English Certificate - C2 Proficient (77/100)</span>
-                </div>
-                <div className="flex items-start">
-                  <span className="mr-2 mt-1">•</span>
-                  <span>IBM Applied Data Science Specialization</span>
-                </div>
-                <div className="flex items-start">
-                  <span className="mr-2 mt-1">•</span>
-                  <span>365 Data Science - Data Analyst</span>
-                </div>
-                <div className="flex items-start">
-                  <span className="mr-2 mt-1">•</span>
-                  <span>IBM Data Science Professional</span>
-                </div>
+              
+              <div className="border border-[#503822] p-3 text-xs italic">
+                <p className="font-bold mb-1">OFFICER'S NOTE:</p>
+                <p>Subject demonstrates unusual aptitude for acquiring new skills. Surveillance will continue as we monitor for development of additional capabilities. Approach with caution - known to engage subjects with irresistible UX design patterns.</p>
               </div>
             </div>
             <div className="border border-[#503822] p-4 mb-4">

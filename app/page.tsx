@@ -86,22 +86,6 @@ export default function Home() {
       category: "AI Art",
       image: "/images/terra-forma.jpg"
     },
-    {
-      id: 5,
-      title: "NEURO HARMONY",
-      description: "Brain-computer interface for music creation using neural signals.",
-      year: "2023",
-      category: "AI/ML",
-      image: "/images/neuro-harmony.jpg"
-    },
-    {
-      id: 6,
-      title: "CHRONO VORTEX",
-      description: "Interactive timeline visualization tool for exploring historical events.",
-      year: "2022",
-      category: "Web App",
-      image: "/images/chrono-vortex.jpg"
-    }
   ]
 
   const newsItems = [
@@ -443,11 +427,21 @@ export default function Home() {
             
             {/* Projects Section */}
             <section className="mb-16 article animate-slideInUp">
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-[#503822] font-serif tracking-tight leading-none">
+              <div className="flex justify-between items-center text-xs text-[#503822] mb-2">
+                <div>Vol. XCVII No. 404</div>
+                <div className="font-serif italic">"Where Code Meets Crime"</div>
+                <div>{format(new Date(), 'MMMM d, yyyy')} - 25¢</div>
+              </div>
+              
+              <h2 className="text-4xl md:text-6xl font-bold mt-6 mb-6 text-[#503822] font-serif tracking-tight leading-none">
                 NOTORIOUS CASES
                 <div className="border-b-2 border-[#503822] w-full mt-2"></div>
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              
+              <div className="text-xs text-[#503822] italic mb-3 border-b border-[#503822] pb-1">
+                SPECIAL INVESTIGATION: Suspect linked to following high-profile development cases
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
                 {projects.map((project, index) => (
                   <article 
                     key={project.id} 
@@ -505,9 +499,7 @@ export default function Home() {
           </div>
           <div className="col-span-4 pl-4 relative">
             {/* Signature */}
-            <div className="absolute bottom-4 right-4 text-3xl text-[#503822] opacity-90" style={{ fontFamily: 'var(--font-allura)' }}>
-              Samy Mebarki
-            </div>
+            
             <div className="border border-[#503822] p-4 mb-4" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
               <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1200ms' }}>ABOUT THE DEVELOPER</h3>
               <div className="aspect-square w-full mb-3 overflow-hidden group">
@@ -660,44 +652,71 @@ export default function Home() {
                 <p>Subject demonstrates unusual aptitude for acquiring new skills. Surveillance will continue as we monitor for development of additional capabilities. Approach with caution - known to engage subjects with irresistible UX design patterns.</p>
               </div>
             </div>
-            <div className="border border-[#503822] p-4 mb-4">
-              <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3">GET IN TOUCH</h3>
+            
+            {/* Most Wanted Skills Section */}
+            <div className="border-2 border-[#503822] border-dashed p-4 mb-6 bg-[#efe0b4] bg-opacity-20" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
+              <div className="text-center mb-4">
+                <div className="inline-block px-4 py-1 bg-[#503822] text-[#f8e1c2] mb-2 transform -rotate-1 text-sm font-bold">MOST WANTED SKILLS</div>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                {[
+                  { name: "JavaScript", level: 90 },
+                  { name: "React", level: 85 },
+                  { name: "UI/UX", level: 80 },
+                  { name: "Node.js", level: 75 },
+                  { name: "TypeScript", level: 70 },
+                  { name: "NextJS", level: 85 },
+                  { name: "CSS", level: 90 },
+                  { name: "Python", level: 65 }
+                ].map((skill, index) => (
+                  <div key={skill.name} className="relative p-2" style={{ 
+                    transform: `rotate(${Math.random() * 2 - 1}deg)`,
+                    opacity: 0,
+                    animation: 'fadeIn 0.8s ease-out forwards',
+                    animationDelay: `${index * 100 + 300}ms`
+                  }}>
+                    <div className="border border-[#503822] p-2 bg-[#efe0b4] bg-opacity-60">
+                      <div className="text-xs font-bold mb-1">{skill.name}</div>
+                      <div className="w-full bg-[#f8e1c2] h-1.5 mb-1">
+                        <div 
+                          className="bg-[#503822] h-1.5" 
+                          style={{ width: `${skill.level}%` }}
+                        ></div>
+                      </div>
+                      <div className="text-[10px] italic">Danger Level: {skill.level}%</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="border border-[#503822] p-4 mb-4 bg-[#efe0b4] bg-opacity-20" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
+              <div className="flex items-center justify-between border-b border-[#503822] pb-1 mb-3">
+                <h3 className="font-bold text-lg">ANONYMOUS TIP LINE</h3>
+                <div className="text-xs italic">All informants protected by journalist shield laws</div>
+              </div>
+              <div className="text-xs mb-3 italic">Have information about this suspect? Submit your anonymous tip below. Substantial leads may result in rewards.</div>
                 <form className="space-y-4">
-                  <div>
-                    <label htmlFor="contact-name" className="block text-sm mb-1 text-[#503822]">Name</label>
-                    <input
-                      type="text"
-                      id="contact-name"
-                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
-                      placeholder="Your name"
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="name" className="block text-xs font-medium mb-1">Informant Name (optional)</label>
+                      <input type="text" id="name" className="w-full p-2 border border-[#503822] bg-transparent text-sm" placeholder="Anonymous" />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-xs font-medium mb-1">Secure Contact Method</label>
+                      <input type="email" id="email" className="w-full p-2 border border-[#503822] bg-transparent text-sm" placeholder="Email or phone number" />
+                    </div>
                   </div>
                   <div>
-                    <label htmlFor="contact-email" className="block text-sm mb-1 text-[#503822]">Email</label>
-                    <input
-                      type="email"
-                      id="contact-email"
-                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
-                      placeholder="your.email@example.com"
-                      required
-                    />
+                    <label htmlFor="message" className="block text-xs font-medium mb-1">Intelligence Report</label>
+                    <textarea id="message" rows={4} className="w-full p-2 border border-[#503822] bg-transparent text-sm" placeholder="Provide detailed information about suspect activities..."></textarea>
                   </div>
-                  <div>
-                    <label htmlFor="contact-message" className="block text-sm mb-1 text-[#503822]">Message</label>
-                    <textarea
-                      id="contact-message"
-                      rows={3}
-                      className="w-full px-3 py-2 bg-transparent border-b border-[#503822] text-[#503822] focus:outline-none focus:border-[#503822] placeholder-[#503822]/70"
-                      placeholder="Your message..."
-                      required
-                    ></textarea>
+                  <div className="flex justify-between items-center">
+                    <button type="submit" className="bg-[#503822] border border-[#503822] text-[#f8e1c2] px-4 py-2 hover:bg-transparent hover:text-[#503822] transition-colors text-sm">
+                      Submit Confidential Tip
+                    </button>
+                    <div className="text-xs italic">Tips verified by our investigative team</div>
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full py-2 border border-[#503822] bg-[#503822] text-[#f8e1c2] font-medium hover:bg-transparent hover:text-[#503822] hover:border-[#503822] transition-colors duration-200"
-                  >
-                    Send Message
-                  </button>
                 </form>
               </div>
           </div>
@@ -706,7 +725,10 @@ export default function Home() {
         
         {/* Testimonials Section - Classifieds Style */}
         <section className="mt-12 mb-12 border-t border-[#503822] pt-8">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="border-b border-[#503822] mb-8 pb-1 text-center">
+              <div className="text-xs inline-block px-3 py-1 bg-[#503822] text-[#f8e1c2] mb-1">BREAKING NEWS</div>
+            </div>
             <motion.div 
               className="flex justify-center mb-6"
               initial={{ opacity: 0, y: -10 }}

@@ -442,6 +442,11 @@ export default function Home() {
                 SPECIAL INVESTIGATION: Suspect linked to following high-profile development cases
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                <div className="col-span-1 md:col-span-2 border-l-4 border-[#503822] pl-4 italic text-[#503822] mb-4 bg-[#efe0b4] bg-opacity-20 p-3 relative" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '500ms' }}>
+                  <div className="absolute -top-3 right-4 bg-[#503822] text-[#f8e1c2] text-[10px] px-2 py-1 rotate-6 z-10">FROM OUR SOURCES</div>
+                  <div className="text-lg font-serif">"His code doesn't just run, it practically flees the crime scene with extraordinary efficiency."</div>
+                  <div className="text-right text-xs mt-2">— Detective R. Gosling, Frontend Investigation Unit</div>
+                </div>
                 {projects.map((project, index) => (
                   <article 
                     key={project.id} 
@@ -502,10 +507,17 @@ export default function Home() {
             
             <div className="border border-[#503822] p-4 mb-4" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
               <h3 className="font-bold text-lg border-b border-[#503822] pb-1 mb-3" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1200ms' }}>ABOUT THE DEVELOPER</h3>
-              <div className="aspect-square w-full mb-3 overflow-hidden group">
+              <div className="aspect-square w-full mb-3 overflow-hidden group relative">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-12 z-10 border-2 border-[#8B0000] opacity-25">
+                  <div className="text-[#8B0000] font-bold py-2 px-5 text-6xl tracking-widest">WANTED</div>
+                </div>
+                <div className="absolute bottom-0 left-0 w-full z-10 bg-[#503822] text-[#f8e1c2] text-xs py-1 flex justify-between px-2">
+                  <span>ID: DV-0422</span>
+                  <span>APPROACH WITH CAUTION</span>
+                </div>
                 <img 
-                  src="/images/me.png"
-                  alt="Samy Mebarki"
+                  src="/images/me.png" 
+                  alt="Samy Mebarki" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:brightness-110 group-hover:shadow-glow animate-fadeIn"
                 />
               </div>
@@ -726,7 +738,8 @@ export default function Home() {
         {/* Testimonials Section - Classifieds Style */}
         <section className="mt-12 mb-12 border-t border-[#503822] pt-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div className="border-b border-[#503822] mb-8 pb-1 text-center">
+            <div className="border-b border-[#503822] mb-8 pb-1 text-center relative">
+              <div className="absolute -top-8 right-4 rotate-6 bg-[#efe0b4] border border-[#503822] p-1 px-2 text-xs text-[#503822] font-bold z-10 shadow-sm" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '800ms' }}>EXCLUSIVE TESTIMONY</div>
               <div className="text-xs inline-block px-3 py-1 bg-[#503822] text-[#f8e1c2] mb-1">BREAKING NEWS</div>
             </div>
             <motion.div 

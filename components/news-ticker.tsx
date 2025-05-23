@@ -14,23 +14,51 @@ export default function NewsTicker({ items, speed = 30 }: NewsTickerProps) {
     if (!tickerRef.current) return
 
     const tickerContent = tickerRef.current
-    const contentWidth = tickerContent.scrollWidth
+    const contentWidth = tickerContent.scrollWidth / 2 // Divide by 2 because we duplicated the items
     const duration = contentWidth / speed
 
-    // Check if gsap is available
-    const gsap = window.gsap
-    if (!gsap) return
+    // Define the animation
+    const animateTicker = () => {
+      // Check if gsap is available
+      const gsap = window.gsap
+      if (!gsap) return
+      
+      // Reset position before animating again
+      gsap.set(tickerContent, { x: 0 })
+      
+      // Create the animation
+      gsap.to(tickerContent, {
+        x: -contentWidth,
+        duration: duration,
+        ease: "linear",
+        repeat: -1,
+        onRepeat: () => {
+          // Reset to beginning when halfway through for seamless loop
+          if (tickerContent.getBoundingClientRect().x <= -contentWidth) {
+            gsap.set(tickerContent, { x: 0 })
+          }
+        }
+      })
+    }
+    
+    // Start the animation
+    animateTicker()
 
-    // Create the animation
-    gsap.to(tickerContent, {
-      x: -contentWidth,
-      duration: duration,
-      ease: "linear",
-      repeat: -1,
-    })
+    // Add window resize listener to recalculate on window resize
+    const handleResize = () => {
+      const gsap = window.gsap
+      if (!gsap) return
+      
+      gsap.killTweensOf(tickerContent)
+      animateTicker()
+    }
+    
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      gsap.killTweensOf(tickerContent)
+      const gsap = window.gsap
+      if (gsap) gsap.killTweensOf(tickerContent)
+      window.removeEventListener('resize', handleResize)
     }
   }, [speed, items])
 

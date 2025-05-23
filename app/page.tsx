@@ -13,24 +13,49 @@ import AnimatedCursor from "@/components/AnimatedCursor"
 import CoffeeStain from "@/components/coffee-stain";
 import PullQuote from "@/components/PullQuote";
 
-// Custom hook for typewriter effect
+// Custom hook for typewriter effect with improved reliability
 function useTypewriter(text: string, speed: number = 50) {
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+  const [startTyping, setStartTyping] = useState(false);
   
+  // Initialize typing after component mounts
   useEffect(() => {
-    if (!isTyping) return;
+    const timer = setTimeout(() => {
+      setStartTyping(true);
+    }, 500); // Slight delay to ensure DOM is ready
     
-    if (displayText.length < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(text.substring(0, displayText.length + 1));
-      }, speed);
-      
-      return () => clearTimeout(timeout);
-    } else {
-      setIsTyping(false);
-    }
-  }, [displayText, text, speed, isTyping]);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  // Handle the actual typing effect
+  useEffect(() => {
+    if (!startTyping || !isTyping) return;
+    
+    let isMounted = true;
+    
+    const typeNextChar = () => {
+      if (displayText.length < text.length) {
+        const timer = setTimeout(() => {
+          if (isMounted) {
+            setDisplayText(text.substring(0, displayText.length + 1));
+          }
+        }, speed);
+        
+        return timer;
+      } else {
+        setIsTyping(false);
+        return undefined;
+      }
+    };
+    
+    const timerId = typeNextChar();
+    
+    return () => {
+      isMounted = false;
+      if (timerId) clearTimeout(timerId);
+    };
+  }, [displayText, text, speed, isTyping, startTyping]);
   
   return { displayText, isTyping };
 }
@@ -42,7 +67,7 @@ export default function Home() {
   const [activeMainTab, setActiveMainTab] = useState(0) // Track the active main tab
   const [hasScrolled, setHasScrolled] = useState(false)
   
-  // Typewriter effects for headings
+  // Typewriter effects for headings with improved reliability
   const mainHeading = useTypewriter("DEVELOPER ARRESTED FOR MASTERING MULTIPLE SKILLS", 70)
   
   useEffect(() => {
@@ -311,14 +336,14 @@ export default function Home() {
                 <div className="text-4xl font-bold text-[#503822] mb-2">75+</div>
                 <div className="text-sm text-[#503822] flex items-center justify-center">
                   <Layout className="w-4 h-4 mr-1" />
-                  <span>Projects Completed</span>
+                  <span>Felonies Completed</span>
                 </div>
               </div>
               <div className="border border-[#503822] p-4 text-center">
                 <div className="text-4xl font-bold text-[#503822] mb-2">24+</div>
                 <div className="text-sm text-[#503822] flex items-center justify-center">
                   <Users className="w-4 h-4 mr-1" />
-                  <span>Happy Clients</span>
+                  <span>Happy Victims</span>
                 </div>
               </div>
             </div>
@@ -360,8 +385,7 @@ export default function Home() {
                 {/* Tab Content */}
                 <div className="tab-content">
                   {/* Experience Tab */}
-                  {activeTab === 'experience' && (
-                    <div>
+                  <div className={activeTab === 'experience' ? 'block' : 'hidden'}>
                       <div className="mb-4 border-l-2 border-[#503822] pl-4">
                         <h4 className="font-bold">First-Degree Interface Manipulation</h4>
                         <p className="text-sm text-[#503822]/80">TechVision Solutions • 2020 - Present</p>
@@ -392,11 +416,10 @@ export default function Home() {
                         </ul>
                       </div>
                     </div>
-                  )}
+                  
                   
                   {/* Education Tab */}
-                  {activeTab === 'education' && (
-                    <div>
+                  <div className={activeTab === 'education' ? 'block' : 'hidden'}>
                       <div className="mb-4 border-l-2 border-[#503822] pl-4">
                         <h4 className="font-bold">Advanced Training in Digital Manipulation</h4>
                         <p className="text-sm text-[#503822]/80">University of Technology • 2014 - 2016</p>
@@ -419,11 +442,9 @@ export default function Home() {
                         </ul>
                       </div>
                     </div>
-                  )}
                   
                   {/* Philosophy Tab */}
-                  {activeTab === 'philosophy' && (
-                    <div>
+                  <div className={activeTab === 'philosophy' ? 'block' : 'hidden'}>
                       <p className="mb-4">The accused's manifesto reveals a dangerous ideology built on these radical principles:</p>
                        
                       <div className="mb-4">
@@ -458,7 +479,6 @@ export default function Home() {
                         <p className="text-sm mt-1 ml-8">Evidence shows a disturbing fixation on details. Subject has been observed creating pixel-perfect designs and meticulously organized code in what psychiatrists describe as "pathological perfectionism." This level of attention to detail suggests premeditated intent to craft flawless user experiences.</p>
                       </div>
                     </div>
-                  )}
                 </div>
               </div>
             </div>

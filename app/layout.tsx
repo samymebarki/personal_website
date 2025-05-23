@@ -57,7 +57,6 @@ export default function RootLayout({
           <CustomScrollbar />
           <HamburgerMenu />
           {children}
-          <MusicPlayer />
           <AnimationManagerWrapper />
         </MenuProvider>
       </body>

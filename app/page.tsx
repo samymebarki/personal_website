@@ -63,9 +63,27 @@ function useTypewriter(text: string, speed: number = 50) {
 export default function Home() {
   const [date, setDate] = useState('')
   const [isVisible, setIsVisible] = useState(false)
+  // Define a Project type for TypeScript
+  type Project = {
+    id: number;
+    title: string;
+    description: string;
+    year: string;
+    category: string;
+    image: string;
+    type: string;
+    fullDescription: string;
+    technologies: string[];
+    results: string;
+    role: string;
+  }
+
   const [activeTab, setActiveTab] = useState('experience')
   const [activeMainTab, setActiveMainTab] = useState(0) // Track the active main tab
   const [hasScrolled, setHasScrolled] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [showProjectModal, setShowProjectModal] = useState(false)
+  const [activeProjectFilter, setActiveProjectFilter] = useState('All')
   
   // Typewriter effects for headings with improved reliability
   const mainHeading = useTypewriter("DEVELOPER ARRESTED FOR MASTERING MULTIPLE SKILLS", 70)
@@ -86,7 +104,12 @@ export default function Home() {
       description: "Award-winning design firm's digital presence showcasing interior architecture projects.",
       year: "2023",
       category: "Branding",
-      image: "/images/avro-ko.jpg"
+      image: "/images/avro-ko.jpg",
+      type: "Design",
+      fullDescription: "A comprehensive branding and digital presence project for an award-winning interior architecture firm. The project included developing a sophisticated visual language that reflected the firm's attention to detail and craftsmanship, while ensuring the digital platform effectively showcased their diverse portfolio of high-end commercial and residential projects.",
+      technologies: ["Adobe Creative Suite", "Figma", "Next.js", "Tailwind CSS"],
+      results: "Increased portfolio engagement by 45% and generated 12 new client inquiries within the first month of launch.",
+      role: "Lead Designer & Developer"
     },
     {
       id: 2,
@@ -94,7 +117,12 @@ export default function Home() {
       description: "Immersive web experience for tennis-inspired sneakers in collaboration with Roger Federer.",
       year: "2023",
       category: "Web Design",
-      image: "/images/roger-hub.jpg"
+      image: "/images/roger-hub.jpg",
+      type: "Web Development",
+      fullDescription: "An immersive digital experience developed for a major sportswear brand's tennis-inspired sneaker collection in collaboration with Roger Federer. The interactive platform seamlessly blends storytelling, product showcase, and e-commerce functionality with tennis-themed interactive elements that highlight the craftsmanship and performance features of the collection.",
+      technologies: ["React.js", "Three.js", "GSAP", "Shopify API", "WebGL"],
+      results: "The campaign resulted in a 78% sell-through rate in the first week and received an Awwwards Site of the Day nomination.",
+      role: "Frontend Developer & 3D Animation Specialist"
     },
     {
       id: 3,
@@ -102,7 +130,12 @@ export default function Home() {
       description: "Digital platform reimagining light interaction in architectural spaces with IoT technology.",
       year: "2022",
       category: "Digital Exp",
-      image: "/images/lumina.jpg"
+      image: "/images/lumina.jpg",
+      type: "IoT Development",
+      fullDescription: "A cutting-edge digital platform that reimagines how light interacts with architectural spaces through IoT technology. This project bridges the gap between digital interfaces and physical environments, allowing users to control and program sophisticated lighting installations through an intuitive interface. The system uses real-time data to adapt lighting conditions based on occupancy, time of day, and user preferences.",
+      technologies: ["React Native", "Node.js", "MongoDB", "MQTT", "Raspberry Pi", "Custom PCB Design"],
+      results: "Successfully deployed in 5 commercial spaces with a 40% reduction in energy consumption while improving occupant comfort ratings by 35%.",
+      role: "Full Stack Developer & IoT Specialist"
     },
     {
       id: 4,
@@ -110,9 +143,43 @@ export default function Home() {
       description: "Generative AI art project visualizing environmental data through immersive landscapes.",
       year: "2023",
       category: "AI Art",
-      image: "/images/terra-forma.jpg"
+      image: "/images/terra-forma.jpg",
+      type: "AI Development",
+      fullDescription: "An innovative generative AI art project that transforms environmental data into immersive digital landscapes. The system processes climate data, pollution metrics, and biodiversity indicators to create evolving visual narratives that reflect the health and changes in our natural environment. The project bridges art, technology, and environmental awareness to create compelling visual stories.",
+      technologies: ["Python", "TensorFlow", "GAN Architecture", "WebGL", "D3.js", "API Integrations"],
+      results: "Exhibited at three international digital art festivals and featured in Wired magazine's 'AI Innovations That Matter' issue.",
+      role: "AI Developer & Creative Director"
     },
+    {
+      id: 5,
+      title: "PULSE METRICS",
+      description: "Healthcare analytics dashboard visualizing patient data for medical professionals.",
+      year: "2022",
+      category: "Data Viz",
+      image: "/images/healthcare-dashboard.jpg",
+      type: "Data Visualization",
+      fullDescription: "A comprehensive healthcare analytics dashboard designed for medical professionals to visualize and interpret complex patient data. The system processes and displays vital signs, medication schedules, treatment outcomes, and patient history in an intuitive interface that enables quick decision-making and trend identification while maintaining strict HIPAA compliance.",
+      technologies: ["Vue.js", "D3.js", "Python", "Django", "PostgreSQL", "Docker"],
+      results: "Reduced decision-making time by 32% in pilot hospitals and improved treatment plan adjustments by identifying patterns not previously recognized.",
+      role: "Frontend Developer & Data Visualization Specialist"
+    },
+    {
+      id: 6,
+      title: "ECHO CHAMBERS",
+      description: "Interactive sound installation responding to movement and presence in physical space.",
+      year: "2021",
+      category: "Installation",
+      image: "/images/sound-installation.jpg",
+      type: "Interactive Art",
+      fullDescription: "An award-winning interactive sound installation that responds to movement and presence in physical space. Using an array of sensors, custom software, and a sophisticated sound design system, the installation creates dynamic audio environments that evolve based on visitor movement, density, and behavior patterns, creating a unique collective sound experience.",
+      technologies: ["Max/MSP", "Arduino", "Custom Sensors", "Spatial Audio", "C++"],
+      results: "Featured in the Contemporary Art Museum's 'Digital Frontiers' exhibition and received the Interactive Art Innovation Award.",
+      role: "Technical Director & Sound Designer"
+    }
   ]
+  
+  // Extract unique project types for filtering
+  const projectTypes = ['All', ...new Set(projects.map(project => project.type))]
 
   const newsItems = [
     "JavaScript tried to outsmart Samy. JavaScript lost.",
@@ -896,20 +963,404 @@ export default function Home() {
         
         </div>
         
-        {/* Projects Tab Content */}
+        {/* Projects Tab Content - Newspaper Edition */}
         <div className={`tab-content ${activeMainTab === 1 ? '' : 'hidden'}`}>
-          <div className="text-center py-12 border border-[#503822] border-dashed bg-[#efe0b4] bg-opacity-20 mb-8">
-            <div className="mb-4 font-['Chomsky'] text-4xl text-[#503822]">CASE FILES</div>
-            <div className="text-sm text-[#503822] mb-6">COMING SOON - UNDER INVESTIGATION</div>
-            <div className="mx-auto w-24 h-24 border-4 border-[#503822] rounded-full flex items-center justify-center opacity-50">
-              <div className="text-3xl font-serif text-[#503822]">!</div>
+          <div className="mb-8 relative">
+            {/* Newspaper header with masthead and edition details */}
+            <div className="relative border-b-2 border-[#503822] mb-8 pb-2">
+              {/* Top line with volume and date */}
+              <div className="flex justify-between text-xs text-[#503822] mb-2 uppercase tracking-wider">
+                <div>VOL. XXIII, NO. 428</div>
+                <div>EVENING EDITION</div>
+              </div>
+              
+              {/* Main headline */}
+              <div className="font-bold text-5xl text-[#503822] text-center mb-3 leading-none tracking-tight">CRIMINAL PORTFOLIO</div>
+              
+              {/* Subheadline */}
+              <div className="flex justify-center mb-4">
+                <div className="px-4 py-1 bg-[#503822] text-[#f8e1c2] text-sm font-bold inline-block">MASTERFUL SCHEMES EXPOSED</div>
+              </div>
+              
+              <div className="text-sm text-[#503822] italic text-center mb-2 font-serif">Projects by Samy Mebarki, Notorious Skills Outlaw</div>
+              
+              {/* Decorative line */}
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="h-[1px] bg-[#503822] w-16"></div>
+                <div className="h-2 w-2 bg-[#503822] rotate-45"></div>
+                <div className="h-[1px] bg-[#503822] w-16"></div>
+              </div>
+              
+              {/* Coffee stains for vintage effect */}
+              <div className="absolute top-0 right-0 opacity-10 rotate-12">
+                <CoffeeStain size="small" />
+              </div>
+            </div>
+            
+            {/* Project filters styled as newspaper sections */}
+            <div className="mb-8 border-b border-[#503822] pb-3">
+              <div className="flex items-center mb-2">
+                <div className="h-6 w-6 bg-[#503822] flex items-center justify-center mr-2">
+                  <span className="text-[#f8e1c2] font-bold text-xs">§</span>
+                </div>
+                <div className="text-sm font-bold text-[#503822] uppercase tracking-wide">SECTION INDEX</div>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 pl-8">
+                {projectTypes.map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setActiveProjectFilter(type)}
+                    className={`relative text-xs py-1 px-3 border transition-all duration-200 group ${activeProjectFilter === type ? 'bg-[#503822] text-[#f8e1c2] border-[#503822]' : 'bg-transparent text-[#503822] border-[#503822] hover:bg-[#503822] hover:bg-opacity-10'}`}
+                  >
+                    {activeProjectFilter === type && (
+                      <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center bg-[#f8e1c2] border border-[#503822] rounded-full">
+                        <span className="text-[#503822] text-[8px]">✓</span>
+                      </span>
+                    )}
+                    {type}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            {/* Newspaper headline before projects */}
+            <div className="mb-6 flex items-center">
+              <div className="w-10 h-10 bg-[#503822] text-[#f8e1c2] flex items-center justify-center mr-4 rotate-3">
+                <Briefcase className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="font-serif font-bold text-xl text-[#503822] uppercase tracking-wide leading-tight">CRIMINAL MASTERPIECES</div>
+                <div className="text-xs text-[#503822]">Continued from page A1 — Digital Crime Division</div>
+              </div>
+            </div>
+            
+            {/* Projects grid styled as newspaper columns */}
+            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 before:content-[''] before:absolute before:h-full before:w-[1px] before:bg-[#503822] before:left-1/3 before:opacity-30 before:top-0 before:hidden before:lg:block after:content-[''] after:absolute after:h-full after:w-[1px] after:bg-[#503822] after:right-1/3 after:opacity-30 after:top-0 after:hidden after:lg:block">
+              {projects
+                .filter(project => activeProjectFilter === 'All' || project.type === activeProjectFilter)
+                .map((project) => (
+                <motion.div 
+                  key={project.id} 
+                  className="relative group cursor-pointer"
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    setSelectedProject(project);
+                    setShowProjectModal(true);
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {/* Custom torn paper effect at the top */}
+                  <div className="absolute -top-1 left-0 right-0 h-3 overflow-hidden z-20">
+                    <div className="w-full h-12 bg-[#efe0b4] relative">
+                      <svg viewBox="0 0 100 10" preserveAspectRatio="none" className="absolute bottom-0 w-full h-10">
+                        <path d="M0,10 L5,8 L10,9 L15,7 L20,10 L25,6 L30,10 L35,7 L40,9 L45,5 L50,10 L55,8 L60,10 L65,7 L70,9 L75,6 L80,10 L85,5 L90,8 L95,7 L100,10 L100,0 L0,0 Z" fill="#efe0b4"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* Shadows and glow effects */}
+                  <div className="absolute -inset-1 bg-[#503822] rounded-sm opacity-25 group-hover:opacity-50 transition duration-300 ease-in-out blur-sm group-hover:blur-md"></div>
+                  <div className="absolute inset-0 bg-[#503822] opacity-0 group-hover:opacity-5 transition duration-300"></div>
+                  
+                  {/* Card body with aged paper texture */}
+                  <div className="relative border-2 border-[#503822] bg-[#efe0b4] bg-opacity-90 p-5 h-full flex flex-col overflow-hidden shadow-lg"
+                       style={{ 
+                         backgroundImage: "url('/images/paper-texture-light.png')",
+                         boxShadow: "0 10px 15px -3px rgba(80, 56, 34, 0.2), 0 4px 6px -4px rgba(80, 56, 34, 0.2)"
+                       }}
+                  >
+                    {/* Crime identification stamp */}
+                    <div className="absolute top-2 right-2 z-30">
+                      <div className="relative w-14 h-14 rotate-12 transition-transform group-hover:rotate-6 duration-300">
+                        <div className="absolute inset-0 rounded-full border-2 border-[#503822] flex items-center justify-center bg-[#efe0b4] bg-opacity-90 transform rotate-12 overflow-hidden shadow-sm">
+                          <div className="text-center text-[#503822]">
+                            <div className="text-[8px] font-bold">CRIMINAL</div>
+                            <div className="text-[10px] font-bold">FILE</div>
+                            <div className="text-[9px] font-mono">{project.id.toString().padStart(3, '0')}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Project image with enhanced newspaper photo styling */}
+                    <div className="relative w-full h-56 mb-5 overflow-hidden transform group-hover:scale-[1.01] transition-all duration-500 border border-[#503822]">
+                      {/* Vintage noise overlay */}
+                      <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] opacity-10 z-10 mix-blend-multiply"></div>
+                      
+                      {/* Image */}
+                      <div className="absolute inset-0 bg-[#503822] bg-opacity-10 z-5 group-hover:bg-opacity-0 transition-all duration-300"></div>
+                      <Image 
+                        src={project.image} 
+                        alt={project.title}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        className="filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110"
+                      />
+                      
+                      {/* Caption strip */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#503822] bg-opacity-85 p-1.5 text-[#f8e1c2] text-xs z-20 text-center font-serif italic">
+                        Crime committed in {project.year}
+                      </div>
+                      
+                      {/* Enhanced photo corner decorations */}
+                      <div className="absolute top-0 left-0 w-8 h-8 z-20 overflow-hidden">
+                        <div className="absolute top-0 left-0 w-16 h-16 bg-[#503822] rotate-45 transform -translate-x-8 -translate-y-8"></div>
+                      </div>
+                      <div className="absolute top-0 right-0 w-8 h-8 z-20 overflow-hidden">
+                        <div className="absolute top-0 right-0 w-16 h-16 bg-[#503822] rotate-45 transform translate-x-8 -translate-y-8"></div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-8 h-8 z-20 overflow-hidden">
+                        <div className="absolute bottom-0 left-0 w-16 h-16 bg-[#503822] rotate-45 transform -translate-x-8 translate-y-8"></div>
+                      </div>
+                      <div className="absolute bottom-0 right-0 w-8 h-8 z-20 overflow-hidden">
+                        <div className="absolute bottom-0 right-0 w-16 h-16 bg-[#503822] rotate-45 transform translate-x-8 translate-y-8"></div>
+                      </div>
+                      
+                      {/* Type badge with improved design */}
+                      <div className="absolute top-3 right-3 bg-[#f8e1c2] text-[#503822] py-1 px-2 text-xs font-bold z-20 rotate-3 border border-[#503822] shadow-md transform group-hover:rotate-0 transition-all duration-300">
+                        {project.type}
+                      </div>
+                    </div>
+                    
+                    {/* Coffee stain for design effect */}
+                    <div className="absolute -top-12 -right-12 opacity-10 rotate-12 z-0">
+                      <CoffeeStain size="medium" />
+                    </div>
+                    
+                    {/* Project details with enhanced newspaper article styling */}
+                    <div className="relative z-10">
+                      {/* Headline with subtle shadow for depth */}
+                      <h3 className="font-serif font-bold text-2xl text-[#503822] mb-2 leading-tight tracking-tight group-hover:tracking-normal transition-all duration-300 drop-shadow-sm">
+                        {project.title}
+                      </h3>
+                      
+                      {/* Newspaper column divider with enhanced styling */}
+                      <div className="w-full h-[3px] mb-4 bg-[#503822] relative overflow-visible">
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#efe0b4] px-3 border border-[#503822] border-opacity-30">
+                          <div className="h-2 w-2 bg-[#503822] rotate-45"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Article first paragraph with improved drop cap */}
+                      <div className="text-sm text-[#503822] mb-5 flex-grow relative z-10 font-serif leading-relaxed">
+                        <span className="float-left text-[#503822] text-5xl font-serif font-bold mr-2 mt-1 drop-shadow-sm">{project.description.charAt(0)}</span>
+                        <span className="bg-[#503822] bg-opacity-10 py-0.5 px-1">{project.description.substring(1, 20)}</span>
+                        {project.description.substring(20)}
+                      </div>
+                      
+                      {/* Article footer with enhanced metadata styling */}
+                      <div className="flex justify-between items-center text-xs text-[#503822] pt-3 border-t border-[#503822] border-dotted mt-auto">
+                        <div className="flex items-center bg-[#503822] bg-opacity-5 py-1 px-2">
+                          <Clock className="w-3 h-3 mr-1" />
+                          <span className="font-medium">{project.year}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="italic mr-1">{project.category}</span>
+                          <div className="w-3 h-3 bg-[#503822] rounded-full opacity-50"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Coffee stain decoration */}
+                    <div className="absolute -bottom-10 -right-10 opacity-10 rotate-12 z-0 scale-75 transition-transform group-hover:scale-90 duration-500">
+                      <CoffeeStain size="medium" />
+                    </div>
+                    
+                    {/* Improved view details button */}
+                    <div className="absolute -bottom-10 right-0 left-0 group-hover:bottom-3 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out z-30 text-center transform-gpu">
+                      <div className="inline-block bg-[#503822] text-[#f8e1c2] text-xs py-1.5 px-3 shadow-lg border border-[#503822] border-opacity-20 flex items-center justify-center mx-auto">
+                        <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        </svg>
+                        <span className="uppercase tracking-wider font-medium">VIEW FULL REPORT</span>
+                      </div>
+                    </div>
+                    
+                    {/* Visual ink stamp effect */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] opacity-0 group-hover:opacity-5 transition-opacity duration-300 z-20 pointer-events-none">
+                      <div className="font-['Chomsky'] text-[#503822] text-5xl whitespace-nowrap">TOP SECRET</div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Newspaper advertisement banner */}
+            <div className="my-12 border-y-2 border-[#503822] py-4 px-6 bg-[#efe0b4] bg-transparent text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-0 left-0 right-0 bottom-0 bg-repeat" style={{ backgroundImage: "url('/images/noise-pattern.png')" }}></div>
+              </div>
+              <div className="font-bold text-2xl text-[#503822] mb-1">Seeking Collaborators</div>
+              <p className="text-sm text-[#503822] mb-2 max-w-lg mx-auto">For future digital heists. Expertise in React, Next.js, Three.js or WebGL highly valued.</p>
+              <div className="text-xs text-[#503822] italic">Contact Samy Mebarki through the anonymous tip line. Discretion assured.</div>
+            </div>
+            
+            {/* Evidence and clues section styled as newspaper feature */}
+            <div className="mt-12 border-t-2 border-[#503822] pt-8">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-[#503822] text-[#f8e1c2] flex items-center justify-center mr-3 transform rotate-3">
+                  <PenTool className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-xl text-[#503822] uppercase tracking-wide">TOOLS & TECHNIQUES</h3>
+                  <div className="text-xs text-[#503822]">The inside story on how these crimes were committed</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div className="border-2 border-[#503822] border-dashed p-5 bg-[#efe0b4] bg-transparent relative overflow-hidden">
+                  <div className="absolute -top-10 -left-10 opacity-10 rotate-45 z-0">
+                    <CoffeeStain size="medium" />
+                  </div>
+                  <h4 className="font-bold text-[#503822] mb-3 text-lg relative z-10">TECHNOLOGIES UTILIZED</h4>
+                  <ul className="text-sm text-[#503822] space-y-2 relative z-10">
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> React.js & Next.js Framework</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Tailwind CSS & GSAP Animations</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Custom WebGL Shaders</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Headless CMS Integration</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Three.js & WebGL for 3D Visualizations</li>
+                  </ul>
+                </div>
+                <div className="border-2 border-[#503822] border-dashed p-5 bg-[#efe0b4] bg-transparent relative overflow-hidden">
+                  <div className="absolute -bottom-10 -right-10 opacity-10 rotate-[-30deg] z-0">
+                    <CoffeeStain size="medium" />
+                  </div>
+                  <h4 className="font-bold text-[#503822] mb-3 text-lg relative z-10">INVESTIGATION APPROACH</h4>
+                  <ul className="text-sm text-[#503822] space-y-2 relative z-10">
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> User-Centered Design Research</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Wireframing & Rapid Prototyping</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Performance Optimization</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Cross-Browser Testing</li>
+                    <li className="flex items-center"><span className="w-2 h-2 bg-[#503822] mr-2"></span> Accessibility & Progressive Enhancement</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div className="flex justify-between items-center text-xs text-[#503822] border-t border-[#503822] py-2 mt-8">
-            <div>Special Investigation Unit</div>
-            <div>Case files currently sealed</div>
+          {/* Newspaper footer */}
+          <div className="border-t-[3px] border-double border-[#503822] pt-3 mt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-[#503822]">
+              <div className="flex items-center">
+                <div className="w-5 h-5 bg-[#503822] text-[#f8e1c2] flex items-center justify-center mr-2">
+                  <span className="font-serif text-xs">M</span>
+                </div>
+                <span>Skilled Criminal Mastermind • Digital Heist Division</span>
+              </div>
+              <div className="italic">All criminal schemes revealed for public viewing • {format(new Date(), 'MMMM yyyy')}</div>
+              <div className="font-mono">Page B-{Math.floor(Math.random() * 20) + 1}</div>
+            </div>
           </div>
+          
+          {/* Project Details Modal */}
+          {showProjectModal && selectedProject && (
+            <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+              <motion.div 
+                className="relative bg-[#f8e1c2] border-2 border-[#503822] max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{ backgroundImage: "url('/images/paper-texture-light.png')" }}
+              >
+                <button 
+                  onClick={() => setShowProjectModal(false)}
+                  className="absolute top-4 right-4 bg-[#503822] text-[#f8e1c2] w-8 h-8 flex items-center justify-center z-50"
+                >
+                  ✕
+                </button>
+                
+                {/* Modal header styled as newspaper front page */}
+                <div className="border-b-2 border-[#503822] p-6 relative overflow-hidden">
+                  <div className="absolute -top-12 -left-12 opacity-10 rotate-12 z-0">
+                    <CoffeeStain size="large" />
+                  </div>
+                  
+                  {/* Newspaper dateline and issue number */}
+                  <div className="flex justify-between text-xs text-[#503822] mb-3 uppercase tracking-wider">
+                    <div>CRIME REPORT</div>
+                    <div>{format(new Date(), 'MMMM d, yyyy')}</div>
+                    <div>HEIST NO. {selectedProject.id.toString().padStart(3, '0')}</div>
+                  </div>
+                  
+                  {/* Newspaper masthead */}
+                  <div className="font-['Chomsky'] text-4xl text-[#503822] text-center mb-2 relative z-10 leading-none">{selectedProject.title}</div>
+                  
+                  {/* Newspaper decorative line */}
+                  <div className="flex items-center justify-center gap-4 mb-3">
+                    <div className="h-[1px] bg-[#503822] flex-grow"></div>
+                    <div className="h-3 w-3 bg-[#503822] rotate-45"></div>
+                    <div className="h-[1px] bg-[#503822] flex-grow"></div>
+                  </div>
+                  
+                  {/* Case metadata presented as newspaper subheadlines */}
+                  <div className="grid grid-cols-3 gap-2 relative z-10 mb-2">
+                    <div className="border border-[#503822] py-2 px-3 text-center">
+                      <div className="text-[10px] uppercase tracking-wider text-[#503822] mb-1">CLASSIFIED</div>
+                      <div className="text-xs font-bold text-[#503822]">{selectedProject.year}</div>
+                    </div>
+                    <div className="border border-[#503822] py-2 px-3 text-center">
+                      <div className="text-[10px] uppercase tracking-wider text-[#503822] mb-1">DIVISION</div>
+                      <div className="text-xs font-bold text-[#503822]">{selectedProject.type}</div>
+                    </div>
+                    <div className="border border-[#503822] py-2 px-3 text-center">
+                      <div className="text-[10px] uppercase tracking-wider text-[#503822] mb-1">CATEGORY</div>
+                      <div className="text-xs font-bold text-[#503822]">{selectedProject.category}</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Modal body with project details */}
+                <div className="p-6">
+                  <div className="relative w-full h-[300px] mb-6 overflow-hidden">
+                    <Image 
+                      src={selectedProject.image} 
+                      alt={selectedProject.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      className="filter grayscale hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div className="md:col-span-2">
+                      <h3 className="font-serif font-bold text-lg text-[#503822] mb-3 border-b border-dashed border-[#503822] pb-2">CASE SUMMARY</h3>
+                      <p className="text-sm text-[#503822] mb-4 leading-relaxed">{selectedProject.fullDescription}</p>
+                      
+                      <h3 className="font-serif font-bold text-lg text-[#503822] mb-3 border-b border-dashed border-[#503822] pb-2 mt-6">RESULTS</h3>
+                      <p className="text-sm text-[#503822] mb-4 leading-relaxed">{selectedProject.results}</p>
+                    </div>
+                    
+                    <div>
+                      <div className="border-2 border-[#503822] border-dashed p-4 bg-[#efe0b4] bg-opacity-60 mb-4">
+                        <h4 className="font-bold text-[#503822] mb-2 text-sm">ROLE</h4>
+                        <p className="text-sm text-[#503822]">{selectedProject.role}</p>
+                      </div>
+                      
+                      <div className="border-2 border-[#503822] border-dashed p-4 bg-[#efe0b4] bg-opacity-60">
+                        <h4 className="font-bold text-[#503822] mb-2 text-sm">TECHNOLOGIES</h4>
+                        <ul className="text-xs text-[#503822] space-y-1">
+                          {selectedProject.technologies.map((tech, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="w-2 h-2 bg-[#503822] mr-2 mt-1"></span>
+                              {tech}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t border-[#503822] pt-4 flex justify-between items-center text-xs text-[#503822]">
+                    <div>Case File #{selectedProject.id.toString().padStart(3, '0')}</div>
+                    <div>© {new Date().getFullYear()} Samy Mebarki</div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
         </div>
         
         {/* Contact Tab Content */}

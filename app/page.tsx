@@ -413,7 +413,7 @@ export default function Home() {
               
               {/* Professional Journey Tabs */}
               <div className="mt-10 mb-10">
-                <h3 className="text-lg sm:text-xl font-bold mb-4 text-[#503822] border-b border-[#503822] pb-2">CRIMINAL RECORD & HISTORY</h3>
+                <h4 className="text-lg sm:text-xl font-bold mb-4 text-[#503822] border-b border-[#503822] pb-2">CRIMINAL RECORD & HISTORY</h4>
                 
                 {/* Tab Navigation */}
                 <div className="flex border-b border-[#503822] mb-6">
@@ -748,7 +748,7 @@ export default function Home() {
             
             <div className="border border-[#503822] p-5 mb-8 bg-[#efe0b4] bg-opacity-30" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '400ms' }}>
               <div className="border-b-2 border-[#503822] mb-4 pb-1">
-                <h3 className="font-bold text-base sm:text-lg text-[#503822] inline-block">SUSPICIOUS ACTIVITIES & KNOWN HABITS</h3>
+                <h4 className="font-bold text-base sm:text-lg text-[#503822] inline-block">SUSPICIOUS ACTIVITIES & KNOWN HABITS</h4>
                 <div className="text-[10px] sm:text-xs italic text-[#503822] mt-1">Subject observed engaging in the following:</div>
               </div>
               
@@ -875,7 +875,7 @@ export default function Home() {
             
             <div className="border border-[#503822] p-5 mb-6 bg-[#efe0b4] bg-opacity-20" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#503822] pb-1 mb-3">
-                <h3 className="font-bold text-base sm:text-lg">ANONYMOUS TIP LINE</h3>
+                <h4 className="font-bold text-base sm:text-lg">ANONYMOUS TIP LINE</h4>
                 <div className="text-[10px] sm:text-xs italic">All informants protected by journalist shield laws</div>
               </div>
               <div className="text-xs mb-3 italic">Have information about this suspect? Submit your anonymous tip below. Substantial leads may result in rewards.</div>
@@ -926,7 +926,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
             >
-              <h2 className="text-xl font-bold font-serif text-[#503822] border-b-2 border-[#503822] pb-1 px-4 inline-block">TESTIMONIALS</h2>
+              <h4 className="text-xl font-bold font-serif text-[#503822] border-b-2 border-[#503822] pb-1 px-4 inline-block">TESTIMONIALS</h4>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-r border-[#503822]">
@@ -1279,7 +1279,7 @@ export default function Home() {
           
           {/* Project Details Modal */}
           {showProjectModal && selectedProject && (
-            <div className="fixed inset-0 bg-black bg-opacity-0 flex items-center justify-center z-50 p-4 overflow-hidden">
+            <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-xl flex items-center justify-center z-50 p-4 overflow-hidden">
               <motion.div 
                 className="relative bg-transparent border-2 border-[#503822] max-w-4xl w-full max-h-[80vh] overflow-y-auto custom-scrollbar"
                 initial={{ opacity: 0, y: 50 }}

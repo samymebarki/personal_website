@@ -50,8 +50,6 @@
 
 /* Enhanced secondary headers with Silkscreen font */
 .futuristic-theme h2,
-.futuristic-theme h3,
-.futuristic-theme h4,
 .futuristic-theme h5,
 .futuristic-theme h6,
 .futuristic-theme [class*="subheading"] {
@@ -72,7 +70,6 @@
 
 /* Add hover effects to subheadings */
 .futuristic-theme h2:hover,
-.futuristic-theme h3:hover,
 .futuristic-theme h4:hover,
 .futuristic-theme h5:hover,
 .futuristic-theme h6:hover,

@@ -97,8 +97,13 @@ export default function RootLayout({
               
               
               
-              {/* Theme toggle below music player */}
-              <div className="fixed top-[70px] right-8 z-50">
+              {/* Theme toggle - positioned below news ticker and centered on mobile, top right on desktop */}
+              <div className="fixed sm:hidden top-12 left-1/2 -translate-x-1/2 z-50">
+                <ThemeToggle />
+              </div>
+              
+              {/* Theme toggle - desktop position */}
+              <div className="hidden sm:block fixed top-[70px] right-8 z-50">
                 <ThemeToggle />
               </div>
             </div>

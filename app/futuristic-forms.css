@@ -1,0 +1,169 @@
+/* ENHANCED FUTURISTIC FORMS AND INPUTS */
+
+/* Base input styling for the futuristic theme */
+.futuristic-theme input,
+.futuristic-theme textarea,
+.futuristic-theme select {
+  background: rgba(0, 20, 40, 0.6) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-family: var(--font-space-mono), monospace !important;
+  letter-spacing: 0.02em !important;
+  padding: 10px 14px !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.1) !important;
+  backdrop-filter: blur(3px) !important;
+  -webkit-backdrop-filter: blur(3px) !important;
+  caret-color: #00ffff !important;
+}
+
+/* Focus states for inputs */
+.futuristic-theme input:focus,
+.futuristic-theme textarea:focus,
+.futuristic-theme select:focus {
+  outline: none !important;
+  border-color: rgba(0, 255, 255, 0.7) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+  background: rgba(0, 30, 60, 0.7) !important;
+}
+
+/* Placeholder styling */
+.futuristic-theme input::placeholder,
+.futuristic-theme textarea::placeholder {
+  color: rgba(0, 255, 255, 0.4) !important;
+  opacity: 0.7 !important;
+}
+
+/* Checkboxes and radio buttons */
+.futuristic-theme input[type="checkbox"],
+.futuristic-theme input[type="radio"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: rgba(0, 20, 40, 0.6) !important;
+  border: 1px solid rgba(0, 255, 255, 0.5) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+.futuristic-theme input[type="radio"] {
+  border-radius: 50% !important;
+}
+
+.futuristic-theme input[type="checkbox"]:checked,
+.futuristic-theme input[type="radio"]:checked {
+  background: rgba(0, 255, 255, 0.2) !important;
+  border-color: rgba(0, 255, 255, 0.8) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+}
+
+.futuristic-theme input[type="checkbox"]:checked::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 10px !important;
+  height: 10px !important;
+  background: #00ffff !important;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5) !important;
+}
+
+.futuristic-theme input[type="radio"]:checked::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 10px !important;
+  height: 10px !important;
+  background: #00ffff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.5) !important;
+}
+
+/* Form labels */
+.futuristic-theme label {
+  font-family: var(--font-silkscreen), monospace !important;
+  color: rgba(0, 255, 255, 0.8) !important;
+  letter-spacing: 0.8px !important;
+  margin-bottom: 6px !important;
+  display: inline-block !important;
+  font-size: 0.9rem !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Form groups spacing */
+.futuristic-theme .form-group,
+.futuristic-theme .field-group,
+.futuristic-theme form > div {
+  margin-bottom: 20px !important;
+}
+
+/* Submit buttons */
+.futuristic-theme button[type="submit"],
+.futuristic-theme input[type="submit"] {
+  background: rgba(0, 255, 255, 0.15) !important;
+  border: 1px solid rgba(0, 255, 255, 0.6) !important;
+  color: #00ffff !important;
+  font-family: var(--font-silkscreen), monospace !important;
+  letter-spacing: 1px !important;
+  padding: 10px 24px !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+
+.futuristic-theme button[type="submit"]::before,
+.futuristic-theme input[type="submit"]::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent) !important;
+  transition: all 0.6s ease !important;
+}
+
+.futuristic-theme button[type="submit"]:hover::before,
+.futuristic-theme input[type="submit"]:hover::before {
+  left: 100% !important;
+}
+
+.futuristic-theme button[type="submit"]:hover,
+.futuristic-theme input[type="submit"]:hover {
+  background: rgba(0, 255, 255, 0.25) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.8) !important;
+}
+
+/* Form validation states */
+.futuristic-theme input:valid,
+.futuristic-theme textarea:valid,
+.futuristic-theme select:valid {
+  border-color: rgba(0, 255, 255, 0.4) !important;
+}
+
+.futuristic-theme input:invalid,
+.futuristic-theme textarea:invalid,
+.futuristic-theme select:invalid {
+  border-color: rgba(255, 100, 100, 0.5) !important;
+  box-shadow: 0 0 8px rgba(255, 100, 100, 0.2) !important;
+}
+
+/* Error messages */
+.futuristic-theme .error-message,
+.futuristic-theme .form-error {
+  color: #ff6464 !important;
+  font-family: var(--font-space-mono), monospace !important;
+  font-size: 0.85rem !important;
+  margin-top: 5px !important;
+  text-shadow: 0 0 5px rgba(255, 100, 100, 0.3) !important;
+  letter-spacing: 0.02em !important;
+}

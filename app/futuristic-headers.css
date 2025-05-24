@@ -57,13 +57,17 @@
 .futuristic-theme [class*="subheading"] {
   font-family: var(--font-silkscreen), monospace !important;
   color: #00ffff !important;
-  border-left: 2px solid rgba(0, 255, 255, 0.6) !important;
-  padding-left: 12px !important;
+  border-left: 3px solid rgba(0, 255, 255, 0.7) !important;
+  padding-left: 14px !important;
   position: relative !important;
-  background: transparent !important;
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5) !important;
-  letter-spacing: 1px !important;
-  margin: 1.5rem 0 1rem !important;
+  background: rgba(0, 255, 255, 0.03) !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6) !important;
+  letter-spacing: 1.2px !important;
+  margin: 1.8rem 0 1.2rem !important;
+  padding: 8px 12px !important;
+  border-radius: 0 4px 4px 0 !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
 }
 
 /* Add hover effects to subheadings */
@@ -73,9 +77,12 @@
 .futuristic-theme h5:hover,
 .futuristic-theme h6:hover,
 .futuristic-theme [class*="subheading"]:hover {
-  border-left: 2px solid rgba(0, 255, 255, 1) !important;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8) !important;
+  border-left: 3px solid rgba(0, 255, 255, 1) !important;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 1) !important;
   transition: all 0.3s ease !important;
+  transform: translateX(2px) !important;
+  background: rgba(0, 255, 255, 0.07) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15) !important;
 }
 
 /* No tech accent lines */
@@ -121,7 +128,24 @@
   overflow: hidden !important;
   transition: all 0.3s ease !important;
   font-family: var(--font-silkscreen), monospace !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 0.8px !important;
+  font-weight: 400 !important;
+  padding: 0.15em 0.3em !important;
+}
+
+.futuristic-theme a::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent) !important;
+  transition: width 0.3s ease-in-out !important;
+}
+
+.futuristic-theme a:hover::after {
+  width: 100% !important;
 }
 
 .futuristic-theme a:hover,
@@ -149,11 +173,14 @@
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
 }
 
-/* Agrozza font for paragraphs with appropriate styling */
+/* Space Mono font for paragraphs with enhanced styling */
 .futuristic-theme p {
-  font-family: 'Agrozza', sans-serif !important;
-  line-height: 1.6 !important;
-  letter-spacing: 0.5px !important;
-  margin-bottom: 1rem !important;
+  font-family: var(--font-space-mono), monospace !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 1.2rem !important;
   text-shadow: 0 0 1px rgba(0, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 0.95rem !important;
+  font-weight: 300 !important;
 }

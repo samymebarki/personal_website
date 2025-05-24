@@ -86,12 +86,24 @@
 }
 
 /* Enhanced futuristic image styling */
-.futuristic-theme img {
+.futuristic-theme img:not([data-no-border="true"]) {
   position: relative;
   border: 1px solid rgba(0, 255, 255, 0.4) !important;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
   filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.3)) !important;
   transition: all 0.3s ease !important;
+}
+
+/* Remove border and effects from logo and other elements with this class */
+.futuristic-theme img.no-futuristic-border,
+.futuristic-theme img.no-border-override,
+.futuristic-theme [class*="logo"] img,
+.futuristic-theme .ThemedImage img[data-no-border="true"] {
+  border: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  outline: none !important;
+  background: transparent !important;
 }
 
 .futuristic-theme img:hover {

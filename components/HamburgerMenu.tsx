@@ -93,6 +93,7 @@ export default function dHamburgerMenu() {
       {/* Logo in the top left - only visible at top of page */}
       <div 
         className={`fixed top-14 left-6 z-50 transition-opacity duration-300 ${showHeader ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        style={{ boxShadow: 'none', border: 'none' }}
       >
         <ThemedImage 
           defaultSrc="/images/logo.png" 
@@ -101,6 +102,7 @@ export default function dHamburgerMenu() {
           width={40} 
           height={40}
           className="object-contain"
+          noBorder={true}
         />
       </div>
     </div>

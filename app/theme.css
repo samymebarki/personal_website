@@ -152,6 +152,90 @@
   100% { transform: scale(0.9) rotate(360deg); opacity: 0.08; }
 }
 
+/* Futuristic cursor and scrollbar */
+.futuristic-theme .custom-animated-cursor-inner {
+  background-color: #00ffff !important;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.5) !important;
+}
+
+.futuristic-theme .custom-animated-cursor-outer {
+  border-color: #00ffff !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+}
+
+/* Futuristic scrollbar styles */
+.futuristic-theme {
+  scrollbar-width: thin;
+  scrollbar-color: #00f7ff rgba(16, 23, 41, 0.3);
+}
+
+.futuristic-theme ::-webkit-scrollbar {
+  width: 12px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.futuristic-theme ::-webkit-scrollbar-track {
+  background: rgba(7, 11, 26, 0.7) !important;
+  border: 1px solid rgba(0, 247, 255, 0.1) !important;
+  border-radius: 10px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.futuristic-theme ::-webkit-scrollbar-thumb {
+  background: #00f7ff !important;
+  border-radius: 10px !important;
+  border: 2px solid rgba(7, 11, 26, 0.7) !important;
+  box-shadow: 0 0 15px #00f7ff, 0 0 5px #00f7ff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.futuristic-theme ::-webkit-scrollbar-thumb:hover {
+  background: #00ffdd !important;
+  box-shadow: 0 0 20px #00f7ff, 0 0 10px #00f7ff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure scrollbar corner is styled too */
+.futuristic-theme ::-webkit-scrollbar-corner {
+  background: rgba(7, 11, 26, 0.7) !important;
+}
+
+/* Futuristic scrollbar component styling */
+.futuristic-theme .absolute.top-12.right-0 {
+  color: #00ffff !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.futuristic-theme .absolute.bottom-12.right-0 {
+  color: #00ffff !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.futuristic-theme .bg-\[\#503822\]\/10 {
+  background-color: rgba(0, 255, 255, 0.1) !important;
+}
+
+.futuristic-theme .from-\[\#503822\]\/20 {
+  --tw-gradient-from: rgba(0, 255, 255, 0.2) !important;
+}
+
+.futuristic-theme .bg-\[\#8b0000\]\/90 {
+  background-color: rgba(255, 0, 122, 0.9) !important;
+}
+
+.futuristic-theme .bg-\[\#503822\]\/80 {
+  background-color: rgba(0, 255, 255, 0.8) !important;
+}
+
+.futuristic-theme .bg-\[\#f8e1c2\]\/70 {
+  background-color: rgba(0, 136, 255, 0.7) !important;
+}
+
 /* Interactive elements hover effects */
 .futuristic-theme button:hover,
 .futuristic-theme a:hover {

@@ -7,9 +7,9 @@ const LoadingAnimation = () => {
   const [progress, setProgress] = useState(0);
   const nameRef = useRef<HTMLDivElement>(null);
   
-  // Exact 5-second ink filling animation
+  // Exact 3-second ink filling animation
   useEffect(() => {
-    const TOTAL_DURATION = 5000; // Exactly 5 seconds
+    const TOTAL_DURATION = 3000; // Exactly 3 seconds
     const startTime = Date.now();
     let animationFrameId: number;
     

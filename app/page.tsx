@@ -246,7 +246,7 @@ export default function Home() {
         {/* Newspaper Header */}
         <header className="text-center border-b-2 border-[#503822] mb-6 sm:mb-8 pb-3 sm:pb-4 newspaper-fold">
           
-          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-9xl leading-none my-4 sm:my-6 font-['Chomsky'] text-[#503822] hover:scale-105 transition-transform duration-500">
+          <h1 className="text-4xl sm:text-7xl md:text-9xl lg:text-9xl leading-none my-4 sm:my-6 font-['Chomsky'] text-[#503822] hover:scale-105 transition-transform duration-500">
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">S</span>
             <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">a</span>
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">m</span>
@@ -877,11 +877,11 @@ export default function Home() {
                     <label htmlFor="message" className="block text-xs font-medium mb-1">Intelligence Report</label>
                     <textarea id="message" rows={4} className="w-full p-2 border border-[#503822] text-[#503822] bg-transparent text-sm" placeholder="Provide detailed information about suspect activities..."></textarea>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <button type="submit" className="bg-[#503822] border border-[#503822] text-[#f8e1c2] px-4 py-2 hover:bg-transparent hover:text-[#503822] transition-colors text-sm">
+                  <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
+                    <button type="submit" className="bg-[#503822] border border-[#503822] text-[#f8e1c2] px-3 py-1.5 sm:px-4 sm:py-2 hover:bg-transparent hover:text-[#503822] transition-colors text-xs sm:text-sm self-center sm:self-auto">
                       Submit Confidential Tip
                     </button>
-                    <div className="text-xs italic">Tips verified by our investigative team</div>
+                    <div className="text-[10px] sm:text-xs italic text-[#503822]/80 text-center sm:text-right">Tips verified by our investigative team</div>
                   </div>
                 </form>
               </div>

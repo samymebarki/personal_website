@@ -85,7 +85,8 @@ const CustomScrollbar = () => {
       style={{
         opacity: '1',
         visibility: 'visible',
-        pointerEvents: 'auto'
+        pointerEvents: 'auto',
+        display: theme === 'futuristic' ? 'flex' : 'flex'  // Always visible but could be conditional in the future
       }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}

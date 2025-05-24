@@ -163,17 +163,18 @@
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
 }
 
-/* Futuristic scrollbar styles */
+/* Futuristic scrollbar styles - hide browser scrollbar */
 .futuristic-theme {
-  scrollbar-width: thin;
-  scrollbar-color: #00f7ff rgba(16, 23, 41, 0.3);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 .futuristic-theme ::-webkit-scrollbar {
-  width: 12px !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important; /* Chrome, Safari, Opera */
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 .futuristic-theme ::-webkit-scrollbar-track {
@@ -368,6 +369,7 @@
   background: linear-gradient(135deg, #050914 0%, #0e1527 50%, #060c1c 100%);
   position: relative;
   overflow-x: hidden;
+  overflow-y: scroll !important; /* Ensure scrolling still works */
 }
 
 /* Floating holographic circuit elements */

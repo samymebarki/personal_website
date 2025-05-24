@@ -86,7 +86,7 @@ export default function Home() {
   const [activeProjectFilter, setActiveProjectFilter] = useState('All')
   
   // Typewriter effects for headings with improved reliability
-  const mainHeading = useTypewriter("DEVELOPER ARRESTED FOR MASTERING MULTIPLE SKILLS", 70)
+  // Main heading is now static
   
   useEffect(() => {
     // Set current date in newspaper format
@@ -268,13 +268,12 @@ export default function Home() {
         </header>
         
         {/* Tab Navigation - similar to CRIMINAL RECORD section */}
-        <div className="border-b border-[#503822] mb-8">
-          <div className="flex justify-center ">
-            <div className="flex w-full max-w-lg">
+        <div className="border-b border-[#503822] mb-8 flex justify-center items-center">
+          <div className="container mx-auto px-4 flex justify-center">
+            <div className="flex justify-center w-full max-w-lg">
               {[
                 { name: 'HOME', icon: <Newspaper className="w-4 h-4 inline mr-2" /> },
                 { name: 'PROJECTS', icon: <Briefcase className="w-4 h-4 inline mr-2" /> },
-                { name: 'CONTACT', icon: <MessageCircle className="w-4 h-4 inline mr-2" /> }
               ].map((tab, index) => (
                 <button 
                   key={tab.name}
@@ -292,7 +291,7 @@ export default function Home() {
                       }
                     });
                   }}
-                  className={`main-tab py-2 px-6 font-medium text-sm ${activeMainTab === index ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
+                  className={`main-tab py-2 px-6 font-medium text-sm flex-1 ${activeMainTab === index ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
                 >
                   {tab.icon}
                   {tab.name}
@@ -326,26 +325,11 @@ export default function Home() {
                 .second-circle {
                   animation-delay: 0.3s;
                 }
-                
-                .typewriter-cursor {
-                  display: inline-block;
-                  width: 2px;
-                  height: 1em;
-                  background-color: #503822;
-                  margin-left: 2px;
-                  animation: blink 1s step-end infinite;
-                }
-                
-                @keyframes blink {
-                  from, to { opacity: 1; }
-                  50% { opacity: 0; }
-                }
               `}</style>
               <h2 
                 className="text-6xl font-bold leading-tight mb-3 text-[#503822] relative z-10"
               >
-                {mainHeading.displayText}
-                {mainHeading.isTyping && <span className="typewriter-cursor"></span>}
+                DEVELOPER ARRESTED FOR MASTERING MULTIPLE SKILLS
               </h2>
               <div className="absolute -inset-8 pointer-events-none z-0">
                 <svg className="w-full h-full" viewBox="0 0 800 150" preserveAspectRatio="none">
@@ -679,10 +663,39 @@ export default function Home() {
               </div>
               
               <div className="border-t border-[#503822] pt-3">
-                <h4 className="font-bold text-sm mb-2 text-[#503822]" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '600ms' }}>CONTACT</h4>
-                <p className="text-xs text-[#503822] mb-2" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '700ms' }}>Location : Constantine, Algeria</p>
-                <p className="text-xs text-[#503822] mb-2" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '800ms' }}>Website : samymebarki.dev</p>
-                <div className="flex space-x-4 mt-3" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '900ms' }}>
+                <h4 className="font-bold text-sm mb-2 text-[#503822] animate-fade-in delay-600">CONTACT</h4>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-3 animate-fade-in delay-700">
+                  <div className="flex items-center space-x-2 text-[#503822]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span className="text-xs">Constantine, Algeria</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-[#503822]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                      <line x1="2" y1="9" x2="22" y2="9"></line>
+                    </svg>
+                    <span className="text-xs">samymebarki.dev</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-[#503822]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <a href="mailto:samymebarki8@gmail.com" className="text-xs hover:underline">samymebarki8@gmail.com</a>
+                  </div>
+                  <div className="flex items-center space-x-2 text-[#503822]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span className="text-xs">+1 (234) 567-8900</span>
+                  </div>
+                </div>
+                
+                {/* Social Links */}
+                <div className="flex space-x-4 mt-3 mb-4 animate-fade-in delay-800">
                   <a href="https://github.com/samymebarki" target="_blank" rel="noopener noreferrer" className="text-[#503822] hover:opacity-75 transition-opacity">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.699 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -693,10 +706,37 @@ export default function Home() {
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.139.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                   </a>
-                  <a href="mailto:samymebarki8@gmail.com" className="text-[#503822] hover:opacity-75 transition-opacity">
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-[#503822] hover:opacity-75 transition-opacity">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                     </svg>
+                  </a>
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-[#503822] hover:opacity-75 transition-opacity">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fillRule="evenodd" d="M12 0C5.373 0 0 5.372 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.628-5.373-12-12-12zm9.949 11.12c-.2-.637-.516-1.254-.934-1.841-2.2.471-4.6.698-7.105.698-1.608 0-3.213-.128-4.8-.375.003.028.007.055.01.083.171 1.358.471 2.692.89 3.992 2.886-1.242 5.59-2.914 7.939-5.399l.046.029c1.482.973 2.632 2.374 3.313 3.993a11.834 11.834 0 01.641-1.18zm-1.808-3.155c-2.33 2.328-5.029 3.997-7.889 5.184 1.268 2.54 2.146 5.313 2.619 8.2 4.248-1.267 7.406-4.974 7.933-9.469-.824-.958-1.701-1.78-2.663-2.512v-1.403zm-8.141 14.972c-.344.039-.69.063-1.039.063-.413 0-.819-.025-1.22-.074-.305-2.964-1.178-5.819-2.524-8.445-1.192.182-2.377.417-3.539.703a8.69 8.69 0 002.12 4.212 8.65 8.65 0 004.889 2.826c.42.054.847.082 1.274.082.213 0 .423-.011.632-.031-.531-.756-1.022-1.546-1.47-2.362-2.962-1.092-5.798-2.547-8.482-4.327-.18.308-.35.623-.509.946a9.83 9.83 0 00-.876 4.023C2.385 18.34 6.71 22 11.957 22c.915 0 1.818-.132 2.684-.396-1.114-2.161-2.07-4.597-2.641-7.667zm-2.264-9.638c-1.081-2.503-1.833-5.186-2.246-8.035-3.266.934-5.772 3.548-6.514 6.83 1.065-.217 2.143-.389 3.227-.511 1.802-.198 3.604-.267 5.406-.207.041.642.109 1.281.204 1.916a.5.5 0 01-.077.007zm.5-2.679c-1.92.312-3.867.478-5.825.493.707 2.573 1.78 5.042 3.195 7.291 1.734-.369 3.381-.96 4.92-1.766a36.937 36.937 0 01-.962-2.677 35.369 35.369 0 01-1.328-3.341zm2.504 4.971c.319.974.664 1.928 1.034 2.862 1.42-.868 2.757-1.908 3.989-3.112a9.041 9.041 0 00-3.574-3.167c-.459 1.143-.969 2.288-1.449 3.417z" clipRule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+                
+                {/* Download Buttons */}
+                <div className="grid grid-cols-2 gap-2 animate-fade-in delay-900">
+                  <a 
+                    href="#" 
+                    className="border border-[#503822] hover:bg-[#503822] hover:text-[#f8e1c2] text-[#503822] py-2 px-3 text-center text-xs uppercase tracking-wider font-medium flex items-center justify-center gap-2 transition-colors duration-300"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Business Card</span>
+                  </a>
+                  <a 
+                    href="#" 
+                    className="border border-[#503822] hover:bg-[#503822] hover:text-[#f8e1c2] text-[#503822] py-2 px-3 text-center text-xs uppercase tracking-wider font-medium flex items-center justify-center gap-2 transition-colors duration-300"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>Resume/CV</span>
                   </a>
                 </div>
               </div>
@@ -1363,74 +1403,8 @@ export default function Home() {
           )}
         </div>
         
-        {/* Contact Tab Content */}
-        <div className={`tab-content ${activeMainTab === 2 ? '' : 'hidden'}`}>
-          <div className="text-center py-12 border border-[#503822] border-dashed bg-[#efe0b4] bg-opacity-20 mb-8">
-            <div className="mb-4 font-['Chomsky'] text-4xl text-[#503822]">ANONYMOUS TIP LINE</div>
-            <div className="text-sm text-[#503822] mb-6">DIRECT COMMUNICATION CHANNEL OPENING SOON</div>
-            <div className="mx-auto w-24 h-24 border-4 border-[#503822] rounded-full flex items-center justify-center opacity-50">
-              <div className="text-3xl font-serif text-[#503822]">?</div>
-            </div>
-          </div>
-          
-          <div className="flex justify-between items-center text-xs text-[#503822] border-t border-[#503822] py-2 mt-8">
-            <div>Communications Department</div>
-            <div>All informants protected</div>
-          </div>
-        </div>
-        
         {/* Footer */}
         <footer className="border-t-2 border-[#503822] mt-8 pt-4 text-center text-xs w-full text-[#503822]">
-          <div className="flex justify-center space-x-6 mb-4">
-            <motion.a 
-              href="#" 
-              className="hover:underline relative group"
-              whileHover={{ scale: 1.1 }}
-              onClick={(e) => e.preventDefault()}
-            >
-              Projects
-              <motion.span 
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
-                layoutId="underline"
-              />
-            </motion.a>
-            <motion.a 
-              href="#" 
-              className="hover:underline relative group"
-              whileHover={{ scale: 1.1 }}
-              onClick={(e) => e.preventDefault()}
-            >
-              Blog
-              <motion.span 
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
-                layoutId="underline"
-              />
-            </motion.a>
-            <motion.a 
-              href="#" 
-              className="hover:underline relative group"
-              whileHover={{ scale: 1.1 }}
-              onClick={(e) => e.preventDefault()}
-            >
-              Resume
-              <motion.span 
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
-                layoutId="underline"
-              />
-            </motion.a>
-            <motion.a 
-              href="#" 
-              className="hover:underline relative group"
-              whileHover={{ scale: 1.1 }}
-              onClick={(e) => e.preventDefault()}
-            >
-              Contact
-              <motion.span 
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#503822] group-hover:w-full transition-all duration-300"
-                layoutId="underline"
-              />
-            </motion.a>
-          </div>
           <div className="mb-2">© {new Date().getFullYear()} Samy Mebarki • Creative Developer & Designer</div>
         </footer>
       </div>

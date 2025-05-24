@@ -297,23 +297,41 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8 w-full">
           <div className="col-span-1 md:col-span-8 md:border-r md:border-[#503822] md:pr-6 px-2">
             <div className="relative group headline-container">
-              <style jsx>{`
-                .circling-path {
-                  opacity: 0;
-                  stroke-dasharray: 1500;
-                  stroke-dashoffset: 1500;
-                  transition: opacity 0.3s ease;
-                }
-                
-                .headline-container:hover .circling-path {
-                  opacity: 1;
-                  animation: drawCircle 1.5s ease-in-out forwards;
-                }
-                
-                .second-circle {
-                  animation-delay: 0.3s;
-                }
-              `}</style>
+            <style jsx>{`
+              /* Option 1: If theme class is on body/html */
+              :global(.newspaper-theme) .circling-path {
+                opacity: 0;
+                stroke-dasharray: 1500;
+                stroke-dashoffset: 1500;
+                transition: opacity 0.3s ease;
+              }
+              
+              :global(.newspaper-theme) .headline-container:hover .circling-path {
+                opacity: 1;
+                animation: drawCircle 1.5s ease-in-out forwards;
+              }
+              
+              :global(.newspaper-theme) .second-circle {
+                animation-delay: 0.3s;
+              }
+              
+              /* Option 2: If you have a theme prop/state */
+              .circling-path {
+                opacity: 0;
+                stroke-dasharray: 1500;
+                stroke-dashoffset: 1500;
+                transition: opacity 0.3s ease;
+              }
+              
+              .newspaper-only .headline-container:hover .circling-path {
+                opacity: 1;
+                animation: drawCircle 1.5s ease-in-out forwards;
+              }
+              
+              .newspaper-only .second-circle {
+                animation-delay: 0.3s;
+              }
+            `}</style>
               <h2 
                 className="text-2xl sm:text-4xl md:text-6xl font-bold leading-tight mb-4 relative z-10 newspaper-theme:text-[#503822] newspaper-theme:font-serif futuristic-theme:text-[#00ffff] futuristic-theme:font-silkscreen headline"
               >

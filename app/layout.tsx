@@ -1,13 +1,23 @@
-
 import type React from "react"
 import type { Metadata } from "next"
-import { EB_Garamond, Playfair_Display, Allura } from "next/font/google"
+import { EB_Garamond, Playfair_Display, Allura, Silkscreen, Space_Mono } from "next/font/google"
 import "./globals.css"
 import "./animations.css"
+import "./theme.css"
+import "./futuristic-bg.css"
+import "./futuristic-headers.css"
+import "./agrozza-font.css"
+import "./chomsky-font.css"
+import "./enhanced-theme.css"
 import CustomCursor from "@/components/AnimatedCursor"
 import MusicPlayer from "@/components/MusicPlayerWrapper"
 import HamburgerMenu from "@/components/HamburgerMenu"
+import FuturisticEffects from "@/components/FuturisticEffects"
+import ThemedFavicon from "@/components/ThemedFavicon"
+import ThemedImage from "@/components/ThemedImage"
 import { MenuProvider } from '@/context/MenuContext'
+import { ThemeProvider } from '@/context/ThemeContext'
+import ThemeToggle from '@/components/ThemeToggle'
 import AnimationManagerWrapper from '@/components/AnimationManagerWrapper'
 import LoadingAnimationWrapper from '@/components/LoadingAnimationWrapper'
 import CustomScrollbar from '@/components/CustomScrollbar'
@@ -28,6 +38,20 @@ const allura = Allura({
   weight: '400',
   subsets: ["latin"],
   variable: "--font-allura",
+  display: "swap",
+})
+
+const silkscreen = Silkscreen({
+  weight: ['400', '700'],
+  subsets: ["latin"],
+  variable: "--font-silkscreen",
+  display: "swap",
+})
+
+const spaceMono = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ["latin"],
+  variable: "--font-space-mono",
   display: "swap",
 })
 
@@ -53,18 +77,36 @@ export default function RootLayout({
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" async></script>
       </head>
       <body
-        className={`${ebGaramond.className} ${playfair.variable} ${ebGaramond.variable} ${allura.variable} bg-custom-background paper-fold paper-fold-left`}
+        className={`${ebGaramond.variable} ${playfair.variable} ${allura.variable} ${silkscreen.variable} ${spaceMono.variable} bg-custom-background paper-fold paper-fold-left`}
       >
-        <MenuProvider>
-          <LoadingAnimationWrapper />
-          <CustomCursor />
-          <CustomScrollbar />
-          <div className="hidden md:block">
-            <HamburgerMenu />
-          </div>
-          {children}
-          <AnimationManagerWrapper />
-        </MenuProvider>
+        <ThemeProvider>
+          <MenuProvider>
+            <LoadingAnimationWrapper />
+            <CustomCursor />
+            <CustomScrollbar />
+            <FuturisticEffects />
+            <ThemedFavicon />
+            
+            {/* Unified header elements container that fades on scroll */}
+            <div className="header-elements fade-on-scroll">
+              
+              
+              {/* Menu button in top right */}
+              <div className="hidden md:block fixed top-8 right-8 z-50">
+                <HamburgerMenu />
+              </div>
+              
+              {/* Theme toggle below menu button */}
+              <div className="fixed top-[70px] right-8 z-50">
+                <ThemeToggle />
+              </div>
+              
+              
+            </div>
+            {children}
+            <AnimationManagerWrapper />
+          </MenuProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

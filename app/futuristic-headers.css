@@ -1,0 +1,147 @@
+/* ENHANCED FUTURISTIC HEADERS AND HEADLINES */
+
+/* Main headline styling with Silkscreen font */
+.futuristic-theme h1,
+.futuristic-theme .headline,
+.futuristic-theme [class*="headline"],
+.futuristic-theme [class*="title"] {
+  font-family: var(--font-silkscreen), monospace !important;
+  color: #00ffff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  margin-bottom: 1.5rem !important;
+  position: relative !important;
+  padding: 12px 10px !important;
+  border-bottom: none !important;
+  background: transparent !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7) !important;
+  font-weight: normal !important;
+}
+
+/* Add futuristic underline effect to headlines */
+.futuristic-theme h1::after,
+.futuristic-theme .headline::after,
+.futuristic-theme [class*="headline"]::after,
+.futuristic-theme [class*="title"]::after {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.7), transparent) !important;
+  animation: scanline 4s ease-in-out infinite !important;
+}
+
+@keyframes scanline {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+  50% { opacity: 0.8; transform: scaleX(1); }
+}
+
+/* No tech details to headers */
+.futuristic-theme h1::before,
+.futuristic-theme .headline::before,
+.futuristic-theme [class*="headline"]::before,
+.futuristic-theme [class*="title"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Enhanced secondary headers with Silkscreen font */
+.futuristic-theme h2,
+.futuristic-theme h3,
+.futuristic-theme h4,
+.futuristic-theme h5,
+.futuristic-theme h6,
+.futuristic-theme [class*="subheading"] {
+  font-family: var(--font-silkscreen), monospace !important;
+  color: #00ffff !important;
+  border-left: 2px solid rgba(0, 255, 255, 0.6) !important;
+  padding-left: 12px !important;
+  position: relative !important;
+  background: transparent !important;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5) !important;
+  letter-spacing: 1px !important;
+  margin: 1.5rem 0 1rem !important;
+}
+
+/* Add hover effects to subheadings */
+.futuristic-theme h2:hover,
+.futuristic-theme h3:hover,
+.futuristic-theme h4:hover,
+.futuristic-theme h5:hover,
+.futuristic-theme h6:hover,
+.futuristic-theme [class*="subheading"]:hover {
+  border-left: 2px solid rgba(0, 255, 255, 1) !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* No tech accent lines */
+.futuristic-theme section::before,
+.futuristic-theme article::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Enhanced futuristic image styling */
+.futuristic-theme img {
+  position: relative;
+  border: 1px solid rgba(0, 255, 255, 0.4) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+  filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.3)) !important;
+  transition: all 0.3s ease !important;
+}
+
+.futuristic-theme img:hover {
+  border-color: rgba(0, 255, 255, 0.7) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important;
+  transform: scale(1.01) !important;
+}
+
+/* Add styling for links and buttons */
+.futuristic-theme a,
+.futuristic-theme button {
+  color: #00ffff !important;
+  text-decoration: none !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  font-family: var(--font-silkscreen), monospace !important;
+  letter-spacing: 0.5px !important;
+}
+
+.futuristic-theme a:hover,
+.futuristic-theme button:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 1) !important;
+}
+
+.futuristic-theme button,
+.futuristic-theme .button,
+.futuristic-theme [class*="btn"] {
+  background: rgba(0, 255, 255, 0.1) !important;
+  border: 1px solid rgba(0, 255, 255, 0.4) !important;
+  padding: 8px 16px !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1) !important;
+}
+
+.futuristic-theme button:hover,
+.futuristic-theme .button:hover,
+.futuristic-theme [class*="btn"]:hover {
+  background: rgba(0, 255, 255, 0.2) !important;
+  border-color: rgba(0, 255, 255, 0.7) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+}
+
+/* Agrozza font for paragraphs with appropriate styling */
+.futuristic-theme p {
+  font-family: 'Agrozza', sans-serif !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 1rem !important;
+  text-shadow: 0 0 1px rgba(0, 255, 255, 0.3) !important;
+}

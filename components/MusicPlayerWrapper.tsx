@@ -2,14 +2,19 @@
 
 import dynamic from 'next/dynamic';
 
+interface MusicPlayerWrapperProps {
+  showVolumeControl?: boolean;
+  iconOnly?: boolean;
+}
+
 // Dynamically import MusicPlayer with SSR disabled to avoid hydration issues
 const MusicPlayer = dynamic(() => import('./MusicPlayer'), {
   ssr: false,
   loading: () => (
-    <div className="fixed top-24 right-6 z-50 text-[#503822]" />
+    <div className="fixed text-[#503822]" />
   ),
 });
 
-export default function MusicPlayerWrapper() {
-  return <MusicPlayer />;
+export default function MusicPlayerWrapper({ showVolumeControl = true, iconOnly = false }: MusicPlayerWrapperProps) {
+  return <MusicPlayer showVolumeControl={showVolumeControl} iconOnly={iconOnly} />;
 }

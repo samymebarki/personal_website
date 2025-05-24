@@ -1,0 +1,435 @@
+/* Theme system */
+
+/* Import wild futuristic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
+/* Default theme variables - newspaper */
+:root {
+  /* Core colors for both themes */
+  --text-color: #503822;
+  --bg-color: #f8e1c2;
+  --accent-color: #8b0000;
+  --custom-background: #c4bdb3;
+  --custom-header: #1b1b19;
+}
+
+/* Newspaper theme (default) */
+.newspaper-theme {
+  --text-color: #503822;
+  --bg-color: #f8e1c2;
+  --accent-color: #8b0000;
+  --custom-background: #c4bdb3;
+  --custom-header: #1b1b19;
+  
+  /* Paper textures and effects */
+  background-color: var(--custom-background);
+}
+
+/* Futuristic theme */
+.futuristic-theme {
+  --text-color: #00ffff;
+  --bg-color: #070b1a;
+  --accent-color: #ff007a;
+  --custom-background: #101729;
+  --custom-header: #00f7ff;
+  
+  /* Override specific colors for the futuristic theme */
+  color-scheme: dark;
+  background-color: var(--bg-color);
+  
+  /* Wild futuristic font overrides */
+  font-family: 'Bai Jamjuree', sans-serif;
+}
+
+/* Wild futuristic font overrides for specific elements */
+.futuristic-theme h1,
+.futuristic-theme .newspaper-title {
+  font-family: 'Zen Tokyo Zoo', display !important;
+  letter-spacing: 0.05em;
+  transform: perspective(500px) rotateX(5deg);
+  text-transform: uppercase;
+}
+
+.futuristic-theme h2,
+.futuristic-theme .newspaper-heading {
+  font-family: 'Audiowide', cursive !important;
+  letter-spacing: 0.08em;
+  transform: skew(-5deg);
+}
+
+.futuristic-theme h3,
+.futuristic-theme .newspaper-subheading {
+  font-family: 'Syncopate', sans-serif !important;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.futuristic-theme p,
+.futuristic-theme div,
+.futuristic-theme span {
+  font-family: 'Bai Jamjuree', sans-serif !important;
+  letter-spacing: 0.03em;
+}
+
+.futuristic-theme .font-mono,
+.futuristic-theme code,
+.futuristic-theme pre,
+.futuristic-theme button,
+.futuristic-theme input {
+  font-family: 'VT323', monospace !important;
+  letter-spacing: 0.05em;
+  font-size: 1.1em;
+}
+
+/* Apply extreme glowing effects to headings in futuristic theme */
+.futuristic-theme h1,
+.futuristic-theme h2,
+.futuristic-theme .newspaper-title,
+.futuristic-theme .newspaper-heading {
+  text-shadow: 
+    0 0 5px #00ffff, 
+    0 0 10px #00ffff, 
+    0 0 20px #00ffff, 
+    0 0 40px rgba(0, 255, 255, 0.5), 
+    0 0 80px rgba(0, 255, 255, 0.3);
+  animation: neonPulse 2s infinite alternate;
+}
+
+/* Special effects for specific elements */
+.futuristic-theme h3,
+.futuristic-theme .newspaper-subheading {
+  background: linear-gradient(90deg, #00ffff, #0088ff, #00ffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradient 3s linear infinite;
+}
+
+@keyframes neonPulse {
+  from {
+    text-shadow: 
+      0 0 5px #00ffff, 
+      0 0 10px #00ffff, 
+      0 0 20px #00ffff, 
+      0 0 30px rgba(0, 255, 255, 0.5), 
+      0 0 40px rgba(0, 255, 255, 0.3);
+  }
+  to {
+    text-shadow: 
+      0 0 5px #00ffff, 
+      0 0 15px #00ffff, 
+      0 0 25px #00ffff, 
+      0 0 35px rgba(0, 255, 255, 0.5), 
+      0 0 45px rgba(0, 255, 255, 0.3);
+  }
+}
+
+@keyframes textGradient {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Animations for the floating circuit elements */
+@keyframes floatAndRotate {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+  25% { transform: translateY(-15px) rotate(90deg); opacity: 0.15; }
+  50% { transform: translateY(0) rotate(180deg); opacity: 0.1; }
+  75% { transform: translateY(15px) rotate(270deg); opacity: 0.15; }
+  100% { transform: translateY(0) rotate(360deg); opacity: 0.1; }
+}
+
+@keyframes pulseAndRotate {
+  0% { transform: scale(0.9) rotate(0deg); opacity: 0.08; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 0.15; }
+  100% { transform: scale(0.9) rotate(360deg); opacity: 0.08; }
+}
+
+/* Interactive elements hover effects */
+.futuristic-theme button:hover,
+.futuristic-theme a:hover {
+  text-shadow: 0 0 8px #00ffff, 0 0 12px #00ffff;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.futuristic-theme button:hover::before,
+.futuristic-theme a:hover::before {
+  content: '>';
+  position: absolute;
+  left: -10px;
+  color: #00ffff;
+  opacity: 0.8;
+  animation: blink 1s infinite;
+}
+
+.futuristic-theme button:hover::after,
+.futuristic-theme a:hover::after {
+  content: '<';
+  position: absolute;
+  right: -10px;
+  color: #00ffff;
+  opacity: 0.8;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Data visualization effect for images */
+.futuristic-theme img {
+  position: relative;
+}
+
+.futuristic-theme img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(0,255,255,0.1) 50%, rgba(0,255,255,0.1) 75%, transparent 75%);
+  background-size: 10px 10px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.3;
+  animation: scanMove 3s linear infinite;
+}
+
+@keyframes scanMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+/* Override text colors */
+.futuristic-theme [class*="text-[#503822]"] {
+  color: var(--text-color) !important;
+}
+
+/* Override ALL background elements */
+.futuristic-theme [class*="bg-"] {
+  background-color: var(--bg-color) !important;
+  background-image: none !important;
+}
+
+.futuristic-theme [class*="bg-[#503822]"] {
+  background-color: var(--custom-background) !important;
+}
+
+.futuristic-theme [class*="bg-[#f8e1c2]"] {
+  background-color: var(--bg-color) !important;
+}
+
+/* Override specific newspaper elements */
+.futuristic-theme .bg-paper,
+.futuristic-theme .bg-custom-background,
+.futuristic-theme .bg-paper::before,
+.futuristic-theme .bg-paper::after,
+.futuristic-theme [class*="paper-"],
+.futuristic-theme .paper-edge,
+.futuristic-theme .paper-fold,
+.futuristic-theme .paper-fold-left,
+.futuristic-theme .paper-fold-right {
+  background-color: var(--bg-color) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+/* Remove paper textures and effects */
+.futuristic-theme .paper-edge::after,
+.futuristic-theme .paper-fold::before,
+.futuristic-theme .paper-fold-left::before,
+.futuristic-theme .paper-fold-right::before {
+  display: none !important;
+}
+
+/* Override border colors */
+.futuristic-theme [class*="border-[#503822]"] {
+  border-color: var(--text-color) !important;
+}
+
+/* Text color overrides for specific elements */
+.futuristic-theme [class*="text-[#f8e1c2]"] {
+  color: var(--bg-color) !important;
+}
+
+/* Hover effects */
+.futuristic-theme [class*="hover:bg-[#503822]"]:hover {
+  background-color: var(--custom-background) !important;
+}
+
+.futuristic-theme [class*="hover:text-[#f8e1c2]"]:hover {
+  color: var(--bg-color) !important;
+}
+
+.futuristic-theme [class*="hover:text-[#503822]"]:hover {
+  color: var(--text-color) !important;
+}
+
+.futuristic-theme [class*="hover:border-[#503822]"]:hover {
+  border-color: var(--text-color) !important;
+}
+
+/* Wild high-tech background for futuristic theme */
+.futuristic-theme body {
+  background: linear-gradient(135deg, #050914 0%, #0e1527 50%, #060c1c 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Floating holographic circuit elements */
+.futuristic-theme .circuit-element {
+  position: absolute;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 10;
+  filter: blur(1px);
+}
+
+/* Add holographic circuit elements dynamically */
+.futuristic-theme::after {
+  content: '';
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  width: 150px;
+  height: 150px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='150' height='150'%3E%3Cpath d='M10,30 L90,30 M30,10 L30,90 M70,10 L70,90 M10,50 L90,50 M10,70 L90,70 M50,10 L50,90' stroke='%2300ffff' stroke-width='0.7' fill='none'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%2300ffff'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%2300ffff'/%3E%3Ccircle cx='70' cy='30' r='3' fill='%2300ffff'/%3E%3Ccircle cx='30' cy='50' r='3' fill='%2300ffff'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%2300ffff'/%3E%3Ccircle cx='70' cy='50' r='3' fill='%2300ffff'/%3E%3Ccircle cx='30' cy='70' r='3' fill='%2300ffff'/%3E%3Ccircle cx='50' cy='70' r='3' fill='%2300ffff'/%3E%3Ccircle cx='70' cy='70' r='3' fill='%2300ffff'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  pointer-events: none;
+  animation: floatAndRotate 15s infinite linear;
+  z-index: 1;
+}
+
+.futuristic-theme::before {
+  content: '';
+  position: fixed;
+  bottom: 15%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='200' height='200'%3E%3Cpath d='M10,10 L90,10 L90,90 L10,90 Z' stroke='%23ff00aa' stroke-width='0.5' fill='none'/%3E%3Cpath d='M20,20 L80,20 L80,80 L20,80 Z' stroke='%23ff00aa' stroke-width='0.5' fill='none'/%3E%3Cpath d='M30,30 L70,30 L70,70 L30,70 Z' stroke='%23ff00aa' stroke-width='0.5' fill='none'/%3E%3Cpath d='M40,40 L60,40 L60,60 L40,60 Z' stroke='%23ff00aa' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ff00aa'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  pointer-events: none;
+  animation: pulseAndRotate 20s infinite linear alternate;
+  z-index: 1;
+}
+
+/* Tech UI Elements */
+.futuristic-theme .newspaper-grid::before,
+.futuristic-theme .newspaper-section::before {
+  content: "<SYSTEM//" attr(class) "//>";
+  display: block;
+  font-family: 'VT323', monospace;
+  font-size: 0.7rem;
+  color: #00ffff;
+  opacity: 0.7;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+/* Main grid pattern overlay for futuristic theme */
+.futuristic-theme::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 1;
+  background-size: 50px 50px, 100px 100px;
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(0, 229, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 2px, transparent 2px);
+  animation: gridPulse 8s infinite alternate;
+}
+
+/* Digital noise for futuristic theme */
+.futuristic-theme::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' fill='%2300e5ff'/%3E%3C/svg%3E");
+}
+
+/* Create a diagonal scanline effect */
+.futuristic-theme body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 229, 255, 0.03),
+    rgba(0, 229, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  opacity: 0.5;
+  z-index: 3;
+  animation: scanlines 10s linear infinite;
+}
+
+/* Add a subtle vignette effect */
+.futuristic-theme body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(10, 17, 41, 0.4) 100%
+  );
+  z-index: 4;
+}
+
+/* Add animations for the background effects */
+@keyframes gridPulse {
+  0% {
+    opacity: 0.1;
+    background-size: 50px 50px, 100px 100px;
+  }
+  50% {
+    opacity: 0.15;
+    background-size: 52px 52px, 104px 104px;
+  }
+  100% {
+    opacity: 0.12;
+    background-size: 51px 51px, 102px 102px;
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    transform: translateX(0%) translateY(0);
+  }
+}

@@ -1,0 +1,159 @@
+/* Enhanced theme styles with fade-on-scroll header elements */
+
+/* Fade header elements on scroll effect */
+.fade-on-scroll {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Add glow effect for music player in futuristic theme */
+.futuristic-theme .music-glow-effect {
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
+
+.futuristic-theme .music-glow-effect:hover {
+  text-shadow: 0 0 12px rgba(0, 255, 255, 1);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+/* Fade on scroll effect for header elements */
+@media (min-width: 768px) {
+  /* Base styling for header elements */
+  .header-elements {
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+  
+  /* Class for hiding header elements when scrolled */
+  .header-elements.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Enhanced font usage throughout the website */
+.futuristic-theme {
+  --silkscreen-spacing: 0.5px;
+  --space-mono-spacing: 0.03em;
+  --path-color: #00ffff;
+}
+
+.newspaper-theme {
+  --path-color: #503822;
+}
+
+/* Explicit font settings for newspaper theme */
+.newspaper-theme h1.newspaper-title {
+  font-family: 'Chomsky', serif !important;
+  color: #503822 !important;
+}
+
+/* Higher specificity selector for better override */
+html.futuristic-theme body *:not(svg, path, rect, circle, line) {
+  font-family: 'Silkscreen', monospace !important;
+  letter-spacing: var(--silkscreen-spacing) !important;
+}
+
+/* Apply Space Mono to paragraphs and small text elements */
+html.futuristic-theme body p,
+html.futuristic-theme body .text-sm,
+html.futuristic-theme body .text-xs,
+html.futuristic-theme body li,
+html.futuristic-theme body .small-text {
+  font-family: var(--font-space-mono), monospace !important;
+  letter-spacing: var(--space-mono-spacing) !important;
+}
+
+/* Special styling for the main title in futuristic theme */
+.futuristic-theme h1 {
+  position: relative;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7) !important;
+  animation: titlePulse 4s infinite ease-in-out;
+}
+
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3); }
+  50% { text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5); }
+}
+
+/* Enhanced letter animations for the title in futuristic theme */
+.futuristic-theme h1 span {
+  transition: all 0.5s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.futuristic-theme h1 span:hover {
+  transform: translateY(-5px) !important;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.6) !important;
+}
+
+/* Enhanced text readability with Space Mono */
+.futuristic-theme p,
+.futuristic-theme li {
+  line-height: 1.6;
+  font-family: var(--font-space-mono), monospace !important;
+  font-size: 0.95rem;
+}
+
+/* Keep Silkscreen for specific elements */
+.futuristic-theme h1,
+.futuristic-theme h2,
+.futuristic-theme h3,
+.futuristic-theme h4,
+.futuristic-theme h5,
+.futuristic-theme h6,
+.futuristic-theme button,
+.futuristic-theme .nav-item {
+  font-family: var(--font-silkscreen), monospace !important;
+}
+
+/* Enhance focus and hover states for all interactive elements in futuristic theme */
+.futuristic-theme *:focus,
+.futuristic-theme a:focus,
+.futuristic-theme button:focus,
+.futuristic-theme input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.5);
+}
+
+/* Improved futuristic scrollbar design */
+.futuristic-theme::-webkit-scrollbar {
+  width: 8px;
+  background-color: #050a1a;
+}
+
+.futuristic-theme::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.futuristic-theme::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+/* Add circuit-like details to containers in futuristic theme */
+.futuristic-theme .container::before,
+.futuristic-theme section::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid rgba(0, 255, 255, 0.3);
+  border-left: 1px solid rgba(0, 255, 255, 0.3);
+  opacity: 0.5;
+}
+
+.futuristic-theme .container::after,
+.futuristic-theme section::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  border-right: 1px solid rgba(0, 255, 255, 0.3);
+  opacity: 0.5;
+}

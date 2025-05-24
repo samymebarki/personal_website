@@ -1,0 +1,203 @@
+/* Enhanced Futuristic Theme with Deep Space Background and Grid Overlay */
+
+/* DEEP SPACE BACKGROUND ACROSS ENTIRE WEBSITE */
+html.futuristic-theme,
+.futuristic-theme body,
+.futuristic-theme body.bg-custom-background,
+.futuristic-theme body.paper-fold,
+.futuristic-theme body.paper-fold-left {
+  background: linear-gradient(135deg, #050a1a, #0a1129, #0d1836) !important;
+  background-color: #050a1a !important;
+  background-image: none !important;
+  color: #00ffff !important;
+  box-shadow: none !important;
+  border: none !important;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Apply solid navy background to ALL elements and Agrozza font to text */
+.futuristic-theme .min-h-screen,
+.futuristic-theme main,
+.futuristic-theme [class*="container"],
+.futuristic-theme [class*="wrapper"],
+.futuristic-theme [class*="section"],
+.futuristic-theme [class*="content"],
+.futuristic-theme [class*="bg-"],
+.futuristic-theme div,
+.futuristic-theme article,
+.futuristic-theme aside,
+.futuristic-theme header,
+.futuristic-theme footer,
+.futuristic-theme nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #00ffff !important;
+  font-family: 'Agrozza', sans-serif !important;
+  letter-spacing: 0.5px;
+}
+
+/* Remove ALL newspaper-related classes and effects */
+.futuristic-theme .bg-custom-background,
+.futuristic-theme .paper-fold,
+.futuristic-theme .paper-fold-left,
+.futuristic-theme .paper-edge,
+.futuristic-theme [class*="paper"],
+.futuristic-theme [class*="bg-[#f8e1c2]"],
+.futuristic-theme [class*="bg-[#503822]"] {
+  background: transparent !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Completely remove paper textures */
+.futuristic-theme .bg-paper,
+.futuristic-theme .paper-fold,
+.futuristic-theme .paper-fold-left,
+.futuristic-theme .paper-fold-right,
+.futuristic-theme .paper-edge,
+.futuristic-theme [class*="paper-"],
+.futuristic-theme [class*="bg-custom-background"] {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-image: none !important;
+}
+
+/* Clear all before/after elements that might have paper textures */
+.futuristic-theme .bg-paper::before,
+.futuristic-theme .bg-paper::after,
+.futuristic-theme .paper-fold::before,
+.futuristic-theme .paper-fold::after,
+.futuristic-theme .paper-edge::before,
+.futuristic-theme .paper-edge::after,
+.futuristic-theme::after,
+.futuristic-theme::before,
+.futuristic-theme body::after,
+.futuristic-theme body::before,
+.futuristic-theme .circuit-element,
+.futuristic-theme .particle {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  animation: none !important;
+}
+
+/* NO ANIMATIONS OR BACKGROUND PATTERNS */
+.futuristic-theme .min-h-screen::before,
+.futuristic-theme .min-h-screen::after,
+.futuristic-theme body::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* Enhanced borders for sections with glowing effect */
+.futuristic-theme section,
+.futuristic-theme article,
+.futuristic-theme .newspaper-grid,
+.futuristic-theme .newspaper-section {
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  background: rgba(10, 17, 41, 0.8) !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1) !important;
+  backdrop-filter: blur(5px);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.futuristic-theme section:hover,
+.futuristic-theme article:hover {
+  border-color: rgba(0, 255, 255, 0.5) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+}
+
+/* No corner accents */
+.futuristic-theme section::before,
+.futuristic-theme article::before,
+.futuristic-theme .newspaper-grid::before,
+.futuristic-theme .newspaper-section::before,
+.futuristic-theme section::after,
+.futuristic-theme article::after,
+.futuristic-theme .newspaper-grid::after,
+.futuristic-theme .newspaper-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Override all sepia and newspaper colors */
+.futuristic-theme [class*="text-[#"],
+.futuristic-theme [class*="bg-[#"],
+.futuristic-theme [class*="border-[#"] {
+  color: #00ffff !important;
+  background-color: transparent !important;
+  border-color: #00ffff !important;
+}
+
+/* Enhanced futuristic digital clock display */
+.futuristic-theme .date,
+.futuristic-theme time,
+.futuristic-theme [class*="date"] {
+  font-family: 'VT323', monospace !important;
+  color: #00ffff !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  padding: 4px 8px !important;
+  border: 1px solid rgba(0, 255, 255, 0.4) !important;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3) !important;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+}
+
+/* Enhanced Floating Particles System */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+  25% { transform: translateY(-20px) rotate(5deg); opacity: 0.6; }
+  50% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  75% { transform: translateY(20px) rotate(-5deg); opacity: 0.6; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.6; }
+}
+
+.futuristic-theme .particle {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: #00ffff;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 1;
+  box-shadow: 0 0 15px 4px rgba(0, 255, 255, 0.6);
+  animation: float 15s infinite ease-in-out, pulse 8s infinite ease-in-out;
+}
+
+/* Grid Overlay */
+.futuristic-theme::after {
+  content: '' !important;
+  display: block !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px) !important;
+  background-size: 50px 50px !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  animation: gridPulse 15s infinite ease-in-out !important;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}

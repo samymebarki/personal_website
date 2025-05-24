@@ -1,0 +1,13 @@
+/* Chomsky Font */
+@font-face {
+  font-family: 'Chomsky';
+  src: url('https://db.onlinewebfonts.com/t/2d843584d562a0a81c876319a1e3297e.eot');
+  src: url('https://db.onlinewebfonts.com/t/2d843584d562a0a81c876319a1e3297e.eot?#iefix') format('embedded-opentype'),
+    url('https://db.onlinewebfonts.com/t/2d843584d562a0a81c876319a1e3297e.woff2') format('woff2'),
+    url('https://db.onlinewebfonts.com/t/2d843584d562a0a81c876319a1e3297e.woff') format('woff'),
+    url('https://db.onlinewebfonts.com/t/2d843584d562a0a81c876319a1e3297e.ttf') format('truetype'),
+    url('https://db.onlinewebfonts.com/t/2d843584d562a0a81c876319a1e3297e.svg#Chomsky') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

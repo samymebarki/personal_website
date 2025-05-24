@@ -30,6 +30,12 @@
 }
 
 :root {
+  /* Common variables for both themes */
+  --radius: 0.5rem;
+}
+
+/* Newspaper theme variables */
+.newspaper-theme {
   --foreground-rgb: 80, 56, 34;
   --background-start-rgb: 248, 225, 194;
   --background-end-rgb: 255, 255, 255;
@@ -63,8 +69,6 @@
   --input: 25 25% 12%;
   --ring: 25 25% 12%;
 
-  --radius: 0.5rem;
-
   /* Sepia color palette - warmer tones */
   --sepia-50: 45 38% 98%;
   --sepia-100: 43 36% 94%;
@@ -80,6 +84,58 @@
   /* Custom colors */
   --custom-header: 60 3% 10%; /* #1b1b19 */
   --custom-background: 33 10% 73%; /* #c4bdb3 */
+}
+
+/* Futuristic theme variables */
+.futuristic-theme {
+  --foreground-rgb: 180, 220, 255;
+  --background-start-rgb: 10, 17, 41;
+  --background-end-rgb: 16, 23, 41;
+  --ink-color: #00e5ff;
+  --paper-color: #0a1129;
+  --accent-color: #ff007a;
+
+  --background: 220 80% 98%;
+  --foreground: 212 80% 95%;
+
+  --card: 220 20% 14%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 220 20% 14%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 196 100% 50%;
+  --primary-foreground: 220 20% 14%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 220 30% 20%;
+  --muted-foreground: 210 40% 80%;
+
+  --accent: 196 100% 50%;
+  --accent-foreground: 220 20% 14%;
+
+  --destructive: 350 89% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 196 100% 50%;
+  --input: 196 100% 50%;
+  --ring: 196 100% 50%;
+
+  /* Cyberpunk blue color palette */
+  --sepia-50: 196 100% 97%;
+  --sepia-100: 196 100% 90%;
+  --sepia-200: 196 100% 80%;
+  --sepia-300: 196 100% 70%;
+  --sepia-400: 196 100% 60%;
+  --sepia-500: 196 100% 50%;
+  --sepia-600: 196 100% 40%;
+  --sepia-700: 196 100% 30%;
+  --sepia-800: 196 100% 20%;
+  --sepia-900: 196 100% 10%;
+
+  /* Custom colors */
+  --custom-header: 196 100% 50%; /* #00e5ff */
+  --custom-background: 220 60% 10%; /* #0a1129 */
 }
 
 @layer base {
@@ -132,7 +188,7 @@
 
   /* Newspaper typography utilities */
   .newspaper-title {
-    @apply font-playfair font-bold tracking-tight text-custom-header;
+    @apply font-playfair  tracking-tight text-custom-header;
   }
 
   .newspaper-heading {
@@ -381,11 +437,11 @@
 }
 
 /* Paper edge effect */
-.paper-edge {
+.newspaper-theme .paper-edge {
   position: relative;
 }
 
-.paper-edge::after {
+.newspaper-theme .paper-edge::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -396,11 +452,11 @@
 }
 
 /* Paper fold effect */
-.paper-fold {
+.newspaper-theme .paper-fold {
   position: relative;
 }
 
-.paper-fold::before {
+.newspaper-theme .paper-fold::before {
   content: "";
   position: absolute;
   top: 0;
@@ -409,10 +465,97 @@
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05), transparent);
 }
 
-.paper-fold-left::before {
+.newspaper-theme .paper-fold-left::before {
   left: 20%;
 }
 
-.paper-fold-right::before {
+.newspaper-theme .paper-fold-right::before {
   right: 20%;
+}
+
+/* FUTURISTIC THEME SPECIFIC STYLES */
+
+/* Futuristic background */
+.futuristic-theme .bg-paper {
+  background-color: #0a1129;
+  position: relative;
+  background-image: 
+    linear-gradient(to bottom, rgba(6, 11, 25, 0.9), rgba(16, 23, 41, 1));
+}
+
+/* Digital overlay - grid pattern */
+.futuristic-theme .bg-paper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.15;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px);
+}
+
+/* Digital noise */
+.futuristic-theme .bg-paper::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' fill='%2300e5ff'/%3E%3C/svg%3E");
+}
+
+/* Futuristic glowing edge */
+.futuristic-theme .paper-edge {
+  position: relative;
+}
+
+.futuristic-theme .paper-edge::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 229, 255, 0.7), transparent);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+}
+
+/* Futuristic fold/division */
+.futuristic-theme .paper-fold {
+  position: relative;
+}
+
+.futuristic-theme .paper-fold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.5), transparent);
+  box-shadow: 0 0 5px rgba(0, 229, 255, 0.4);
+}
+
+.futuristic-theme .paper-fold-left::before {
+  left: 20%;
+}
+
+.futuristic-theme .paper-fold-right::before {
+  right: 20%;
+}
+
+/* Theme transition effect */
+html {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
 }

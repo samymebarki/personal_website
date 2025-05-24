@@ -1,0 +1,43 @@
+/* Silkscreen Font */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* Silkscreen font usage in futuristic theme */
+.futuristic-theme h1,
+.futuristic-theme h2,
+.futuristic-theme h3,
+.futuristic-theme h4,
+.futuristic-theme h5,
+.futuristic-theme h6,
+.futuristic-theme p,
+.futuristic-theme div,
+.futuristic-theme span,
+.futuristic-theme button,
+.futuristic-theme a {
+  font-family: 'Silkscreen', monospace !important;
+  letter-spacing: 1px !important;
+}
+
+/* Special animation for Silkscreen headings in futuristic theme */
+.futuristic-theme h2 {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0.25em 0;
+}
+
+/* Scanline effect for headings */
+.futuristic-theme h2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 255, 255, 0.7);
+  animation: scanline 3s ease-in-out infinite;
+}
+
+@keyframes scanline {
+  0%, 100% { top: 0; }
+  50% { top: 100%; }
+}

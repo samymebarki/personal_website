@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef } from 'react';
 import { Clock, Newspaper, PenTool, User, Award, Book, Heart, Calendar, Users, Layout, Briefcase, GraduationCap, MessageCircle } from 'lucide-react'
 import Image from "next/image"
+import ThemedImage from "@/components/ThemedImage"
 import { motion } from 'framer-motion';
 import PaperTexture from "@/components/paper-texture"
 import NewsTicker from "@/components/news-ticker"
@@ -246,7 +247,7 @@ export default function Home() {
         {/* Newspaper Header */}
         <header className="text-center border-b-2 border-[#503822] mb-6 sm:mb-8 pb-3 sm:pb-4 newspaper-fold">
           
-          <h1 className="text-4xl sm:text-7xl md:text-9xl lg:text-9xl leading-none my-4 sm:my-6 font-['Chomsky'] text-[#503822] hover:scale-105 transition-transform duration-500">
+          <h1 className="newspaper-title text-4xl sm:text-7xl md:text-9xl lg:text-9xl leading-none my-4 sm:my-6 newspaper-theme:font-['Chomsky'] futuristic-theme:font-[var(--font-silkscreen)] newspaper-theme:text-[#503822] futuristic-theme:text-[#00ffff] hover:scale-105 transition-transform duration-500">
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">S</span>
             <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">a</span>
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">m</span>
@@ -314,7 +315,7 @@ export default function Home() {
                 }
               `}</style>
               <h2 
-                className="text-2xl sm:text-4xl md:text-6xl font-bold leading-tight mb-4 text-[#503822] relative z-10"
+                className="text-2xl sm:text-4xl md:text-6xl font-bold leading-tight mb-4 relative z-10 newspaper-theme:text-[#503822] newspaper-theme:font-serif futuristic-theme:text-[#00ffff] futuristic-theme:font-silkscreen headline"
               >
                 DEVELOPER ARRESTED FOR MASTERING MULTIPLE SKILLS
               </h2>
@@ -324,10 +325,11 @@ export default function Home() {
                     className="circling-path" 
                     d="M10,75 C10,20 790,20 790,75 C790,130 10,130 10,75 Z" 
                     fill="none" 
-                    stroke="#503822" 
+                    stroke="var(--path-color, #503822)" 
                     strokeWidth="1.5" 
                     strokeOpacity="0.7"
                     strokeLinecap="round"
+                    style={{stroke: 'var(--path-color, #503822)'}}
                   />
                   <path 
                     className="circling-path second-circle" 
@@ -613,10 +615,13 @@ export default function Home() {
                   <span>ID: DV-0422</span>
                   <span>APPROACH WITH CAUTION</span>
                 </div>
-                <img 
-                  src="/images/me.png" 
+                <ThemedImage 
+                  defaultSrc="/images/me.png" 
+                  futuristicSrc="/images/mee-futuristic.png" 
                   alt="Samy Mebarki" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:brightness-110 group-hover:shadow-glow animate-fadeIn"
+                  width={300}
+                  height={300}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
               <p className="text-xs sm:text-sm mb-3 text-[#503822] animate-slideInUp">With a background in both design and development, Samy brings a unique perspective to every project. His approach combines technical expertise with creative problem-solving.</p>

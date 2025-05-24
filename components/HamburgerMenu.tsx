@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { X, Menu, Home, User, Code, Mail, ChevronRight } from 'lucide-react';
 import { useMenu } from '../context/MenuContext';
-import Image from 'next/image';
+import ThemedImage from "./ThemedImage";
 
 const menuItems = [
   { name: 'Home', href: '#home', icon: <Home className="w-5 h-5 md:w-6 md:h-6" /> },
@@ -13,7 +13,7 @@ const menuItems = [
   { name: 'Contact', href: '#contact', icon: <Mail className="w-5 h-5 md:w-6 md:h-6" /> },
 ];
 
-export default function HamburgerMenu() {
+export default function dHamburgerMenu() {
   const { isOpen, toggleMenu } = useMenu();
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -94,8 +94,9 @@ export default function HamburgerMenu() {
       <div 
         className={`fixed top-14 left-6 z-50 transition-opacity duration-300 ${showHeader ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       >
-        <Image 
-          src="/images/logo.png" 
+        <ThemedImage 
+          defaultSrc="/images/logo.png" 
+          futuristicSrc="/images/logo-futuristic.png"
           alt="Samy Mebarki Logo" 
           width={40} 
           height={40}

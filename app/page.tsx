@@ -277,20 +277,7 @@ export default function Home() {
               ].map((tab, index) => (
                 <button 
                   key={tab.name}
-                  onClick={() => {
-                    // Update active tab state
-                    setActiveMainTab(index);
-                    
-                    // Show content for active tab
-                    const allContents = document.querySelectorAll('.tab-content');
-                    allContents.forEach((content, i) => {
-                      if (i === index) {
-                        content.classList.remove('hidden');
-                      } else {
-                        content.classList.add('hidden');
-                      }
-                    });
-                  }}
+                  onClick={() => setActiveMainTab(index)}
                   className={`main-tab py-2 px-6 font-medium text-sm flex-1 ${activeMainTab === index ? 'bg-[#503822] text-[#f8e1c2]' : 'text-[#503822]'}`}
                 >
                   {tab.icon}
@@ -434,7 +421,7 @@ export default function Home() {
                 </div>
                 
                 {/* Tab Content */}
-                <div className="tab-content">
+                <div className={activeMainTab === 0 ? 'block' : 'hidden'}>
                   {/* Experience Tab */}
                   <div className={activeTab === 'experience' ? 'block' : 'hidden'}>
                       <div className="mb-4 border-l-2 border-[#503822] pl-4">

@@ -90,19 +90,17 @@ export default function RootLayout({
             
             {/* Unified header elements container that fades on scroll */}
             <div className="header-elements fade-on-scroll">
-              
-              
               {/* Menu button in top right */}
               <div className="hidden md:block fixed top-8 right-8 z-50">
                 <HamburgerMenu />
               </div>
               
-              {/* Theme toggle below menu button */}
+              
+              
+              {/* Theme toggle below music player */}
               <div className="fixed top-[70px] right-8 z-50">
                 <ThemeToggle />
               </div>
-              
-              
             </div>
             {children}
             <AnimationManagerWrapper />

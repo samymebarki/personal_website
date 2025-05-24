@@ -545,7 +545,7 @@ export default function Home() {
                   <div className="text-lg font-serif">"His code doesn't just run, it practically flees the crime scene with extraordinary efficiency."</div>
                   <div className="text-right text-xs mt-2">— Detective R. Gosling, Frontend Investigation Unit</div>
                 </div>
-                {projects.map((project, index) => (
+                {projects.slice(0, 4).map((project, index) => (
                   <article 
                     key={project.id} 
                     className={`relative p-6 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 article ink-drop`}
@@ -709,21 +709,15 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-2 animate-fade-in delay-900">
                   <a 
                     href="#" 
-                    className="border border-[#503822] hover:bg-[#503822] hover:text-[#f8e1c2] text-[#503822] py-2 px-3 text-center text-xs uppercase tracking-wider font-medium flex items-center justify-center gap-2 transition-colors duration-300"
+                    className="border border-[#503822] hover:bg-[#503822] hover:text-[#f8e1c2] text-[#503822] py-2 px-3 text-center text-xs uppercase tracking-wider font-medium transition-colors duration-300"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <span>Business Card</span>
+                    Business Card
                   </a>
                   <a 
                     href="#" 
-                    className="border border-[#503822] hover:bg-[#503822] hover:text-[#f8e1c2] text-[#503822] py-2 px-3 text-center text-xs uppercase tracking-wider font-medium flex items-center justify-center gap-2 transition-colors duration-300"
+                    className="border border-[#503822] hover:bg-[#503822] hover:text-[#f8e1c2] text-[#503822] py-2 px-3 text-center text-xs uppercase tracking-wider font-medium transition-colors duration-300"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <span>Resume/CV</span>
+                    Resume/CV
                   </a>
                 </div>
               </div>
@@ -836,7 +830,7 @@ export default function Home() {
                   { name: "Python", level: 65 }
                 ].map((skill, index) => (
                   <div key={skill.name} className="relative p-2" style={{ 
-                    transform: `rotate(${Math.random() * 2 - 1}deg)`,
+                    transform: 'rotate(0deg)',
                     opacity: 0,
                     animation: 'fadeIn 0.8s ease-out forwards',
                     animationDelay: `${index * 100 + 300}ms`
@@ -1079,14 +1073,6 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  {/* Custom torn paper effect at the top */}
-                  {/* <div className="absolute -top-1 left-0 right-0 h-3 overflow-hidden z-20">
-                    <div className="w-full h-12 bg-[#efe0b4] relative">
-                      <svg viewBox="0 0 100 10" preserveAspectRatio="none" className="absolute bottom-0 w-full h-10">
-                        <path d="M0,10 L5,8 L10,9 L15,7 L20,10 L25,6 L30,10 L35,7 L40,9 L45,5 L50,10 L55,8 L60,10 L65,7 L70,9 L75,6 L80,10 L85,5 L90,8 L95,7 L100,10 L100,0 L0,0 Z" fill="#efe0b4"></path>
-                      </svg>
-                    </div>
-                  </div> */}
                   
                   {/* Shadows and glow effects */}
                   <div className="absolute -inset-1 bg-[#503822] rounded-sm opacity-0 group-hover:opacity-10 transition duration-300 ease-in-out blur-sm group-hover:blur-md"></div>
@@ -1131,20 +1117,6 @@ export default function Home() {
                       <div className="absolute bottom-0 left-0 right-0 bg-[#503822] bg-opacity-85 p-1.5 text-[#f8e1c2] text-xs z-20 text-center font-serif italic">
                         Crime committed in {project.year}
                       </div>
-                      
-                      {/* Enhanced photo corner decorations */}
-                      {/* <div className="absolute top-0 left-0 w-8 h-8 z-20 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-16 h-16 bg-[#503822] rotate-45 transform -translate-x-8 -translate-y-8"></div>
-                      </div>
-                      <div className="absolute top-0 right-0 w-8 h-8 z-20 overflow-hidden">
-                        <div className="absolute top-0 right-0 w-16 h-16 bg-[#503822] rotate-45 transform translate-x-8 -translate-y-8"></div>
-                      </div>
-                      <div className="absolute bottom-0 left-0 w-8 h-8 z-20 overflow-hidden">
-                        <div className="absolute bottom-0 left-0 w-16 h-16 bg-[#503822] rotate-45 transform -translate-x-8 translate-y-8"></div>
-                      </div>
-                      <div className="absolute bottom-0 right-0 w-8 h-8 z-20 overflow-hidden">
-                        <div className="absolute bottom-0 right-0 w-16 h-16 bg-[#503822] rotate-45 transform translate-x-8 translate-y-8"></div>
-                      </div> */}
                       
                       {/* Type badge with improved design */}
                       <div className="absolute top-3 right-3 bg-[#f8e1c2] text-[#503822] py-1 px-2 text-xs font-bold z-20 rotate-3 border border-[#503822] shadow-md transform group-hover:rotate-0 transition-all duration-300">
@@ -1278,7 +1250,7 @@ export default function Home() {
                 <span>Skilled Criminal Mastermind • Digital Heist Division</span>
               </div>
               <div className="italic">All criminal schemes revealed for public viewing • {format(new Date(), 'MMMM yyyy')}</div>
-              <div className="font-mono">Page B-{Math.floor(Math.random() * 20) + 1}</div>
+              <div className="font-mono">Page B-6</div>
             </div>
           </div>
           

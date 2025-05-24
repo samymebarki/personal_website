@@ -540,7 +540,7 @@ export default function Home() {
                 SPECIAL INVESTIGATION: Suspect linked to following high-profile development cases
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mt-6">
-              <div className="col-span-1 md:col-span-2 border-l-4 border-[#503822] pl-4 italic text-[#503822] mb-4 bg-[#efe0b4] bg-opacity-20 p-3 relative" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '500ms' }}>
+              <div className="col-span-1 md:col-span-2 border-l-4 border-[#503822] pl-4 italic text-[#503822] mb-4 bg-[#efe0b4] bg-opacity-20 p-3 relative" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '400ms' }}>
                   <div className="absolute -top-3 right-4 bg-[#503822] text-[#f8e1c2] text-[10px] px-2 py-1 rotate-6 z-10">FROM OUR SOURCES</div>
                   <div className="text-lg font-serif">"His code doesn't just run, it practically flees the crime scene with extraordinary efficiency."</div>
                   <div className="text-right text-xs mt-2">— Detective R. Gosling, Frontend Investigation Unit</div>
@@ -723,7 +723,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="border border-[#503822] p-5 mb-8 bg-[#efe0b4] bg-opacity-30" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '1000ms' }}>
+            <div className="border border-[#503822] p-5 mb-8 bg-[#efe0b4] bg-opacity-30" style={{ opacity: 0, animation: 'fadeIn 0.8s ease-out forwards', animationDelay: '400ms' }}>
               <div className="border-b-2 border-[#503822] mb-4 pb-1">
                 <h3 className="font-bold text-base sm:text-lg text-[#503822] inline-block">SUSPICIOUS ACTIVITIES & KNOWN HABITS</h3>
                 <div className="text-[10px] sm:text-xs italic text-[#503822] mt-1">Subject observed engaging in the following:</div>
@@ -1256,13 +1256,21 @@ export default function Home() {
           
           {/* Project Details Modal */}
           {showProjectModal && selectedProject && (
-            <div className="fixed inset-0 bg-black bg-opacity-0 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black bg-opacity-0 flex items-center justify-center z-50 p-4 overflow-hidden">
               <motion.div 
-                className="relative bg-[#f8e1c2]  border-2 border-[#503822] max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                className="relative bg-transparent border-2 border-[#503822] max-w-4xl w-full max-h-[80vh] overflow-y-auto custom-scrollbar"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                style={{ backgroundImage: "url('/images/paper-texture-light.png')" }}
+                style={{ 
+                  background: `
+                    linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('/images/texture1.jpg'),
+                    linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/images/texture_overlay.jpg')
+                  `,
+                  backgroundBlendMode: "normal, normal, multiply",
+                  backgroundSize: "cover, cover, 200px, 200px",
+                  backgroundColor: "#f8e1c2"
+                }}
               >
                 <button 
                   onClick={() => setShowProjectModal(false)}
@@ -1285,7 +1293,7 @@ export default function Home() {
                   </div>
                   
                   {/* Newspaper masthead */}
-                  <div className="font-['Chomsky'] text-4xl text-[#503822] text-center mb-2 relative z-10 leading-none">{selectedProject.title}</div>
+                  <div className="font-bold text-4xl text-[#503822] text-center mb-2 relative z-10 leading-none">{selectedProject.title}</div>
                   
                   {/* Newspaper decorative line */}
                   <div className="flex items-center justify-center gap-4 mb-3">
@@ -1333,12 +1341,12 @@ export default function Home() {
                     </div>
                     
                     <div>
-                      <div className="border-2 border-[#503822] border-dashed p-4 bg-[#efe0b4] bg-opacity-60 mb-4">
+                      <div className="border-2 border-[#503822] border-dashed p-4  bg-opacity-60 mb-4">
                         <h4 className="font-bold text-[#503822] mb-2 text-sm">ROLE</h4>
                         <p className="text-sm text-[#503822]">{selectedProject.role}</p>
                       </div>
                       
-                      <div className="border-2 border-[#503822] border-dashed p-4 bg-[#efe0b4] bg-opacity-60">
+                      <div className="border-2 border-[#503822] border-dashed p-4  bg-opacity-60">
                         <h4 className="font-bold text-[#503822] mb-2 text-sm">TECHNOLOGIES</h4>
                         <ul className="text-xs text-[#503822] space-y-1">
                           {selectedProject.technologies.map((tech, index) => (

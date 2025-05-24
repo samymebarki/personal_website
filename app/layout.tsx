@@ -59,7 +59,9 @@ export default function RootLayout({
           <LoadingAnimationWrapper />
           <CustomCursor />
           <CustomScrollbar />
-          <HamburgerMenu />
+          <div className="hidden md:block">
+            <HamburgerMenu />
+          </div>
           {children}
           <AnimationManagerWrapper />
         </MenuProvider>

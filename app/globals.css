@@ -100,6 +100,31 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+  
+  /* Custom scrollbar for modal content */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(80, 56, 34, 0.3);
+    border-radius: 20px;
+    border: 2px solid transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80, 56, 34, 0.5);
+  }
+  
+  /* Firefox */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(80, 56, 34, 0.3) transparent;
+  }
 
   .animate-fade-in {
     animation: fade-in 1s ease-out forwards;

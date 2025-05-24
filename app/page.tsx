@@ -551,10 +551,10 @@ export default function Home() {
                 <div>{format(new Date(), 'MMMM d, yyyy')} - 25¢</div>
               </div>
               
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mt-6 mb-6 text-[#503822] font-serif tracking-tight leading-none">
+              <h5 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mt-6 mb-6 text-[#503822] font-serif tracking-tight leading-none">
                 NOTORIOUS CASES
                 <div className="border-b-2 border-[#503822] w-full mt-2"></div>
-              </h2>
+              </h5>
               
               <div className="text-xs text-[#503822] italic mb-3 border-b border-[#503822] pb-1">
                 SPECIAL INVESTIGATION: Suspect linked to following high-profile development cases

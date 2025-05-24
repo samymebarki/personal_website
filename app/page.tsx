@@ -247,7 +247,7 @@ export default function Home() {
         {/* Newspaper Header */}
         <header className="text-center border-b-2 border-[#503822] mb-6 sm:mb-8 pb-3 sm:pb-4 newspaper-fold">
           
-          <h1 className="newspaper-title text-4xl sm:text-7xl md:text-9xl lg:text-9xl leading-none my-4 sm:my-6 newspaper-theme:font-['Chomsky'] futuristic-theme:font-[var(--font-silkscreen)] newspaper-theme:text-[#503822] futuristic-theme:text-[#00ffff] hover:scale-105 transition-transform duration-500">
+          <h1 className="newspaper-title text-3xl sm:text-7xl md:text-9xl lg:text-9xl leading-none my-4 sm:my-6 newspaper-theme:font-['Chomsky'] futuristic-theme:font-[var(--font-silkscreen)] newspaper-theme:text-[#503822] futuristic-theme:text-[#00ffff] hover:scale-105 transition-transform duration-500">
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">S</span>
             <span className="inline-block transform hover:-rotate-2 transition-transform duration-300">a</span>
             <span className="inline-block transform hover:rotate-2 transition-transform duration-300">m</span>

@@ -843,11 +843,11 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 {[
-                  { name: "JavaScript", level: 90 },
+                  { name: "JS", level: 90 },
                   { name: "React", level: 85 },
                   { name: "UI/UX", level: 80 },
                   { name: "Node.js", level: 75 },
-                  { name: "TypeScript", level: 70 },
+                  { name: "TS", level: 70 },
                   { name: "NextJS", level: 85 },
                   { name: "CSS", level: 90 },
                   { name: "Python", level: 65 }

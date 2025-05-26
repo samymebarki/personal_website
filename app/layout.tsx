@@ -10,10 +10,9 @@ import "./futuristic-forms.css"
 import "./agrozza-font.css"
 import "./chomsky-font.css"
 import "./enhanced-theme.css"
+import "./new-futuristic.css"
 import CustomCursor from "@/components/AnimatedCursor"
-import MusicPlayer from "@/components/MusicPlayerWrapper"
 import HamburgerMenu from "@/components/HamburgerMenu"
-import FuturisticEffects from "@/components/FuturisticEffects"
 import ThemedFavicon from "@/components/ThemedFavicon"
 import ThemedImage from "@/components/ThemedImage"
 import { MenuProvider } from '@/context/MenuContext'
@@ -22,6 +21,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import AnimationManagerWrapper from '@/components/AnimationManagerWrapper'
 import LoadingAnimationWrapper from '@/components/LoadingAnimationWrapper'
 import CustomScrollbar from '@/components/CustomScrollbar'
+import NewFuturisticEffects from '@/components/NewFuturisticEffects'
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -85,17 +85,27 @@ export default function RootLayout({
             <LoadingAnimationWrapper />
             <CustomCursor />
             <CustomScrollbar />
-            <FuturisticEffects />
+            <NewFuturisticEffects />
             <ThemedFavicon />
             
             {/* Unified header elements container that fades on scroll */}
             <div className="header-elements fade-on-scroll">
-              {/* Menu button in top right */}
-              <div className="hidden md:block fixed top-8 right-8 z-50">
-                <HamburgerMenu />
+              {/* Logo in top left */}
+              <div className="sm:hidden fixed top-[70px] left-8 z-50">
+                <ThemedImage
+                defaultSrc="/images/logo.png"
+                futuristicSrc="/images/logo-futuristic.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                className="no-futuristic-border"
+                />
               </div>
               
-              
+              {/* Menu button in top right */}
+              <div className="hidden md:block fixed top-10 right-8 z-50">
+                <HamburgerMenu />
+              </div>
               
               {/* Theme toggle - positioned below news ticker and centered on mobile, top right on desktop */}
               <div className="fixed sm:hidden top-12 left-1/2 -translate-x-1/2 z-50">

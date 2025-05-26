@@ -1,0 +1,179 @@
+/* New Futuristic Effects - More subtle and elegant */
+
+/* Base styles for futuristic theme */
+.futuristic-theme {
+  --glow-color: rgba(0, 255, 255, 0.7);
+  --dark-color: #050a18;
+  --accent-color: #00d8ff;
+  --text-color: #e0f7ff;
+  --bg-gradient: linear-gradient(135deg, #050a18, #0b1a36);
+}
+
+/* Elegant dark background with subtle gradient */
+.futuristic-theme body {
+  background: var(--bg-gradient) !important;
+  color: var(--text-color) !important;
+}
+
+/* Cyber grid in the background */
+.futuristic-theme body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 216, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 216, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle glow effect for headings */
+.futuristic-theme h1,
+.futuristic-theme h2,
+.futuristic-theme h3 {
+  color: var(--text-color) !important;
+  text-shadow: 0 0 5px rgba(0, 216, 255, 0.5) !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Neon accent for sections and cards */
+.futuristic-theme section,
+.futuristic-theme article,
+.futuristic-theme .border {
+  background: rgba(11, 26, 54, 0.6) !important;
+  border: 1px solid rgba(0, 216, 255, 0.3) !important;
+  box-shadow: 0 0 10px rgba(0, 216, 255, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+.futuristic-theme section:hover,
+.futuristic-theme article:hover,
+.futuristic-theme .border:hover {
+  box-shadow: 0 0 15px rgba(0, 216, 255, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+/* Text elements */
+.futuristic-theme p,
+.futuristic-theme span,
+.futuristic-theme div {
+  color: var(--text-color) !important;
+}
+
+/* Elegant button styling */
+.futuristic-theme button,
+.futuristic-theme .button {
+  background: rgba(0, 216, 255, 0.1) !important;
+  border: 1px solid rgba(0, 216, 255, 0.3) !important;
+  color: var(--text-color) !important;
+  transition: all 0.3s ease;
+}
+
+.futuristic-theme button:hover,
+.futuristic-theme .button:hover {
+  background: rgba(0, 216, 255, 0.2) !important;
+  box-shadow: 0 0 10px rgba(0, 216, 255, 0.3) !important;
+}
+
+/* Holographic accent lines that move slowly */
+@keyframes accentShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.futuristic-theme .headline::after,
+.futuristic-theme h1::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 216, 255, 0.7), 
+    rgba(124, 0, 255, 0.5), 
+    rgba(0, 216, 255, 0.7), 
+    transparent
+  );
+  background-size: 200% 100%;
+  margin-top: 5px;
+  animation: accentShift 15s ease infinite;
+}
+
+/* Elegant links */
+.futuristic-theme a {
+  color: var(--accent-color) !important;
+  text-decoration: none !important;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.futuristic-theme a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.futuristic-theme a:hover {
+  text-shadow: 0 0 5px rgba(0, 216, 255, 0.5) !important;
+}
+
+.futuristic-theme a:hover::after {
+  width: 100%;
+}
+
+/* Cyberspace UI elements */
+.futuristic-theme input,
+.futuristic-theme textarea,
+.futuristic-theme select {
+  background: rgba(5, 10, 24, 0.6) !important;
+  border: 1px solid rgba(0, 216, 255, 0.3) !important;
+  color: var(--text-color) !important;
+  transition: all 0.3s ease;
+}
+
+.futuristic-theme input:focus,
+.futuristic-theme textarea:focus,
+.futuristic-theme select:focus {
+  box-shadow: 0 0 10px rgba(0, 216, 255, 0.3) !important;
+  border-color: rgba(0, 216, 255, 0.5) !important;
+}
+
+/* Subtle animated particles in the background */
+@keyframes particleDrift {
+  0%, 100% { opacity: 0.3; transform: translate(0, 0); }
+  25% { opacity: 0.6; transform: translate(10px, 10px); }
+  50% { opacity: 0.3; transform: translate(20px, 0); }
+  75% { opacity: 0.6; transform: translate(10px, -10px); }
+}
+
+.futuristic-theme .cyber-particle {
+  position: fixed;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
+  animation: particleDrift 20s infinite ease-in-out;
+}
+
+/* Header elements fade on scroll */
+.futuristic-theme .header-elements {
+  transition: opacity 0.3s ease;
+}
+
+/* Badge and stat styling */
+.futuristic-theme .badge,
+.futuristic-theme .stat {
+  background: rgba(0, 216, 255, 0.1) !important;
+  border: 1px solid rgba(0, 216, 255, 0.3) !important;
+  color: var(--text-color) !important;
+}

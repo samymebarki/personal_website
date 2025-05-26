@@ -177,3 +177,87 @@
   border: 1px solid rgba(0, 216, 255, 0.3) !important;
   color: var(--text-color) !important;
 }
+
+/* 3D Profile Image Effect - only in futuristic theme */
+@keyframes advancedRotation {
+  0% { transform: perspective(1000px) rotateY(0deg) rotateX(5deg) translateZ(20px) scale(1); filter: brightness(1) contrast(1); }
+  25% { transform: perspective(1000px) rotateY(90deg) rotateX(8deg) translateZ(30px) scale(1.05); filter: brightness(1.2) contrast(1.1); }
+  50% { transform: perspective(1000px) rotateY(180deg) rotateX(5deg) translateZ(20px) scale(1); filter: brightness(1) contrast(1); }
+  75% { transform: perspective(1000px) rotateY(270deg) rotateX(8deg) translateZ(30px) scale(1.05); filter: brightness(1.2) contrast(1.1); }
+  100% { transform: perspective(1000px) rotateY(360deg) rotateX(5deg) translateZ(20px) scale(1); filter: brightness(1) contrast(1); }
+}
+
+.futuristic-theme img[src*="mee-futuristic"] {
+  transform-style: preserve-3d !important;
+  position: relative !important;
+  z-index: 1 !important; /* Lower z-index to place behind overlay text */
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(0, 216, 255, 0.5) !important;
+  border-radius: 4px !important;
+  animation: advancedRotation 15s infinite cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform-origin: center center !important;
+  backface-visibility: visible !important;
+}
+
+.futuristic-theme img[src*="mee-futuristic"]:hover {
+  animation-duration: 8s !important; /* Rotate faster on hover */
+  box-shadow: 
+    -10px 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 50px rgba(0, 216, 255, 0.7) !important;
+  filter: brightness(1.1) saturate(1.1) !important;
+}
+
+/* Add holographic glow effect on hover */
+/* Add a container for better 3D perspective handling */
+.futuristic-theme .aspect-square {
+  perspective: 1200px !important;
+  overflow: visible !important;
+}
+
+/* Holographic overlay effect */
+.futuristic-theme .aspect-square::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -10px !important;
+  background: linear-gradient(45deg, transparent 40%, rgba(0, 216, 255, 0.4) 45%, rgba(0, 216, 255, 0.4) 55%, transparent 60%) !important,
+    linear-gradient(135deg, transparent 40%, rgba(157, 0, 255, 0.4) 45%, rgba(157, 0, 255, 0.4) 55%, transparent 60%) !important;
+  background-size: 400% 400% !important;
+  filter: blur(8px) !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  opacity: 0.5 !important;
+  animation: glowingBorders 8s infinite alternate !important;
+}
+
+/* Static border for image container - no rotation */
+.futuristic-theme .aspect-square {
+  position: relative !important;
+}
+
+@keyframes glowingBorders {
+  0% { background-position: 0% 0%; opacity: 0.3; }
+  50% { background-position: 100% 100%; opacity: 0.7; }
+  100% { background-position: 0% 0%; opacity: 0.3; }
+}
+
+/* Removed rotating animation */
+
+/* Ensure the WANTED text and banner stay on top in futuristic theme */
+.futuristic-theme .aspect-square div[class*="absolute"] {
+  z-index: 20 !important; /* Higher than the rotating image */
+  /* Keep original absolute positioning */
+}
+
+/* Ensure the bottom banner stays visible */
+.futuristic-theme .aspect-square div.absolute.bottom-0 {
+  z-index: 25 !important;
+  background: rgba(11, 26, 54, 0.8) !important; /* Darker background for futuristic theme */
+  border-top: 1px solid var(--accent-color) !important;
+  color: var(--text-color) !important;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.3; transform: scale(0.95); }
+  100% { opacity: 0.7; transform: scale(1.05); }
+}

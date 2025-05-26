@@ -2,6 +2,10 @@
 
 import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
+import dynamic from 'next/dynamic';
+
+// Dynamically import ParticleImage with no SSR to avoid hydration issues
+const ParticleImage = dynamic(() => import('./ParticleImage'), { ssr: false });
 
 interface ThemedImageProps {
   defaultSrc: string;
@@ -44,15 +48,27 @@ export default function ThemedImage({
 
   return (
     <div className="ThemedImage" style={noBorder ? { display: 'inline-block' } : undefined}>
-      <Image
-        src={imageSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        className={imageClasses}
-        style={inlineStyle}
-        data-no-border={noBorder ? 'true' : 'false'}
-      />
+      {theme === 'futuristic' ? (
+        <div className="relative w-full h-full">
+          {/* Scanner and particle effect only for the futuristic theme */}
+          <ParticleImage
+            imageUrl={imageSrc}
+            width={width || 300}
+            height={height || 300}
+            className={`${imageClasses} w-full h-full object-cover`}
+          />
+        </div>
+      ) : (
+        <Image
+          src={imageSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          className={imageClasses}
+          style={inlineStyle}
+          data-no-border={noBorder ? 'true' : 'false'}
+        />
+      )}
     </div>
   );
 }

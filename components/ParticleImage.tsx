@@ -38,7 +38,7 @@ export default function ParticleImage({ imageUrl, width, height, className = '' 
   const scannerRef = useRef({
     position: 0,
     direction: 1, // 1 for down, -1 for up
-    speed: 0.2, // Very slow scanner movement
+    speed: 0.6, // Very slow scanner movement
   });
   
   // Initialize component on client-side only

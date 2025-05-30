@@ -1,6 +1,7 @@
 'use client';
 
 import { format } from 'date-fns'
+import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef } from 'react';
 import { Clock, Newspaper, PenTool, User, Award, Book, Heart, Calendar, Users, Layout, Briefcase, GraduationCap, MessageCircle } from 'lucide-react'
@@ -13,6 +14,7 @@ import RoughPaperOverlay from "@/components/rough-paper-overlay"
 import AnimatedCursor from "@/components/AnimatedCursor"
 import CoffeeStain from "@/components/coffee-stain";
 import PullQuote from "@/components/PullQuote";
+import ChatbaseScript from "@/components/chatbot";
 
 // Custom hook for typewriter effect with improved reliability
 function useTypewriter(text: string, speed: number = 50) {
@@ -229,6 +231,9 @@ export default function Home() {
   }, []);
   
   return (
+    <>
+      <ChatbaseScript />
+    
     <div className="min-h-screen bg-[#f8e1c2] relative font-serif text-[#503822] overflow-x-hidden cursor-none">
       <AnimatedCursor />
       {/* News Ticker - At the very top */}
@@ -1398,7 +1403,9 @@ export default function Home() {
           <div className="mb-2">© {new Date().getFullYear()} Samy Mebarki • Creative Developer & Designer</div>
         </footer>
       </div>
+      
     </div>
+    </>
   );
 }
 
